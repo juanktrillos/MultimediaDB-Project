@@ -34,6 +34,7 @@ public class Imagenes {
             Date Fecha, Image Imagen, int idContenidoMultimediaI) {
         this.idImagen = idImagen;
         this.nombreImagen = nombreImagen;
+        System.out.println("hola");
         this.descripcionImagen = Descripcion;
         this.fechaImagen = Fecha;
         this.imagen = Imagen;
