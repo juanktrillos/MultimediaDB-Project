@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Multimedia;
+package jFrames;
 
-import Datos.Comentario;
+import entidades.Comentario;
 import javax.swing.JOptionPane;
 
 /**

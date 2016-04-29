@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Datos;
+package entidades;
 
 import java.util.LinkedList;
 import java.security.MessageDigest;
@@ -107,23 +107,13 @@ public class Cuentas {
      *
      * @return String
      */
-    public String update(char c) {
-        String update = "";
-        switch (c) {
-            case 'c':
-                update = "Cuentas SET "
+    public String update() {
+        String update = "Cuentas SET "
                         + "nombreCuenta=" + "\"" + nombreCuenta + "\"" + ","
                         + "apellidoCuenta=" + "\"" + apellidoCuenta + "\"" + ","
                         + "celularCuenta=" + "\"" + celularCuenta + "\""
                         + "WHERE correoCuenta=" + "\"" + correoCuenta + "\"";
-                break;
-
-            case 'p':
-                update = "Cuentas SET "
-                        + "passwordCuenta=" + "\"" + passwordCuenta + "\""
-                        + "WHERE correoCuenta=" + "\"" + correoCuenta + "\"";
-                break;
-        }
+              
 
         return update;
     }

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Lugares;
+package jFrames;
 
-import Datos.Sitios_Interes;
-import Multimedia.Imagenes;
-import Multimedia.jPComentario;
+import entidades.Sitios_Interes;
+import entidades.Imagenes;
+import jFrames.jPComentario;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;

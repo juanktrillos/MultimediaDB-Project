@@ -1,8 +1,9 @@
-package Ventana;
+package jFrames;
 
-import Datos.Cuentas;
+import entidades.Cuentas;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -10,15 +11,16 @@ import javax.swing.JOptionPane;
  *
  * @author CATV
  */
-public class Ventana extends javax.swing.JFrame {
+public class Ventana extends JFrame {
 
     Cuentas cuenta;
+
     public Ventana() {
         initComponents();
         super.setTitle("Turismo");
         jFondo.setIcon(new ImageIcon("src/Fotos/Fondo.jpg"));
         cuenta = new Cuentas();
- 
+
     }
 
     public JMenuItem getjAjustes() {
@@ -115,9 +117,17 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInicioActionPerformed
-        jPCuenta cuenta = new jPCuenta(this);
-        this.setContentPane(cuenta);
+        
+        //cuando se sale de la cuenta
+        jPCuenta jPCuenta = new jPCuenta(this);
+        this.setContentPane(jPCuenta);
         this.setSize(410, 350);
+        System.out.println(cuenta.toString());
+        
+        //cuando la cuesta activa ---- FALTA IMPLEMENTAR
+        /*PagInfo pag = new PagInfo(this);
+        this.setContentPane(pag);
+        this.setSize(640, 480);*/
     }//GEN-LAST:event_MenuInicioActionPerformed
 
     private void MenuSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSalidaActionPerformed
@@ -126,28 +136,21 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSalidaActionPerformed
 
     private void jCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCuentaMouseClicked
-
         jPCuenta jcuenta = new jPCuenta(this);
         cuenta = jcuenta.cuenta;
         this.setContentPane(jcuenta);
         this.setSize(410, 350);
-        
     }//GEN-LAST:event_jCuentaMouseClicked
 
     private void jAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAjustesActionPerformed
-
-        Ajustes ajuste = new Ajustes(this,cuenta.getCorreo());
+        Ajustes ajuste = new Ajustes(this, cuenta.getCorreo());
 
         if (ajuste.Recuperar()) {
             this.setContentPane(ajuste);
             this.setSize(400, 300);
-            System.out.println("Entre");
-        }else{
-            
+        } else {
             JOptionPane.showMessageDialog(null, "Contraseña invalida\n Intente de nuevo");
-        } 
-
-
+        }
     }//GEN-LAST:event_jAjustesActionPerformed
 
     /**

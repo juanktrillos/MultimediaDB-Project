@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ventana;
+package jFrames;
 
-import Datos.Cuentas;
-import Lugares.PagInfo;
+import entidades.Cuentas;
 import database.BaseDatos;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author CATV
  */
-public class jPCuenta extends javax.swing.JPanel {
+public class jPCuenta extends JPanel {
 
     Ventana ven;
     Cuentas cuenta;
@@ -41,26 +40,16 @@ public class jPCuenta extends javax.swing.JPanel {
         setToolTipText("Cuenta");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(400, 300));
-        setSize(new java.awt.Dimension(400, 300));
-        setLayout(null);
 
         jLabel1.setText("Correo");
-        add(jLabel1);
-        jLabel1.setBounds(70, 90, 42, 16);
 
         jLabel2.setText("Contraseña");
-        add(jLabel2);
-        jLabel2.setBounds(40, 120, 71, 16);
-        add(jCorreo);
-        jCorreo.setBounds(130, 80, 198, 26);
 
         JPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPassActionPerformed(evt);
             }
         });
-        add(JPass);
-        JPass.setBounds(130, 110, 198, 26);
 
         BtIngreso.setText("Ingresar");
         BtIngreso.addActionListener(new java.awt.event.ActionListener() {
@@ -68,8 +57,6 @@ public class jPCuenta extends javax.swing.JPanel {
                 BtIngresoActionPerformed(evt);
             }
         });
-        add(BtIngreso);
-        BtIngreso.setBounds(200, 160, 95, 29);
 
         BtRegistro.setText("Registro");
         BtRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -77,8 +64,50 @@ public class jPCuenta extends javax.swing.JPanel {
                 BtRegistroActionPerformed(evt);
             }
         });
-        add(BtRegistro);
-        BtRegistro.setBounds(290, 250, 96, 30);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtRegistro)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(173, 173, 173)
+                            .addComponent(BtIngreso))))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addComponent(BtIngreso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(BtRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void JPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPassActionPerformed
@@ -88,59 +117,46 @@ public class jPCuenta extends javax.swing.JPanel {
     private void BtIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresoActionPerformed
 
         if (ComprobarUser()) {
-
             PagInfo pag = new PagInfo(ven);
-            Ajustes ajuste = new Ajustes(ven,cuenta.getCorreo());
+//            Ajustes ajuste = new Ajustes(ven, cuenta.getCorreo());
             ven.setContentPane(pag);
-            ven.setSize(670, 380);
-
+            ven.setSize(640, 480);
         }
-
     }//GEN-LAST:event_BtIngresoActionPerformed
 
     private void BtRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegistroActionPerformed
-
         Registro reg = new Registro(ven);
         ven.setContentPane(reg);
-        ven.setSize(450, 350);
-
-
+        ven.setSize(450, 450);
     }//GEN-LAST:event_BtRegistroActionPerformed
 
     public boolean ComprobarUser() {
 
         boolean flag = false;
         BaseDatos base = new BaseDatos();
-        String contra = new String(JPass.getPassword());
-        String cifrado = Cuentas.Encriptar(contra);
         String correo = jCorreo.getText();
-        Cuentas cuenta2 = new Cuentas(correo, cifrado);
+        String password = new String(JPass.getPassword());
+        String cifrado = Cuentas.Encriptar(password);
+        Cuentas cuentaTemp = new Cuentas(correo, cifrado);
 
         if (base.crearConexion()) {
+            LinkedList<Object> list = base.read(cuentaTemp.select());
 
-            LinkedList<Object> list = base.read(cuenta2.select());
-
-            System.out.println("tamaño lista   " + list.size());
             if (!list.isEmpty()) {
                 cuenta.read(list);
-                System.out.println(cuenta.toString());
                 if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
                     System.out.println("Correo valido");
                     System.out.println("Contraseña valida");
                     flag = true;
-
                 } else {
                     JOptionPane.showMessageDialog(null, " Error de contraseña\nintente de nuevo");
                     flag = false;
-
                 }
             } else {
                 JOptionPane.showMessageDialog(null, " Este usuario no existe \nintente de nuevo");
                 flag = false;
-
             }
         }
-
         return flag;
     }
 

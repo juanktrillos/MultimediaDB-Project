@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ventana;
+package jFrames;
 
-import Datos.Cuentas;
+import entidades.Cuentas;
 import database.BaseDatos;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -16,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author CATV
  */
-public class Ajustes extends javax.swing.JPanel {
+public class Ajustes extends JPanel {
 
     /**
      * Creates new form Ajustes
@@ -30,6 +31,7 @@ public class Ajustes extends javax.swing.JPanel {
         this.correo = correo;
         initComponents();
         cuenta = new Cuentas();
+        jLabel5.setText(correo);
     }
 
     public Ajustes() {
@@ -37,32 +39,28 @@ public class Ajustes extends javax.swing.JPanel {
     }
 
     public boolean Recuperar() {
-
         boolean flag = false;
         BaseDatos base = new BaseDatos();
         String cifrado = Cuentas.Encriptar(PedirContra('v'));
-        Cuentas cuenta2 = new Cuentas(correo);
+        Cuentas cuentaTemp = new Cuentas(correo);
 
         if (base.crearConexion()) {
-            LinkedList<Object> list = base.read(cuenta2.select());
+            LinkedList<Object> list = base.read(cuentaTemp.select());
 
-            cuenta.read(list);
+            if (!list.isEmpty()) {
+                cuenta.read(list);
+                if (cifrado.equals(cuenta.getPassword())) {
+                    jNombre.setText(cuenta.getNombre());
+                    jApellido.setText(cuenta.getApellido());
+                    jCelular.setText(cuenta.getCelular());
 
-            if (cifrado.equals(cuenta.getPassword())) {
-
-                jNombre.setText(cuenta.getNombre());
-                jApellido.setText(cuenta.getApellido());
-                jCelular.setText(cuenta.getCelular());
-
-                flag = true;
-
-            } else {
-                flag = false;
+                    flag = true;
+                } else {
+                    flag = false;
+                }
             }
         }
-
         return flag;
-
     }
 
     /**
@@ -85,16 +83,11 @@ public class Ajustes extends javax.swing.JPanel {
         BtEliminar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(400, 300));
-        setSize(new java.awt.Dimension(400, 300));
-        setLayout(null);
 
         jLabel1.setText("Celular");
-        add(jLabel1);
-        jLabel1.setBounds(69, 113, 50, 16);
-        add(jApellido);
-        jApellido.setBounds(137, 76, 198, 26);
 
         BtActualizar.setText("Actualizar");
         BtActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,22 +95,12 @@ public class Ajustes extends javax.swing.JPanel {
                 BtActualizarActionPerformed(evt);
             }
         });
-        add(BtActualizar);
-        BtActualizar.setBounds(170, 150, 107, 29);
-        add(jCelular);
-        jCelular.setBounds(137, 108, 198, 26);
 
         jLabel3.setText("Nombre");
-        add(jLabel3);
-        jLabel3.setBounds(69, 49, 50, 16);
 
         jLabel4.setText("Apellido");
-        add(jLabel4);
-        jLabel4.setBounds(69, 81, 52, 16);
 
         jNombre.setToolTipText("");
-        add(jNombre);
-        jNombre.setBounds(137, 44, 198, 26);
 
         BtCambiar.setText("Modificar");
         BtCambiar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,8 +108,6 @@ public class Ajustes extends javax.swing.JPanel {
                 BtCambiarActionPerformed(evt);
             }
         });
-        add(BtCambiar);
-        BtCambiar.setBounds(170, 210, 103, 29);
 
         BtEliminar.setText("Eliminar");
         BtEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,54 +115,116 @@ public class Ajustes extends javax.swing.JPanel {
                 BtEliminarActionPerformed(evt);
             }
         });
-        add(BtEliminar);
-        BtEliminar.setBounds(180, 250, 95, 29);
 
         jLabel7.setText("Eliminar cuenta");
-        add(jLabel7);
-        jLabel7.setBounds(60, 250, 110, 16);
 
         jLabel8.setText("Modificar contraseña");
-        add(jLabel8);
-        jLabel8.setBounds(20, 210, 132, 16);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Nombre");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtActualizar)
+                        .addGap(129, 129, 129))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtEliminar)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel3)
+                        .addGap(31, 31, 31)
+                        .addComponent(jNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel4)
+                        .addGap(31, 31, 31)
+                        .addComponent(jApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtCambiar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel3))
+                    .addComponent(jNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel4))
+                    .addComponent(jApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel1))
+                    .addComponent(jCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BtActualizar)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(BtCambiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtEliminar)
+                    .addComponent(jLabel7))
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtActualizarActionPerformed
 
-        String Contraseña = JOptionPane.showInputDialog("Ingrese contraseña, para guardar");
-
-        String cifrado = Cuentas.Encriptar(Contraseña);
-
-        System.out.println("cifrado " + cifrado);
-
-        System.out.println("cuenta  " + cuenta.toString());
-
+//        String Contraseña = JOptionPane.showInputDialog("Ingrese contraseña, para guardar");
         BaseDatos base = new BaseDatos();
         if (base.crearConexion()) {
+            String Nombre = jNombre.getText();
+            String cifrado = Cuentas.Encriptar(cuenta.getPassword());
+            String Apellido = jApellido.getText();
+            String Celular = jCelular.getText();
+            String Correo = cuenta.getCorreo();
 
-            if (cifrado.equals(cuenta.getPassword())) {
-                String Nombre = jNombre.getText();
-                String Apellido = jApellido.getText();
-                String Celular = jCelular.getText();
-                String Correo = cuenta.getCorreo();
+            cuenta = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
 
-                cuenta = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
+            base.update(cuenta.update());
+            ven.cuenta = cuenta;// se debe actualizar la CUENTA de VENTANA
 
-                base.update(cuenta.update('c'));
+            jPCuenta reg = new jPCuenta(ven);// sitios
+            ven.setContentPane(reg);
+            ven.setSize(410, 350);
 
-                System.out.println("UPDATE: " + cuenta.update('c'));
-
-                jPCuenta reg = new jPCuenta(ven);
-                ven.setContentPane(reg);
-                ven.setSize(410, 350);
-
-            }
         } else {
             JOptionPane.showMessageDialog(null, "La contraseña no coincide");
-
         }
-
-
     }//GEN-LAST:event_BtActualizarActionPerformed
 
     public String PedirContra(char c) {
@@ -225,7 +268,7 @@ public class Ajustes extends javax.swing.JPanel {
 
                 cuenta = new Cuentas(Correo, cifrada);
 
-                base.update(cuenta.update('p'));
+                base.update(cuenta.update());
 
                 JOptionPane.showMessageDialog(null, "Cambio realizado");
 
@@ -279,6 +322,7 @@ public class Ajustes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jNombre;
