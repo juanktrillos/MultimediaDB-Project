@@ -23,14 +23,14 @@ public class Ajustes extends JPanel {
      * Creates new form Ajustes
      */
     Ventana ven;
-    Cuentas cuenta;
+//    Cuentas cuenta;
     String correo;
 
     public Ajustes(Ventana ven, String correo) {
         this.ven = ven;
         this.correo = correo;
         initComponents();
-        cuenta = new Cuentas();
+//        cuenta = new Cuentas();
         jLabel5.setText(correo);
     }
 
@@ -38,29 +38,29 @@ public class Ajustes extends JPanel {
         initComponents();
     }
 
-    public boolean Recuperar() {
-        boolean flag = false;
-        BaseDatos base = new BaseDatos();
-        String cifrado = Cuentas.Encriptar(PedirContra('v'));
-        Cuentas cuentaTemp = new Cuentas(correo);
+    public /*boolean*/ void info() {//recuperar -----> info
+        /*   boolean flag = false;
+         BaseDatos base = new BaseDatos();
+         String cifrado = Cuentas.Encriptar(PedirContra('v'));
+         Cuentas cuentaTemp = new Cuentas(correo);
 
-        if (base.crearConexion()) {
-            LinkedList<Object> list = base.read(cuentaTemp.select());
+         if (base.crearConexion()) {
+         LinkedList<Object> list = base.read(cuentaTemp.select());
 
-            if (!list.isEmpty()) {
-                cuenta.read(list);
-                if (cifrado.equals(cuenta.getPassword())) {
-                    jNombre.setText(cuenta.getNombre());
-                    jApellido.setText(cuenta.getApellido());
-                    jCelular.setText(cuenta.getCelular());
+         if (!list.isEmpty()) {
+         cuenta.read(list);
+         if (cifrado.equals(cuenta.getPassword())) {*/
+        jNombre.setText(ven.cuenta.getNombre());// cuenta  ----> ven.cuenta
+        jApellido.setText(ven.cuenta.getApellido());// cuenta  ----> ven.cuenta
+        jCelular.setText(ven.cuenta.getCelular());// cuenta  ----> ven.cuenta
 
-                    flag = true;
-                } else {
-                    flag = false;
-                }
-            }
-        }
-        return flag;
+        /*    flag = true;
+         } else {
+         flag = false;
+         }
+         }
+         }
+         return flag;*/
     }
 
     /**
@@ -208,15 +208,15 @@ public class Ajustes extends JPanel {
         BaseDatos base = new BaseDatos();
         if (base.crearConexion()) {
             String Nombre = jNombre.getText();
-            String cifrado = Cuentas.Encriptar(cuenta.getPassword());
+            String cifrado = Cuentas.Encriptar(ven.cuenta.getPassword());// cuenta  ----> ven.cuenta
             String Apellido = jApellido.getText();
             String Celular = jCelular.getText();
-            String Correo = cuenta.getCorreo();
+            String Correo = ven.cuenta.getCorreo();// cuenta  ----> ven.cuenta
 
-            cuenta = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
+            Cuentas cuentaTemp = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
 
-            base.update(cuenta.update());
-            ven.cuenta = cuenta;// se debe actualizar la CUENTA de VENTANA
+            base.update(cuentaTemp.update());
+            ven.cuenta = cuentaTemp;// se debe actualizar la CUENTA de VENTANA
 
             jPCuenta reg = new jPCuenta(ven);// sitios
             ven.setContentPane(reg);
@@ -237,7 +237,7 @@ public class Ajustes extends JPanel {
                 int pPass = JOptionPane.showConfirmDialog(null, pf, "Ingrese contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                 if (pPass == JOptionPane.OK_OPTION) {
                     password = new String(pf.getPassword());
-                    System.err.println("You entered: " + password);
+//                    System.err.println("You entered: " + password);
                 }
                 break;
 
@@ -246,7 +246,7 @@ public class Ajustes extends JPanel {
                 int pPass2 = JOptionPane.showConfirmDialog(null, pf, "Ingrese contraseña nueva", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                 if (pPass2 == JOptionPane.OK_OPTION) {
                     password = new String(pf.getPassword());
-                    System.err.println("You entered: " + password);
+//                    System.err.println("You entered: " + password);
                 }
                 break;
 
@@ -260,29 +260,26 @@ public class Ajustes extends JPanel {
         String cifrado = Cuentas.Encriptar(PedirContra('v'));
         BaseDatos base = new BaseDatos();
         if (base.crearConexion()) {
-            if (cifrado.equals(cuenta.getPassword())) {
+            if (cifrado.equals(ven.cuenta.getPassword())) {// cuenta  ----> ven.cuenta
 
                 String cifrada = Cuentas.Encriptar(PedirContra('n'));
 
-                String Correo = cuenta.getCorreo();
+                String Correo = ven.cuenta.getCorreo();// cuenta  ----> ven.cuenta
 
-                cuenta = new Cuentas(Correo, cifrada);
+                Cuentas cuentaTemp = new Cuentas(Correo, cifrada);
 
-                base.update(cuenta.update());
+                base.update(cuentaTemp.update());
+                ven.cuenta = cuentaTemp;// actualizar CUENTA de VENTANA
 
                 JOptionPane.showMessageDialog(null, "Cambio realizado");
 
                 jPCuenta reg = new jPCuenta(ven);
                 ven.setContentPane(reg);
                 ven.setSize(410, 350);
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "Contraseña invalida");
-
         }
-
-
     }//GEN-LAST:event_BtCambiarActionPerformed
 
     private void BtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarActionPerformed
@@ -290,24 +287,25 @@ public class Ajustes extends JPanel {
         String cifrado = Cuentas.Encriptar(PedirContra('v'));
         BaseDatos base = new BaseDatos();
         if (base.crearConexion()) {
-            if (cifrado.equals(cuenta.getPassword())) {
+            if (cifrado.equals(ven.cuenta.getPassword())) {
 
-                String Correo = cuenta.getCorreo();
+                String Correo = ven.cuenta.getCorreo();
 
                 System.out.println("correo :" + Correo);
 
-                cuenta = new Cuentas(Correo, cifrado);
+                Cuentas cuentaTemp = new Cuentas(Correo, cifrado);
 
-                base.delete(cuenta.delete());
+                base.delete(cuentaTemp.delete());
+                ven.cuenta = null;
 
                 JOptionPane.showMessageDialog(null, "Cuenta eliminada");
 
-                System.exit(0);
-
+                jPCuenta reg = new jPCuenta(ven);
+                ven.setContentPane(reg);
+                ven.setSize(410, 350);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Contraseña invalida");
-
         }
 
     }//GEN-LAST:event_BtEliminarActionPerformed

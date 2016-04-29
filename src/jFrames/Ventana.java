@@ -49,14 +49,13 @@ public class Ventana extends JFrame {
         MenuSalida = new javax.swing.JMenuItem();
         Cuenta = new javax.swing.JMenu();
         jAjustes = new javax.swing.JMenuItem();
+        jAjustes1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Incio");
-        setSize(new java.awt.Dimension(900, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
-        jPanel1.setSize(new java.awt.Dimension(900, 600));
         jPanel1.setLayout(null);
 
         jCuenta.setFont(new java.awt.Font("Helvetica", 0, 36)); // NOI18N
@@ -72,7 +71,6 @@ public class Ventana extends JFrame {
 
         jFondo.setToolTipText("");
         jFondo.setPreferredSize(new java.awt.Dimension(900, 600));
-        jFondo.setSize(new java.awt.Dimension(900, 600));
         jPanel1.add(jFondo);
         jFondo.setBounds(0, 0, 900, 600);
 
@@ -109,6 +107,14 @@ public class Ventana extends JFrame {
         });
         Cuenta.add(jAjustes);
 
+        jAjustes1.setText("Logout");
+        jAjustes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAjustes1ActionPerformed(evt);
+            }
+        });
+        Cuenta.add(jAjustes1);
+
         jMenuBar1.add(Cuenta);
 
         setJMenuBar(jMenuBar1);
@@ -117,17 +123,18 @@ public class Ventana extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInicioActionPerformed
-        
-        //cuando se sale de la cuenta
-        jPCuenta jPCuenta = new jPCuenta(this);
-        this.setContentPane(jPCuenta);
-        this.setSize(410, 350);
-        System.out.println(cuenta.toString());
-        
-        //cuando la cuesta activa ---- FALTA IMPLEMENTAR
-        /*PagInfo pag = new PagInfo(this);
-        this.setContentPane(pag);
-        this.setSize(640, 480);*/
+
+        if (cuenta == null) {
+            //cuando se sale de la cuenta
+            jPCuenta jPCuenta = new jPCuenta(this);
+            this.setContentPane(jPCuenta);
+            this.setSize(410, 350);
+        } else {
+            //cuando la cuesta activa 
+            PagInfo pag = new PagInfo(this);
+            this.setContentPane(pag);
+            this.setSize(640, 480);
+        }
     }//GEN-LAST:event_MenuInicioActionPerformed
 
     private void MenuSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSalidaActionPerformed
@@ -143,15 +150,27 @@ public class Ventana extends JFrame {
     }//GEN-LAST:event_jCuentaMouseClicked
 
     private void jAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAjustesActionPerformed
-        Ajustes ajuste = new Ajustes(this, cuenta.getCorreo());
 
-        if (ajuste.Recuperar()) {
+        if (cuenta != null) {
+            Ajustes ajuste = new Ajustes(this, cuenta.getCorreo());
+
+//        if (ajuste.Recuperar()) {
+            ajuste.info();
             this.setContentPane(ajuste);
             this.setSize(400, 300);
-        } else {
-            JOptionPane.showMessageDialog(null, "Contraseña invalida\n Intente de nuevo");
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Contraseña invalida\n Intente de nuevo");
+//        }
         }
     }//GEN-LAST:event_jAjustesActionPerformed
+
+    private void jAjustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAjustes1ActionPerformed
+        // TODO add your handling code here:
+        if (cuenta != null) {
+            cuenta = null;
+            MenuInicioActionPerformed(evt);
+        }
+    }//GEN-LAST:event_jAjustes1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +216,7 @@ public class Ventana extends JFrame {
     private javax.swing.JMenuItem MenuInicio;
     private javax.swing.JMenuItem MenuSalida;
     private javax.swing.JMenuItem jAjustes;
+    private javax.swing.JMenuItem jAjustes1;
     private javax.swing.JLabel jCuenta;
     private javax.swing.JLabel jFondo;
     private javax.swing.JMenu jMenu1;
