@@ -20,20 +20,31 @@ public class Sitios_Interes {
     private String Reseña;
     private String Horario;
     private String infoAdicional;
+    private int Categoria;
 
     public Sitios_Interes() {
 
     }
 
-    public Sitios_Interes(int idSitio, String Nombre, String Direccion, int Calificacion, String Reseña,
-            String Horario, String infoAdicional) {
+    public Sitios_Interes(int idSitio, String Nombre, String Direccion, int Calificacion, String Reseña, String Horario, String infoAdicional, int Categoria) {
         this.idSitio = idSitio;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Calificacion = Calificacion;
         this.Reseña = Reseña;
-        this.infoAdicional = infoAdicional;
         this.Horario = Horario;
+        this.infoAdicional = infoAdicional;
+        this.Categoria = Categoria;
+    }
+
+    public Sitios_Interes(String Nombre, String Direccion, int Calificacion, String Reseña, String Horario, String infoAdicional, int Categoria) {
+        this.Nombre = Nombre;
+        this.Direccion = Direccion;
+        this.Calificacion = Calificacion;
+        this.Reseña = Reseña;
+        this.Horario = Horario;
+        this.infoAdicional = infoAdicional;
+        this.Categoria = Categoria;
     }
 
     public int getIdSitio() {
@@ -92,11 +103,17 @@ public class Sitios_Interes {
         this.Horario = Horario;
     }
 
+    public int getCategoria() {
+        return Categoria;
+    }
+
+    public void setCategoria(int Categoria) {
+        this.Categoria = Categoria;
+    }
+
     @Override
     public String toString() {
-        return "Sitios_Interes{" + "idSitio=" + idSitio + ", nombreSitio=" + Nombre + ", direccionSitio="
-                + Direccion + ", calificacionSitio=" + Calificacion + ", reseñaSitio=" + Reseña + ", "
-                + " infoAdicionalSitio=" + infoAdicional + ", horarioSitio=" + Horario + '}';
+        return "Sitios_Interes{" + "idSitio=" + idSitio + ", Nombre=" + Nombre + ", Direccion=" + Direccion + ", Calificacion=" + Calificacion + ", Rese\u00f1a=" + Reseña + ", Horario=" + Horario + ", infoAdicional=" + infoAdicional + ", Categoria=" + Categoria + '}';
     }
 
     /**
@@ -105,9 +122,15 @@ public class Sitios_Interes {
      * @return String
      */
     public String insert() {
-        String insert = "Sitios_Interes(idSitio,nombreSitio,direccionSitio,calificacionSitio,reseñaSitio,infoAdicionalSitio,"
-                + "horarioSitio) values(" + idSitio + "," + Nombre + "," + Direccion + "," + Calificacion + ","
-                + "" + Reseña + "," + infoAdicional + "," + Horario + ")";
+        String insert = "Sitios_Interes(nombreSitio,direccionSitio,calificacionSitio,reseñaSitio,horarioSitio,infoAdicionalSitio"
+                + ",idCategoriaS) values(" + "\"" + Nombre + "\""
+                + "," + "\"" + Direccion + "\""
+                + "," + Calificacion
+                + "," + "\"" + Reseña + "\""
+                + "," + "\"" + Horario + "\""
+                + "," + "\"" + infoAdicional + "\""
+                + "," + Categoria
+                + ")";
 
         return insert;
     }
@@ -118,9 +141,15 @@ public class Sitios_Interes {
      * @return String
      */
     public String update() {
-        String update = "Sitios_Interes SET idSitio=" + idSitio + " nombreSitio=" + Nombre + " direccionSitio="
-                + Direccion + " " + "calificacionSitio=" + Calificacion + " " + "reseñaSitio=" + Reseña + " "
-                + "horarioSitio=" + Horario + "infoAdicionalSitio=" + infoAdicional + " WHERE correoCuenta=" + idSitio + "";
+        String update = "Sitios_Interes SET "
+                + " nombreSitio=" + "\"" + Nombre + "\""
+                + " direccionSitio=" + "\"" + Direccion + "\""
+                + "calificacionSitio=" + Calificacion
+                + "reseñaSitio=" + "\"" + Reseña + "\""
+                + "horarioSitio=" + "\"" + Horario + "\""
+                + "infoAdicionalSitio=" + "\"" + infoAdicional + "\""
+                + "idCategoriaS=" + Categoria
+                + " WHERE idSitio=" + "\"" + idSitio + "\"" + "";
 
         return update;
     }
@@ -131,7 +160,7 @@ public class Sitios_Interes {
      * @return String
      */
     public String delete() {
-        String delete = "Sitios_Interes WHERE idSitio=" + idSitio + "";
+        String delete = "Sitios_Interes WHERE idSitio=" + "\"" + idSitio + "\"";
 
         return delete;
     }
@@ -151,6 +180,7 @@ public class Sitios_Interes {
             this.Reseña = (String) list.get(4);
             this.Horario = (String) list.get(5);
             this.infoAdicional = (String) list.get(6);
+            this.Categoria = (int) list.get(7);
         }
     }
 
@@ -160,10 +190,9 @@ public class Sitios_Interes {
      * @return String
      */
     public String select() {
-        String select = "Sitios_Interes WHERE idSitio=" + idSitio + "";
+        String select = "Sitios_Interes WHERE idSitio=" + "\"" + idSitio + "\"" + "";
 
         return select;
     }
-    
-    
+
 }
