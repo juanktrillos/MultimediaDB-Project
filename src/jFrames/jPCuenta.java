@@ -19,6 +19,7 @@ public class jPCuenta extends JPanel {
 
     Ventana ven;
     Cuentas cuenta;
+    boolean root = false;
 
     public jPCuenta(Ventana vena) {
         initComponents();
@@ -117,10 +118,17 @@ public class jPCuenta extends JPanel {
     private void BtIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresoActionPerformed
 
         if (ComprobarUser()) {
-            PagInfo pag = new PagInfo(ven);
+            if (root) {
+                MenuAdmin menu = new MenuAdmin(ven);
+                ven.setContentPane(menu);
+                ven.setSize(640, 480);
+
+            } else {
+                PagInfo pag = new PagInfo(ven);
 //            Ajustes ajuste = new Ajustes(ven, cuenta.getCorreo());
-            ven.setContentPane(pag);
-            ven.setSize(640, 480);
+                ven.setContentPane(pag);
+                ven.setSize(640, 480);
+            }
         }
     }//GEN-LAST:event_BtIngresoActionPerformed
 
@@ -144,9 +152,13 @@ public class jPCuenta extends JPanel {
 
             if (!list.isEmpty()) {
                 cuenta.read(list);
+
                 if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
                     System.out.println("Correo valido");
                     System.out.println("Contraseña valida");
+                    if (jCorreo.getText().equals("root")) {
+                        root = true;
+                    }
                     flag = true;
                 } else {
                     JOptionPane.showMessageDialog(null, " Error de contraseña\nintente de nuevo");
