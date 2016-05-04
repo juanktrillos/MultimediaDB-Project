@@ -36,49 +36,32 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
         BaseDatos db = new BaseDatos();
         String select = "SELECT sitios_interes.* FROM ";
-        switch (caso) {
+        LinkedList<Object> listHotel;
+        String sql = select + "categorias, sitios_interes "
+                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
+        System.out.println(sql);
+        if (db.crearConexion()) {
+            LinkedList<Object> list = db.readM(sql);
+            int size = list.size();
+            int cant = size / 8;
 
-            case "Hotel":
-                LinkedList<Object> listHotel;
-                String sql = select + "categorias, sitios_interes "
-                        + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
-                System.out.println(sql);
-                if (db.crearConexion()) {
-                    LinkedList<Object> list = db.readM(sql);
-                    int size = list.size();
-                    int cant = size / 8;
-
-                    for (int i = 0; i < cant; i++) {
-                        listHotel = new LinkedList<>();
-                        for (int j = 0; j < size; j++) {
-                            if (!list.isEmpty()) {
-                                listHotel.add(list.removeFirst());
-                            }
-                        }
-
-                        Sitios_Interes hotel = new Sitios_Interes();
-                        hotel.read(listHotel);
-                        sitios.add(hotel);
+            System.out.println("cantidad :" + cant);
+            for (int i = 0; i < cant; i++) {
+                listHotel = new LinkedList<>();
+                for (int j = 0; j < 8; j++) {
+                    if (!list.isEmpty()) {
+                        listHotel.add(list.removeFirst());
                     }
                 }
-//                JNombre.setText(sitio.getNombre());
-                JDir.setText(sitios.get(pos).getDireccion());
-//                JReseña.setText(sitio.getReseña());
-//                JCalificacion.setText(""+sitio.getCalificacion());
-                //Comentario
-                jPComentario com = new jPComentario();
-                this.PComentatio.add(com);
-                Imagenes img = new Imagenes();
-                ArrayList<Image> lista = null;
-                try {
-                    lista = img.getImagenes();
-                } catch (IOException ex) {
-                    Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                JFondo.setIcon(new ImageIcon(lista.get(0)));
 
-                break;
+                Sitios_Interes hotel = new Sitios_Interes();
+                hotel.read(listHotel);
+                sitios.add(hotel);
+            }
+
         }
+        despliege();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -216,14 +199,16 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void despliege() {
 
-    private void BtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDActionPerformed
-
-        pos ++;
-        
-        if(pos>sitios.size()){
-            pos = 0;
-        }
+        JNombre.setText(sitios.get(pos).getNombre());
+        JDir.setText(sitios.get(pos).getDireccion());
+        JReseña.setText(sitios.get(pos).getReseña());
+        JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
+        JHorario.setText(sitios.get(pos).getHorario());
+//        //Comentario
+//        jPComentario com = new jPComentario();
+//        this.PComentatio.add(com);
 //        Imagenes img = new Imagenes();
 //        ArrayList<Image> lista = null;
 //        try {
@@ -233,15 +218,36 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 //        }
 //        JFondo.setIcon(new ImageIcon(lista.get(0)));
 
+    }
+
+    private void BtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDActionPerformed
+        pos++;
+
+        if (pos >= sitios.size()) {
+            pos = 0;
+        }
+        despliege();
+
+//        Imagenes img = new Imagenes();
+//        ArrayList<Image> lista = null;
+//        try {
+//            lista = img.getImagenes();
+//        } catch (IOException ex) {
+//            Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        JFondo.setIcon(new ImageIcon(lista.get(0)));
 
     }//GEN-LAST:event_BtDActionPerformed
 
     private void BtIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIActionPerformed
         // TODO add your handling code here:
         pos--;
-        if(pos<0){
+
+        if (pos < 0) {
             pos = 0;
         }
+        despliege();
+
     }//GEN-LAST:event_BtIActionPerformed
 
 

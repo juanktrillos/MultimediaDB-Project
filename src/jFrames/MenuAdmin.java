@@ -138,7 +138,7 @@ public class MenuAdmin extends JPanel {
 
             case "Centro Comercial":
 
-                sitios = new Sitios_Interes(nombre, Horario, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
                 if (base.crearConexion()) {
                     base.insert(sitios.insert());
 
@@ -148,7 +148,7 @@ public class MenuAdmin extends JPanel {
 
             case "Hotel":
 
-                sitios = new Sitios_Interes(nombre, Horario, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
                 if (base.crearConexion()) {
                     base.insert(sitios.insert());
 
@@ -157,7 +157,7 @@ public class MenuAdmin extends JPanel {
                 break;
             case "Restaurante":
 
-                sitios = new Sitios_Interes(nombre, Horario, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
                 if (base.crearConexion()) {
                     base.insert(sitios.insert());
 

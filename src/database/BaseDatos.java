@@ -136,6 +136,7 @@ public class BaseDatos {
                     obj.add(rs.getObject(contador));
                     contador++;
                 }
+                contador = 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
