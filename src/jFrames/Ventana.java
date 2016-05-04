@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,18 +18,9 @@ public class Ventana extends JFrame {
         initComponents();
         super.setTitle("Turismo");
         jFondo.setIcon(new ImageIcon("src/Fotos/Fondo.jpg"));
-        cuenta = new Cuentas();
-
+        cuenta = null;
     }
-
-    public JMenuItem getjAjustes() {
-        return jAjustes;
-    }
-
-    public void setjAjustes(JMenuItem jAjustes) {
-        this.jAjustes = jAjustes;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +134,7 @@ public class Ventana extends JFrame {
 
     private void jCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCuentaMouseClicked
         jPCuenta jcuenta = new jPCuenta(this);
-        cuenta = jcuenta.cuenta;
+//        cuenta = jcuenta.cuenta;
         this.setContentPane(jcuenta);
         this.setSize(410, 350);
     }//GEN-LAST:event_jCuentaMouseClicked
@@ -157,7 +147,7 @@ public class Ventana extends JFrame {
 //        if (ajuste.Recuperar()) {
             ajuste.info();
             this.setContentPane(ajuste);
-            this.setSize(400, 300);
+            this.setSize(400, 400);
 //        } else {
 //            JOptionPane.showMessageDialog(null, "Contraseña invalida\n Intente de nuevo");
 //        }

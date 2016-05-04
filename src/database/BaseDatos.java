@@ -116,14 +116,36 @@ public class BaseDatos {
                 }
             }
         } catch (SQLException ex) {
-            return null;
+            System.out.println("error en la base de datos");
+        }
+        return obj;
+    }
+
+    public LinkedList<Object> readM(String sql) {
+
+        LinkedList<Object> obj = new LinkedList();
+        int contador = 1;
+
+        try {
+            ResultSet rs = st.executeQuery(sql);
+            ResultSetMetaData rsm = rs.getMetaData();
+            int numColumn = rsm.getColumnCount();
+
+            while (rs.next()) {
+                while (contador <= numColumn) {
+                    obj.add(rs.getObject(contador));
+                    contador++;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
 
     public boolean insertImage(Imagenes imagen) {
-        
-        BufferedImage buff = (BufferedImage) imagen.getImagen();
+
+        BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 
         PreparedStatement ps = null;
@@ -158,7 +180,7 @@ public class BaseDatos {
     }
 
     public boolean updateImage(Imagenes imagen) {
-        BufferedImage buff = (BufferedImage) imagen.getImagen();
+        BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 
         PreparedStatement ps = null;
