@@ -5,12 +5,14 @@
  */
 package jFrames;
 
+import database.BaseDatos;
 import entidades.Sitios_Interes;
 import entidades.Imagenes;
 import jFrames.jPComentario;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -30,10 +32,16 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
     public void ObtenerInfo(String caso) {
 
+        BaseDatos db = new BaseDatos();
         switch (caso) {
 
             case "Hotel":
-
+                String sql = "categorias, sitios_interes "
+                        + "where idCategoria=idCategoriaS and nombreCategoria='Hotel'";
+                if (db.crearConexion()) {
+                    LinkedList<Object> listHotel = db.read(sql);
+//                    listHotel.
+                }
 //                JNombre.setText(sitio.getNombre());
 //                JDir.setText(sitio.getDireccion());
 //                JReseña.setText(sitio.getReseña());
@@ -52,7 +60,6 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
                 break;
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -73,48 +80,25 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         JCalificacion = new javax.swing.JLabel();
 
-        setSize(new java.awt.Dimension(850, 600));
-        setLayout(null);
-
         jLabel2.setText("Direccion");
-        add(jLabel2);
-        jLabel2.setBounds(30, 430, 60, 16);
 
         jLabel3.setText("Horario");
-        add(jLabel3);
-        jLabel3.setBounds(40, 450, 47, 16);
-        add(JFondo);
-        JFondo.setBounds(80, 60, 722, 365);
 
         BtD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/arrowsD.png"))); // NOI18N
         BtD.setBorder(null);
         BtD.setBorderPainted(false);
         BtD.setRequestFocusEnabled(false);
-        BtD.setSize(new java.awt.Dimension(64, 64));
         BtD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtDActionPerformed(evt);
             }
         });
-        add(BtD);
-        BtD.setBounds(810, 150, 64, 64);
 
         BtI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/arrowsI.png"))); // NOI18N
         BtI.setBorder(null);
         BtI.setBorderPainted(false);
-        BtI.setSize(new java.awt.Dimension(64, 64));
-        add(BtI);
-        BtI.setBounds(10, 160, 64, 64);
-        add(JReseña);
-        JReseña.setBounds(510, 430, 290, 80);
-        add(JNombre);
-        JNombre.setBounds(240, 10, 390, 40);
-        add(JHorario);
-        JHorario.setBounds(120, 450, 128, 16);
 
         jLabel6.setText("Reseña");
-        add(jLabel6);
-        jLabel6.setBounds(460, 430, 44, 16);
 
         PComentatio.setPreferredSize(new java.awt.Dimension(310, 180));
 
@@ -126,19 +110,86 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         );
         PComentatioLayout.setVerticalGroup(
             PComentatioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
 
-        add(PComentatio);
-        PComentatio.setBounds(50, 470, 310, 120);
-        add(JDir);
-        JDir.setBounds(120, 430, 240, 16);
-
         jLabel4.setText("Calificacion");
-        add(jLabel4);
-        jLabel4.setBounds(500, 520, 80, 16);
-        add(JCalificacion);
-        JCalificacion.setBounds(600, 520, 128, 20);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(JNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(BtI)
+                .addGap(5, 5, 5)
+                .addComponent(JFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(BtD))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(47, 47, 47)
+                        .addComponent(JDir, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addGap(45, 45, 45)
+                        .addComponent(JHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(PComentatio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(100, 100, 100)
+                .addComponent(jLabel6)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(JReseña, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(JCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(JNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(BtI))
+                    .addComponent(JFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(BtD)))
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(JDir, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(JHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addComponent(PComentatio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JReseña, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(JCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
