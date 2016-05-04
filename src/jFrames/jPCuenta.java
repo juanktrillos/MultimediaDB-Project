@@ -18,12 +18,12 @@ import javax.swing.JPanel;
 public class jPCuenta extends JPanel {
 
     Ventana ven;
-    Cuentas cuenta;
+//    Cuentas cuenta;
 
     public jPCuenta(Ventana vena) {
         initComponents();
         this.ven = vena;
-        cuenta = new Cuentas();
+//        cuenta = new Cuentas();
     }
 
     @SuppressWarnings("unchecked")
@@ -137,16 +137,17 @@ public class jPCuenta extends JPanel {
         String correo = jCorreo.getText();
         String password = new String(JPass.getPassword());
         String cifrado = Cuentas.Encriptar(password);
-        Cuentas cuentaTemp = new Cuentas(correo, cifrado);
+        Cuentas cuenta = new Cuentas(correo, cifrado);
 
         if (base.crearConexion()) {
-            LinkedList<Object> list = base.read(cuentaTemp.select());
+            LinkedList<Object> list = base.read(cuenta.select());
 
             if (!list.isEmpty()) {
                 cuenta.read(list);
                 if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
                     System.out.println("Correo valido");
                     System.out.println("Contraseña valida");
+                    ven.cuenta = cuenta;
                     flag = true;
                 } else {
                     JOptionPane.showMessageDialog(null, " Error de contraseña\nintente de nuevo");

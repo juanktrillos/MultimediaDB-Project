@@ -43,8 +43,8 @@ public class BaseDatos {
      */
     public boolean crearConexion() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");                         //database   //user  //pass
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "clancy");
+            Class.forName("com.mysql.jdbc.Driver");                         //database   //cla  //pass
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturims2016", "root", "clancy");
             st = conexion.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -123,7 +123,7 @@ public class BaseDatos {
 
     public boolean insertImage(Imagenes imagen) {
         
-        BufferedImage buff = (BufferedImage) imagen.getImagen();
+        BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 
         PreparedStatement ps = null;
@@ -158,7 +158,7 @@ public class BaseDatos {
     }
 
     public boolean updateImage(Imagenes imagen) {
-        BufferedImage buff = (BufferedImage) imagen.getImagen();
+        BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 
         PreparedStatement ps = null;

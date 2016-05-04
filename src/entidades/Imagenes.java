@@ -6,12 +6,20 @@
 package entidades;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -23,20 +31,20 @@ public class Imagenes {
     private String nombreImagen;
     private String descripcionImagen;
     private Date fechaImagen;//DATE
-    private Image imagen;
+    private ImageIcon imagen;
     private int idContenidoMultimediaI;
 
     public Imagenes() {
 
     }
 
-    public Imagenes(int idImagen, String nombreImagen, String Descripcion,
-            Date Fecha, Image Imagen, int idContenidoMultimediaI) {
-        this.idImagen = idImagen;
+    public Imagenes(/*int idImagen, */String nombreImagen, String Descripcion,
+            /*Date Fecha,*/ ImageIcon Imagen, int idContenidoMultimediaI) {
+//        this.idImagen = idImagen;
         this.nombreImagen = nombreImagen;
         System.out.println("hola");
         this.descripcionImagen = Descripcion;
-        this.fechaImagen = Fecha;
+        this.fechaImagen = Date.valueOf(LocalDate.now());
         this.imagen = Imagen;
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
@@ -73,11 +81,11 @@ public class Imagenes {
         this.fechaImagen = fechaImagen;
     }
 
-    public Image getImagen() {
+    public ImageIcon getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(ImageIcon imagen) {
         this.imagen = imagen;
     }
 
@@ -95,8 +103,6 @@ public class Imagenes {
                 + "descripcionImagen=" + descripcionImagen + ", fechaImagen=" + fechaImagen + ", "
                 + "imagen=" + imagen + ", idContenidoMultimediaI=" + idContenidoMultimediaI + '}';
     }
-    
-    
 
     public ArrayList<Image> getImagenes() throws IOException {
         ArrayList<Image> lista = new ArrayList();
@@ -131,7 +137,7 @@ public class Imagenes {
         return lista;
     }
 
-   /**
+    /**
      * cadena que recibe la base de datos, para inserciones
      *
      * @return String
@@ -179,7 +185,7 @@ public class Imagenes {
             this.nombreImagen = (String) list.get(1);
             this.descripcionImagen = (String) list.get(2);
             this.fechaImagen = (Date) list.get(3);
-            this.imagen = (Image) list.get(4);
+            this.imagen = (ImageIcon) list.get(4);
             this.idContenidoMultimediaI = (int) list.get(4);
         }
     }
@@ -193,6 +199,34 @@ public class Imagenes {
         String select = "Imagenes WHERE idImagen=" + idImagen + "";
 
         return select;
+    }
+
+    static public ImageIcon cargarArchivos() {
+        JFrame obj = new JFrame();
+        BufferedImage buffered;
+        ImageIcon image = new ImageIcon();
+//        obj.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Icons/32.png")).getImage());
+
+        String ruta = "";
+        File files = null;
+        JFileChooser chooserTemp = new JFileChooser();
+        chooserTemp.setMultiSelectionEnabled(true);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG file", "PNG file", "jpg", "png");
+
+        chooserTemp.setFileFilter(filter);
+        int returnVal = chooserTemp.showOpenDialog(obj);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                files = chooserTemp.getSelectedFile();
+                buffered = ImageIO.read(files);
+                image.setImage(buffered);
+                //System.out.println("nombre archivo seleccionado "+files[0].getName());
+            } catch (IOException ex) {
+                Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return image;//.getAbsolutePath().toString();
     }
 
 }
