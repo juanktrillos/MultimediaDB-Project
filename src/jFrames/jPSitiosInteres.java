@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 public class jPSitiosInteres extends javax.swing.JPanel {
 
     LinkedList<Sitios_Interes> sitios;
+    private int pos = 0;
 
     public jPSitiosInteres(String caso) {
         initComponents();
@@ -61,7 +62,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
                     }
                 }
 //                JNombre.setText(sitio.getNombre());
-//                JDir.setText(sitio.getDireccion());
+                JDir.setText(sitios.get(pos).getDireccion());
 //                JReseña.setText(sitio.getReseña());
 //                JCalificacion.setText(""+sitio.getCalificacion());
                 //Comentario
@@ -115,6 +116,11 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         BtI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/arrowsI.png"))); // NOI18N
         BtI.setBorder(null);
         BtI.setBorderPainted(false);
+        BtI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtIActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Reseña");
 
@@ -213,17 +219,30 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
     private void BtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDActionPerformed
 
-        Imagenes img = new Imagenes();
-        ArrayList<Image> lista = null;
-        try {
-            lista = img.getImagenes();
-        } catch (IOException ex) {
-            Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
+        pos ++;
+        
+        if(pos>sitios.size()){
+            pos = 0;
         }
-        JFondo.setIcon(new ImageIcon(lista.get(0)));
+//        Imagenes img = new Imagenes();
+//        ArrayList<Image> lista = null;
+//        try {
+//            lista = img.getImagenes();
+//        } catch (IOException ex) {
+//            Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        JFondo.setIcon(new ImageIcon(lista.get(0)));
 
 
     }//GEN-LAST:event_BtDActionPerformed
+
+    private void BtIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIActionPerformed
+        // TODO add your handling code here:
+        pos--;
+        if(pos<0){
+            pos = 0;
+        }
+    }//GEN-LAST:event_BtIActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
