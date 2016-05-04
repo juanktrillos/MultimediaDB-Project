@@ -23,24 +23,42 @@ import javax.swing.ImageIcon;
  */
 public class jPSitiosInteres extends javax.swing.JPanel {
 
-    Sitios_Interes sitio;
+    LinkedList<Sitios_Interes> sitios;
 
     public jPSitiosInteres(String caso) {
         initComponents();
+        sitios = new LinkedList<>();
         ObtenerInfo(caso);
     }
 
     public void ObtenerInfo(String caso) {
 
         BaseDatos db = new BaseDatos();
+        String select = "SELECT sitios_interes.* FROM ";
         switch (caso) {
 
             case "Hotel":
-                String sql = "categorias, sitios_interes "
-                        + "where idCategoria=idCategoriaS and nombreCategoria='Hotel'";
+                LinkedList<Object> listHotel;
+                String sql = select + "categorias, sitios_interes "
+                        + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
+                System.out.println(sql);
                 if (db.crearConexion()) {
-                    LinkedList<Object> listHotel = db.read(sql);
-//                    listHotel.
+                    LinkedList<Object> list = db.readM(sql);
+                    int size = list.size();
+                    int cant = size / 8;
+
+                    for (int i = 0; i < cant; i++) {
+                        listHotel = new LinkedList<>();
+                        for (int j = 0; j < size; j++) {
+                            if (!list.isEmpty()) {
+                                listHotel.add(list.removeFirst());
+                            }
+                        }
+
+                        Sitios_Interes hotel = new Sitios_Interes();
+                        hotel.read(listHotel);
+                        sitios.add(hotel);
+                    }
                 }
 //                JNombre.setText(sitio.getNombre());
 //                JDir.setText(sitio.getDireccion());
