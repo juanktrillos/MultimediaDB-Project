@@ -42,6 +42,4 @@ public class Categorias {
     public String toString() {
         return "Categorias{" + "idCategoria=" + idCategoria + ", nombreCategoria=" + nombreCategoria + '}';
     }
-
-    
 }

@@ -58,6 +58,18 @@ public class PagInfo extends JPanel {
 
         jLabel3.setText("Centro Comercial");
 
+        LMuseo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LMuseoMouseClicked(evt);
+            }
+        });
+
+        LRestaurante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LRestauranteMouseClicked(evt);
+            }
+        });
+
         LHotel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LHotelMouseClicked(evt);
@@ -140,7 +152,9 @@ public class PagInfo extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LCentroCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LCentroCMouseClicked
-        System.out.println("holaa ");
+    jPSitiosInteres sitio = new jPSitiosInteres("Centro Comercial");
+        ven.setContentPane(sitio);
+        ven.setSize(900, 650);
     }//GEN-LAST:event_LCentroCMouseClicked
 
     private void LHotelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LHotelMouseClicked
@@ -149,6 +163,20 @@ public class PagInfo extends JPanel {
         ven.setContentPane(sitio);
         ven.setSize(900, 650);
     }//GEN-LAST:event_LHotelMouseClicked
+
+    private void LMuseoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LMuseoMouseClicked
+        // TODO add your handling code here:
+        jPSitiosInteres sitio = new jPSitiosInteres("Museo");
+        ven.setContentPane(sitio);
+        ven.setSize(900, 650);
+    }//GEN-LAST:event_LMuseoMouseClicked
+
+    private void LRestauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LRestauranteMouseClicked
+        // TODO add your handling code here:
+        jPSitiosInteres sitio = new jPSitiosInteres("Restaurante");
+        ven.setContentPane(sitio);
+        ven.setSize(900, 650);
+    }//GEN-LAST:event_LRestauranteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

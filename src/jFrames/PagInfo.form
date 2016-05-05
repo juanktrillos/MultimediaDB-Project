@@ -93,8 +93,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LMuseo">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LMuseoMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="LRestaurante">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LRestauranteMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="LHotel">
       <Events>

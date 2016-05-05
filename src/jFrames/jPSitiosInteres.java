@@ -7,15 +7,7 @@ package jFrames;
 
 import database.BaseDatos;
 import entidades.Sitios_Interes;
-import entidades.Imagenes;
-import jFrames.jPComentario;
-import java.awt.Image;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -39,6 +31,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         LinkedList<Object> listHotel;
         String sql = select + "categorias, sitios_interes "
                 + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
+        
         System.out.println(sql);
         if (db.crearConexion()) {
             LinkedList<Object> list = db.readM(sql);
@@ -53,15 +46,12 @@ public class jPSitiosInteres extends javax.swing.JPanel {
                         listHotel.add(list.removeFirst());
                     }
                 }
-
                 Sitios_Interes hotel = new Sitios_Interes();
                 hotel.read(listHotel);
                 sitios.add(hotel);
             }
-
         }
         despliege();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -247,7 +237,6 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             pos = 0;
         }
         despliege();
-
     }//GEN-LAST:event_BtIActionPerformed
 
 
