@@ -15,7 +15,9 @@ public class Ventana extends JFrame {
     Cuentas cuenta;
 
     public Ventana() {
+        
         initComponents();
+        this.setLocationRelativeTo(null);
         super.setTitle("Turismo");
         jFondo.setIcon(new ImageIcon("src/Fotos/Fondo.jpg"));
         cuenta = null;
