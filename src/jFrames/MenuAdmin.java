@@ -165,6 +165,10 @@ public class MenuAdmin extends JPanel {
                     base.insert(sitios.insert());
                     //Se busca el idSitio y el correo de quien este agregando
                     
+                    
+                    
+                    
+                    
                     System.out.println(cuenta.getCorreo());
                         //se agrega la informacion buscada
                         cont = new Contenidos_Multimedia(sitios.getIdSitio(), cuenta.getCorreo());
