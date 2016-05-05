@@ -49,6 +49,11 @@ public class Imagenes {
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
 
+    public Imagenes(int idContenidoMultimediaI) {
+        this.idContenidoMultimediaI = idContenidoMultimediaI;
+    }
+
+    
     public int getIdImagen() {
         return idImagen;
     }
@@ -197,6 +202,12 @@ public class Imagenes {
      */
     public String select() {
         String select = "Imagenes WHERE idImagen=" + idImagen + "";
+
+        return select;
+    }
+
+    public String selectFK() {
+        String select = "Imagenes WHERE idContenidoMultimediaI=" + idContenidoMultimediaI + "";
 
         return select;
     }

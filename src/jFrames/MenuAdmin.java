@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class MenuAdmin extends JPanel {
 
     Ventana ven;
-    Sitios_Interes sitios;
+    LinkedList<Sitios_Interes> sitios;
     ImageIcon imagen;
 
     /**
@@ -32,6 +32,8 @@ public class MenuAdmin extends JPanel {
     public MenuAdmin(Ventana ven) {
         initComponents();
         this.ven = ven;
+        sitios = new LinkedList<>();
+
     }
 
     /**
@@ -143,7 +145,8 @@ public class MenuAdmin extends JPanel {
         BaseDatos base = new BaseDatos();
         Contenidos_Multimedia cont = null;
         Cuentas cuenta = ven.cuenta;
-        Sitios_Interes sitiotemp = new Sitios_Interes();
+        Sitios_Interes sitio = new Sitios_Interes();
+        Contenidos_Multimedia conttemp = new Contenidos_Multimedia();
         Imagenes img = new Imagenes();
 
         String nombre = JNombre.getText();
@@ -158,53 +161,95 @@ public class MenuAdmin extends JPanel {
 
             case "Centro Comercial":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
-
+                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
+                ObtenerInfo(Jlista.getSelectedItem().toString());
                 if (base.crearConexion()) {
                     //Se agrega el sitio a la bd
-                    base.insert(sitios.insert());
-                    //Se busca el idSitio y el correo de quien este agregando
+                    base.insert(sitio.insert());
+                    //se agrega la informacion buscada
+                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
+                    System.out.println("Contenido :" + cont.toString());
+                    //Se agrega el contenido_multimeida a la bd
+                    base.insert(cont.insert());
+                    LinkedList<Object> list = base.read(cont.selectFK());
                     
-                    
-                    
-                    
-                    
-                    
-                    System.out.println(cuenta.getCorreo());
-                        //se agrega la informacion buscada
-                        cont = new Contenidos_Multimedia(sitios.getIdSitio(), cuenta.getCorreo());
+                    System.out.println("Lista cont :"+ list.toString());
+
+                    if (!list.isEmpty()) {
+                        cont.read(list);
+                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
                         //Se agrega el contenido_multimeida a la bd
-                        System.out.println(cont.toString());
-
-                        base.insert(cont.insert());
-
-                        img = new Imagenes(imagen.getDescription(), sitiotemp.getReseña(), imagen, cont.getIdContenido());
+                        System.out.println("interna obj imagen: "+img.toString());
                         //Se agrega Imagenes a la bd
-                        System.out.println(img.toString());
                         base.insertImage(img);
 
-                    
+                    }else{
+                        System.out.println("Error de insert");
+                    }
+
                 }
 
                 break;
 
             case "Hotel":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
+                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
+                ObtenerInfo(Jlista.getSelectedItem().toString());
                 if (base.crearConexion()) {
-                    base.insert(sitios.insert());
+                    //Se agrega el sitio a la bd
+                    base.insert(sitio.insert());
+                    //se agrega la informacion buscada
+                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
+                    System.out.println("Contenido :" + cont.toString());
+                    //Se agrega el contenido_multimeida a la bd
+                    base.insert(cont.insert());
+                    LinkedList<Object> list = base.read(cont.selectFK());
+                    
+                    System.out.println("Lista cont :"+ list.toString());
+
+                    if (!list.isEmpty()) {
+                        cont.read(list);
+                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
+                        //Se agrega el contenido_multimeida a la bd
+                        System.out.println("interna obj imagen: "+img.toString());
+                        //Se agrega Imagenes a la bd
+                        base.insertImage(img);
+
+                    }else{
+                        System.out.println("Error de insert");
+                    }
 
                 }
-
                 break;
             case "Restaurante":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
+                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
+                ObtenerInfo(Jlista.getSelectedItem().toString());
                 if (base.crearConexion()) {
-                    base.insert(sitios.insert());
+                    //Se agrega el sitio a la bd
+                    base.insert(sitio.insert());
+                    //se agrega la informacion buscada
+                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
+                    System.out.println("Contenido :" + cont.toString());
+                    //Se agrega el contenido_multimeida a la bd
+                    base.insert(cont.insert());
+                    LinkedList<Object> list = base.read(cont.selectFK());
+                    
+                    System.out.println("Lista cont :"+ list.toString());
+
+                    if (!list.isEmpty()) {
+                        cont.read(list);
+                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
+                        //Se agrega el contenido_multimeida a la bd
+                        System.out.println("interna obj imagen: "+img.toString());
+                        //Se agrega Imagenes a la bd
+                        base.insertImage(img);
+
+                    }else{
+                        System.out.println("Error de insert");
+                    }
 
                 }
-
                 break;
 
         }
@@ -219,6 +264,35 @@ public class MenuAdmin extends JPanel {
         JImagen.setIcon(imagen);
 
     }//GEN-LAST:event_JAddActionPerformed
+    public void ObtenerInfo(String caso) {
+
+        BaseDatos db = new BaseDatos();
+        String select = "SELECT sitios_interes.* FROM ";
+        LinkedList<Object> listTemp;
+        String sql = select + "categorias, sitios_interes "
+                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
+
+        System.out.println(sql);
+        if (db.crearConexion()) {
+            LinkedList<Object> list = db.readM(sql);
+            int size = list.size();
+            int cant = size / 8;
+
+            System.out.println("cantidad :" + cant);
+            for (int i = 0; i < cant; i++) {
+                listTemp = new LinkedList<>();
+                for (int j = 0; j < 8; j++) {
+                    if (!list.isEmpty()) {
+                        listTemp.add(list.removeFirst());
+                    }
+                }
+
+                Sitios_Interes sitio = new Sitios_Interes();
+                sitio.read(listTemp);
+                sitios.add(sitio);
+            }
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

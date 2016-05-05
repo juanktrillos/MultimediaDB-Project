@@ -166,6 +166,8 @@ public class BaseDatos {
             ps.executeUpdate();
 
             conexion.commit();
+            System.out.println("inserte datos  " + ps.toString());
+
             return true;
         } catch (Exception ex) {
             System.out.println("Error al Insertar Imagen");

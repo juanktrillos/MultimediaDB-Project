@@ -28,6 +28,11 @@ public class Contenidos_Multimedia {
         this.correoCuentasC = correoCuentasC;
     }
 
+    public Contenidos_Multimedia(int idSitiosC) {
+        this.idSitiosC = idSitiosC;
+    }
+
+    
     
     public Contenidos_Multimedia() {
 
@@ -70,7 +75,7 @@ public class Contenidos_Multimedia {
      */
     public String insert() {
         String insert = "Contenidos_Multimedia(idSitiosc,correoCuentasC) "
-                + "values("+"\"" + idSitiosC + "\"" + "," + "\"" + correoCuentasC + "\"" + ")";
+                + "values(" + idSitiosC + "," + "\"" + correoCuentasC + "\"" + ")";
 
         return insert;
     }
@@ -119,6 +124,17 @@ public class Contenidos_Multimedia {
      */
     public String select() {
         String select = "Contenidos_Multimedia WHERE idContenido=" + idContenido + "";
+
+        return select;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para selecionar una ocurrencia
+     *
+     * @return String
+     */
+    public String selectFK() {
+        String select = "Contenidos_Multimedia WHERE idSitiosC=" + idSitiosC + "";
 
         return select;
     }
