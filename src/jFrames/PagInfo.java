@@ -155,6 +155,9 @@ public class PagInfo extends JPanel {
     jPSitiosInteres sitio = new jPSitiosInteres("Centro Comercial",ven);
         ven.setContentPane(sitio);
         ven.setSize(900, 650);
+        
+        
+        
     }//GEN-LAST:event_LCentroCMouseClicked
 
     private void LHotelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LHotelMouseClicked
