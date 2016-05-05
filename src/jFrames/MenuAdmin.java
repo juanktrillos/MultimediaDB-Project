@@ -6,7 +6,11 @@
 package jFrames;
 
 import database.BaseDatos;
+import entidades.Contenidos_Multimedia;
+import entidades.Cuentas;
+import entidades.Imagenes;
 import entidades.Sitios_Interes;
+import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -18,6 +22,7 @@ public class MenuAdmin extends JPanel {
 
     Ventana ven;
     Sitios_Interes sitios;
+    ImageIcon imagen;
 
     /**
      * Creates new form PAg
@@ -54,6 +59,8 @@ public class MenuAdmin extends JPanel {
         JReseña = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
+        JImagen = new javax.swing.JLabel();
+        JAdd = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(662, 374));
         setLayout(null);
@@ -61,7 +68,7 @@ public class MenuAdmin extends JPanel {
         Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
         Jlista.setSelectedIndex(1);
         add(Jlista);
-        Jlista.setBounds(46, 50, 209, 27);
+        Jlista.setBounds(50, 10, 209, 27);
 
         Jinsert.setText("Insertar");
         Jinsert.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +77,7 @@ public class MenuAdmin extends JPanel {
             }
         });
         add(Jinsert);
-        Jinsert.setBounds(112, 89, 92, 29);
+        Jinsert.setBounds(220, 310, 92, 29);
 
         JDelete.setText("Borrar");
         add(JDelete);
@@ -82,50 +89,62 @@ public class MenuAdmin extends JPanel {
 
         jLabel1.setText("Nombre");
         add(jLabel1);
-        jLabel1.setBounds(291, 54, 50, 16);
+        jLabel1.setBounds(60, 50, 50, 16);
         add(JNombre);
-        JNombre.setBounds(373, 49, 223, 26);
+        JNombre.setBounds(150, 40, 223, 26);
 
         jLabel2.setText("Direccion");
         add(jLabel2);
-        jLabel2.setBounds(291, 84, 60, 16);
+        jLabel2.setBounds(60, 80, 60, 16);
 
         jLabel3.setText("Calificacion");
         add(jLabel3);
-        jLabel3.setBounds(291, 115, 74, 16);
+        jLabel3.setBounds(60, 110, 74, 16);
 
         jLabel4.setText("Reseña");
         add(jLabel4);
-        jLabel4.setBounds(290, 190, 44, 16);
+        jLabel4.setBounds(70, 170, 44, 16);
 
         jLabel5.setText("Informacion adicional");
         add(jLabel5);
-        jLabel5.setBounds(228, 263, 137, 16);
+        jLabel5.setBounds(10, 240, 137, 16);
         add(JDireccion);
-        JDireccion.setBounds(373, 79, 223, 26);
+        JDireccion.setBounds(150, 70, 223, 26);
         add(JInfo);
-        JInfo.setBounds(370, 260, 223, 66);
+        JInfo.setBounds(150, 240, 223, 66);
 
         JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
         add(JCalificacion);
-        JCalificacion.setBounds(383, 111, 64, 27);
+        JCalificacion.setBounds(160, 100, 64, 27);
         add(JReseña);
-        JReseña.setBounds(370, 190, 223, 66);
+        JReseña.setBounds(150, 170, 223, 66);
 
         jLabel6.setText("Horario");
         add(jLabel6);
-        jLabel6.setBounds(291, 149, 47, 16);
+        jLabel6.setBounds(60, 140, 47, 16);
         add(JHorario);
-        JHorario.setBounds(373, 144, 223, 26);
+        JHorario.setBounds(150, 140, 223, 26);
+        add(JImagen);
+        JImagen.setBounds(400, 30, 220, 230);
+
+        JAdd.setText("Agregar");
+        JAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JAddActionPerformed(evt);
+            }
+        });
+        add(JAdd);
+        JAdd.setBounds(460, 280, 93, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JinsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JinsertActionPerformed
 
-        System.out.println(Jlista.getSelectedItem().toString());
-
-        System.out.println(Jlista.getSelectedIndex());
         BaseDatos base = new BaseDatos();
+        Contenidos_Multimedia cont = null;
+        Cuentas cuenta = ven.cuenta;
+        Sitios_Interes sitiotemp = new Sitios_Interes();
+        Imagenes img = new Imagenes();
 
         String nombre = JNombre.getText();
         String Dir = JDireccion.getText();
@@ -133,22 +152,40 @@ public class MenuAdmin extends JPanel {
         String Horario = JHorario.getText();
         String reseña = JReseña.getText();
         String info = JInfo.getText();
+        int Categoria = (Jlista.getSelectedIndex() + 1);
 
         switch (Jlista.getSelectedItem().toString()) {
 
             case "Centro Comercial":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
-                if (base.crearConexion()) {
-                    base.insert(sitios.insert());
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
 
+                if (base.crearConexion()) {
+                    //Se agrega el sitio a la bd
+                    base.insert(sitios.insert());
+                    //Se busca el idSitio y el correo de quien este agregando
+                    
+                    System.out.println(cuenta.getCorreo());
+                        //se agrega la informacion buscada
+                        cont = new Contenidos_Multimedia(sitios.getIdSitio(), cuenta.getCorreo());
+                        //Se agrega el contenido_multimeida a la bd
+                        System.out.println(cont.toString());
+
+                        base.insert(cont.insert());
+
+                        img = new Imagenes(imagen.getDescription(), sitiotemp.getReseña(), imagen, cont.getIdContenido());
+                        //Se agrega Imagenes a la bd
+                        System.out.println(img.toString());
+                        base.insertImage(img);
+
+                    
                 }
 
                 break;
 
             case "Hotel":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
                 if (base.crearConexion()) {
                     base.insert(sitios.insert());
 
@@ -157,7 +194,7 @@ public class MenuAdmin extends JPanel {
                 break;
             case "Restaurante":
 
-                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, (Jlista.getSelectedIndex() + 1));
+                sitios = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
                 if (base.crearConexion()) {
                     base.insert(sitios.insert());
 
@@ -170,12 +207,22 @@ public class MenuAdmin extends JPanel {
 
     }//GEN-LAST:event_JinsertActionPerformed
 
+    private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
+
+        BaseDatos base = new BaseDatos();
+        imagen = Imagenes.cargarArchivos();
+        JImagen.setIcon(imagen);
+
+    }//GEN-LAST:event_JAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JAdd;
     private javax.swing.JComboBox<String> JCalificacion;
     private javax.swing.JButton JDelete;
     private javax.swing.JTextField JDireccion;
     private javax.swing.JTextField JHorario;
+    private javax.swing.JLabel JImagen;
     private javax.swing.JTextField JInfo;
     private javax.swing.JButton JMod;
     private javax.swing.JTextField JNombre;

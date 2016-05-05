@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-04-2016 a las 20:25:15
+-- Tiempo de generación: 03-05-2016 a las 07:44:43
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 7.0.4
 
@@ -31,6 +31,15 @@ CREATE TABLE `categorias` (
   `nombreCategoria` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`idCategoria`, `nombreCategoria`) VALUES
+(1, 'Centro Comercial'),
+(2, 'Hotel'),
+(3, 'Restaurante');
+
 -- --------------------------------------------------------
 
 --
@@ -49,8 +58,8 @@ CREATE TABLE `comentarios` (
 --
 
 CREATE TABLE `contenidos_multimedia` (
-  `idContenido` int(10) NOT NULL,
-  `idSitiosc` int(10) NOT NULL,
+  `idContenido` int(2) NOT NULL,
+  `idSitiosc` int(2) NOT NULL,
   `correoCuentasc` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -94,19 +103,6 @@ CREATE TABLE `imagenes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `locales`
---
-
-CREATE TABLE `locales` (
-  `idLocal` int(10) NOT NULL,
-  `numeroLocal` int(10) NOT NULL,
-  `idCategoriaL` int(10) NOT NULL,
-  `idSitioL` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `registros_visitas`
 --
 
@@ -130,8 +126,18 @@ CREATE TABLE `sitios_interes` (
   `calificacionSitio` int(2) NOT NULL,
   `reseñaSitio` varchar(50) NOT NULL,
   `horarioSitio` varchar(20) NOT NULL,
-  `infoAdicionalSitio` varchar(50) NOT NULL
+  `infoAdicionalSitio` varchar(50) DEFAULT NULL,
+  `idCategoriaS` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sitios_interes`
+--
+
+INSERT INTO `sitios_interes` (`idSitio`, `nombreSitio`, `direccionSitio`, `calificacionSitio`, `reseñaSitio`, `horarioSitio`, `infoAdicionalSitio`, `idCategoriaS`) VALUES
+(1, 'Prueba CC', 'Lunes a viernes', 2, 'Holi', 'Lunes a viernes', '', 1),
+(2, 'Prueba Hotel', 'Lunes a Viernes', 2, 'Holi', 'Lunes a Viernes', 'Holi2', 2),
+(3, 'Prueba Restaurante', 'Lunes a Viernes', 2, 'Holi', 'Lunes a Viernes', 'Holi3', 3);
 
 -- --------------------------------------------------------
 
@@ -186,14 +192,6 @@ ALTER TABLE `imagenes`
   ADD KEY `idContenidoMultimediaI` (`idContenidoMultimediaI`);
 
 --
--- Indices de la tabla `locales`
---
-ALTER TABLE `locales`
-  ADD PRIMARY KEY (`idLocal`),
-  ADD KEY `FKidCategoriaL` (`idCategoriaL`),
-  ADD KEY `FKidSitioL` (`idSitioL`);
-
---
 -- Indices de la tabla `registros_visitas`
 --
 ALTER TABLE `registros_visitas`
@@ -205,7 +203,8 @@ ALTER TABLE `registros_visitas`
 -- Indices de la tabla `sitios_interes`
 --
 ALTER TABLE `sitios_interes`
-  ADD PRIMARY KEY (`idSitio`);
+  ADD PRIMARY KEY (`idSitio`),
+  ADD KEY `fkidCategoria` (`idCategoriaS`);
 
 --
 -- Indices de la tabla `videos`
@@ -222,7 +221,11 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idCategoria` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `contenidos_multimedia`
+    MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
@@ -234,11 +237,6 @@ ALTER TABLE `comentarios`
 ALTER TABLE `imagenes`
   MODIFY `idImagen` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `locales`
---
-ALTER TABLE `locales`
-  MODIFY `idLocal` int(10) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `registros_visitas`
 --
 ALTER TABLE `registros_visitas`
@@ -247,7 +245,7 @@ ALTER TABLE `registros_visitas`
 -- AUTO_INCREMENT de la tabla `sitios_interes`
 --
 ALTER TABLE `sitios_interes`
-  MODIFY `idSitio` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSitio` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `videos`
 --
@@ -268,14 +266,7 @@ ALTER TABLE `contenidos_multimedia`
 -- Filtros para la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  ADD CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`idContenidoMultimediaI`) REFERENCES `contenidos_multimedia` (`idContenido`);
-
---
--- Filtros para la tabla `locales`
---
-ALTER TABLE `locales`
-  ADD CONSTRAINT `FKidCategoriaL` FOREIGN KEY (`idCategoriaL`) REFERENCES `categorias` (`idCategoria`),
-  ADD CONSTRAINT `FKidSitioL` FOREIGN KEY (`idSitioL`) REFERENCES `sitios_interes` (`idSitio`);
+  ADD CONSTRAINT `FKimagenes` FOREIGN KEY (`idContenidoMultimediaI`) REFERENCES `contenidos_multimedia` (`idContenido`);
 
 --
 -- Filtros para la tabla `registros_visitas`
@@ -285,10 +276,16 @@ ALTER TABLE `registros_visitas`
   ADD CONSTRAINT `FKSitios` FOREIGN KEY (`idSitios`) REFERENCES `sitios_interes` (`idSitio`);
 
 --
+-- Filtros para la tabla `sitios_interes`
+--
+ALTER TABLE `sitios_interes`
+  ADD CONSTRAINT `fkidCategoria` FOREIGN KEY (`idCategoriaS`) REFERENCES `categorias` (`idCategoria`);
+
+--
 -- Filtros para la tabla `videos`
 --
 ALTER TABLE `videos`
-  ADD CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`idContenidoMultimediaV`) REFERENCES `contenidos_multimedia` (`idContenido`);
+  ADD CONSTRAINT `FKVideos` FOREIGN KEY (`idContenidoMultimediaV`) REFERENCES `contenidos_multimedia` (`idContenido`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

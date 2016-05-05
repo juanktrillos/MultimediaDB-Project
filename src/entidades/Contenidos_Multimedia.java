@@ -12,7 +12,8 @@ import java.util.LinkedList;
  * @author CATV
  */
 public class Contenidos_Multimedia {
-   private int idContenido;//PK AUTO INCREMENT
+
+    private int idContenido;//PK AUTO INCREMENT
     private int idSitiosC;//FK SITIO
     private String correoCuentasC;//FK CUENTA
 
@@ -22,6 +23,12 @@ public class Contenidos_Multimedia {
         this.correoCuentasC = correoCuentasC;
     }
 
+    public Contenidos_Multimedia(int idSitiosC, String correoCuentasC) {
+        this.idSitiosC = idSitiosC;
+        this.correoCuentasC = correoCuentasC;
+    }
+
+    
     public Contenidos_Multimedia() {
 
     }
@@ -62,8 +69,8 @@ public class Contenidos_Multimedia {
      * @return String
      */
     public String insert() {
-        String insert = "Contenidos_Multimedia(idContenido,idSitiosC,correoCuentasC) "
-                + "values(" + idContenido + "," + idSitiosC + "," + correoCuentasC + ")";
+        String insert = "Contenidos_Multimedia(idSitiosc,correoCuentasC) "
+                + "values("+"\"" + idSitiosC + "\"" + "," + "\"" + correoCuentasC + "\"" + ")";
 
         return insert;
     }
@@ -115,5 +122,5 @@ public class Contenidos_Multimedia {
 
         return select;
     }
-    
+
 }

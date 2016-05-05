@@ -156,13 +156,10 @@ public class jPCuenta extends JPanel {
                 if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
                     System.out.println("Correo valido");
                     System.out.println("Contraseña valida");
-//<<<<<<< HEAD
                     if (jCorreo.getText().equals("root")) {
                         root = true;
                     }
-//=======
                     ven.cuenta = cuenta;
-//>>>>>>> origin/master
                     flag = true;
                 } else {
                     JOptionPane.showMessageDialog(null, " Error de contraseña\nintente de nuevo");
