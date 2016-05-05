@@ -169,6 +169,7 @@ public class MenuAdmin extends JPanel {
                     
                     
                     
+                    
                     System.out.println(cuenta.getCorreo());
                         //se agrega la informacion buscada
                         cont = new Contenidos_Multimedia(sitios.getIdSitio(), cuenta.getCorreo());
