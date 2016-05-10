@@ -11,6 +11,7 @@ import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
 import entidades.Sitios_Interes;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -270,14 +271,16 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
         if (base.crearConexion()) {
             list = base.read(comentario.select());
-            Comentario comtemp = new  Comentario();
+            Comentario comtemp = new Comentario();
             comtemp.read(list);
             coment.add(comtemp);
+            System.out.println("Entre");
         }
 
     }
 
     public void despliege() {
+        Comentario();
 
         JNombre.setText(sitios.get(pos).getNombre());
         JDir.setText(sitios.get(pos).getDireccion());
@@ -285,6 +288,16 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
         JHorario.setText(sitios.get(pos).getHorario());
         JFondo.setIcon(imagen.get(pos).getImagen());
+
+        if (coment.get(pos).getTexto() == null) {
+
+            JComentario.setText("");
+            System.out.println("No tengo nada");
+
+        } else {
+            JComentario.setText(coment.get(pos).getTexto());
+
+        }
 
 //        //Comentario
 //        jPComentario com = new jPComentario();
@@ -307,16 +320,6 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         }
         despliege();
 
-
-//        Imagenes img = new Imagenes();
-//        ArrayList<Image> lista = null;
-//        try {
-//            lista = img.getImagenes();
-//        } catch (IOException ex) {
-//            Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        JFondo.setIcon(new ImageIcon(lista.get(0)));
-
     }//GEN-LAST:event_BtDActionPerformed
 
     private void BtIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIActionPerformed
@@ -330,19 +333,29 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     }//GEN-LAST:event_BtIActionPerformed
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
-        // TODO add your handling code here:
 
-        //        Comentario comentario = new Comentario();
-        //        JComentario.setText(comentario.getTexto());
+        String add = JOptionPane.showInputDialog("Mensaje");
+
+        System.out.println("Mensaje :" + add);
+
+        BaseDatos base = new BaseDatos();
+
+        if (base.crearConexion()) {
+            Comentario com = new Comentario(add, sitios.get(pos).getIdSitio());
+            boolean insert = base.insert(com.insert());
+
+            if (insert) {
+                JOptionPane.showMessageDialog(null, "Comentario add");
+                despliege();
+            }
+        }
+
 
     }//GEN-LAST:event_JAddActionPerformed
 
     private void jNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNextActionPerformed
         // TODO add your handling code here:
 
-        Comentario comentario = new Comentario();
-        JComentario.setText(comentario.getTexto());
-        System.out.println("Comntario");
     }//GEN-LAST:event_jNextActionPerformed
 
 

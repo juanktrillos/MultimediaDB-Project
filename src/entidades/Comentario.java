@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Comentario {
     
     private int idComentario;
-    private String texto;
+    private String textComentario;
     private int idSitioComent;
 
     /**
@@ -24,25 +24,14 @@ public class Comentario {
         
     }
 
-
-    public Comentario(int idComentario, String texto) {
-        this.idComentario = idComentario;
-        this.texto = texto;
-    }
-
-    public Comentario(int idComentario) {
-        this.idComentario = idComentario;
-    }
-
-    public int getIdSitioComent() {
-        return idSitioComent;
-    }
-
-    public void setIdSitioComent(int idSitioComent) {
+    public Comentario(String textComentario, int idSitioComent) {
+        this.textComentario = textComentario;
         this.idSitioComent = idSitioComent;
     }
-    
-    
+
+    public Comentario(int idSitioComent) {
+        this.idSitioComent = idSitioComent;
+    }
 
     public int getIdComentario() {
         return idComentario;
@@ -53,16 +42,26 @@ public class Comentario {
     }
 
     public String getTexto() {
-        return texto;
+        return textComentario;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setTexto(String textComentario) {
+        this.textComentario = textComentario;
     }
+
+    public int getIdSitioComent() {
+        return idSitioComent;
+    }
+
+    public void setIdSitioComent(int idSitioComent) {
+        this.idSitioComent = idSitioComent;
+    }
+
+    
 
     @Override
     public String toString() {
-        return "Comentario{" + "idComentario=" + idComentario + ", texto=" + texto + ", idSitioComent=" + idSitioComent + '}';
+        return "Comentario{" + "idComentario=" + idComentario + ", textComentario=" + textComentario + ", idSitioComent=" + idSitioComent + '}';
     }
 
       /**
@@ -74,7 +73,7 @@ public class Comentario {
     public void read(LinkedList list) {
         if (!list.isEmpty()) {
             this.idComentario = (Integer) list.get(0);
-            this.texto = (String) list.get(1);
+            this.textComentario = (String) list.get(1);
             this.idSitioComent = (Integer) list.get(2);
 
         }
@@ -87,8 +86,17 @@ public class Comentario {
      */
     public String select() {
         String select = "comentarios WHERE idSitioComent=" + "\"" + idSitioComent + "\"";
-
         return select;
-
+    }
+    
+    /**
+     * cadena que recibe la base de datos, para inserciones
+     *
+     * @return String
+     */
+    public String insert() {
+        String insert = "comentarios(textComentario,idSitioComent) "
+                + "values(" + "\"" + textComentario + "\"" + ","  + idSitioComent  + ")";
+        return insert;
     }
 }
