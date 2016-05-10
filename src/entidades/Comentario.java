@@ -85,7 +85,7 @@ public class Comentario {
      * @return String
      */
     public String select() {
-        String select = "comentarios WHERE idSitioComent=" + "\"" + idSitioComent + "\"";
+        String select = "comentarios WHERE idSitioComent="  + idSitioComent;
         return select;
     }
     

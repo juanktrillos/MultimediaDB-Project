@@ -23,6 +23,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     LinkedList<Imagenes> imagen;
     LinkedList<Comentario> coment;
     private int pos = 0;
+    private int posC = 0;
     Ventana ven;
 
     public jPSitiosInteres(String caso, Ventana ven) {
@@ -32,6 +33,8 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         coment = new LinkedList<>();
         ObtenerInfo(caso);
         this.ven = ven;
+        JComentario.setEnabled(false);
+
     }
 
     public void ObtenerInfo(String caso) {
@@ -104,6 +107,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         JAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jNext = new javax.swing.JButton();
+        jNext1 = new javax.swing.JButton();
 
         jLabel2.setText("Direccion");
 
@@ -142,9 +146,11 @@ public class jPSitiosInteres extends javax.swing.JPanel {
 
         JCalificacion.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
+        JComentario.setEditable(false);
         JComentario.setColumns(20);
         JComentario.setRows(5);
         JComentario.setBorder(null);
+        JComentario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         JAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/circle.png"))); // NOI18N
         JAdd.setPreferredSize(new java.awt.Dimension(32, 32));
@@ -163,6 +169,15 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         jNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNextActionPerformed(evt);
+            }
+        });
+
+        jNext1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/NextI.png"))); // NOI18N
+        jNext1.setPreferredSize(new java.awt.Dimension(32, 32));
+        jNext1.setSize(new java.awt.Dimension(32, 32));
+        jNext1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNext1ActionPerformed(evt);
             }
         });
 
@@ -201,7 +216,8 @@ public class jPSitiosInteres extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jNext, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jNext, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -259,7 +275,8 @@ public class jPSitiosInteres extends javax.swing.JPanel {
                                         .addComponent(JAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jNext, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -269,11 +286,14 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         BaseDatos base = new BaseDatos();
         LinkedList<Object> list = new LinkedList<>();
 
+        System.out.println(comentario.toString());
+
         if (base.crearConexion()) {
             list = base.read(comentario.select());
             Comentario comtemp = new Comentario();
             comtemp.read(list);
             coment.add(comtemp);
+            System.out.println(coment.toString());
             System.out.println("Entre");
         }
 
@@ -289,7 +309,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         JHorario.setText(sitios.get(pos).getHorario());
         JFondo.setIcon(imagen.get(pos).getImagen());
 
-        if (coment.get(pos).getTexto() == null) {
+        if (coment.get(pos).getTexto() == "") {
 
             JComentario.setText("");
             System.out.println("No tengo nada");
@@ -354,9 +374,36 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     }//GEN-LAST:event_JAddActionPerformed
 
     private void jNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNextActionPerformed
-        // TODO add your handling code here:
+
+        posC++;
+
+        if (posC >= sitios.size()) {
+            posC = 0;
+        }
+
+        JComentario.setText(coment.get(posC).getTexto());
+
+        System.out.println(coment.get(posC).getTexto());
+
+        System.out.println(posC);
 
     }//GEN-LAST:event_jNextActionPerformed
+
+    private void jNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNext1ActionPerformed
+        // TODO add your handling code here:
+        posC--;
+
+        if (posC < 0) {
+            posC = 0;
+        }
+        System.out.println(posC);
+
+        JComentario.setText(coment.get(posC).getTexto());
+
+        System.out.println(coment.get(posC).getTexto());
+
+
+    }//GEN-LAST:event_jNext1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -376,5 +423,6 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jNext;
+    private javax.swing.JButton jNext1;
     // End of variables declaration//GEN-END:variables
 }
