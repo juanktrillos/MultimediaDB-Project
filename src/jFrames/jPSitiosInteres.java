@@ -48,12 +48,13 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         if (db.crearConexion()) {
             LinkedList<Object> list = db.select(sql);
             int size = list.size();
-            int cant = size / 8;
+            int attri = 8;
+            int cant = size / attri;
 
             System.out.println("cantidad sitios :" + cant);
             for (int i = 0; i < cant; i++) {
                 listSitios = new LinkedList<>();
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < attri; j++) {
                     if (!list.isEmpty()) {
                         listSitios.add(list.removeFirst());
                     }
@@ -69,12 +70,13 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             list = db.select(sql);
             System.out.println(list);
             size = list.size();
-            cant = size / 3;
+            attri = 3;
+            cant = size / attri;
 
             System.out.println("cantidad contenidos :" + cant);
             for (int i = 0; i < cant; i++) {
                 listContenidos = new LinkedList<>();
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < attri; j++) {
                     if (!list.isEmpty()) {
                         listContenidos.add(list.removeFirst());
                     }
@@ -90,11 +92,12 @@ public class jPSitiosInteres extends javax.swing.JPanel {
                 Imagenes img = new Imagenes(cont.getIdContenido());
                 list = db.select(img.selectFK());
                 size = list.size();
-                cant = size / 6;
+                attri = 6;
+                cant = size / attri;
 
                 for (int i = 0; i < cant; i++) {
                     listImages = new LinkedList<>();
-                    for (int j = 0; j < 8; j++) {
+                    for (int j = 0; j < attri; j++) {
                         if (!list.isEmpty()) {
                             listImages.add(list.removeFirst());
                         }
