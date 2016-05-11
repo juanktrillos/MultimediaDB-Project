@@ -368,7 +368,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         pos--;
 
         if (pos < 0) {
-            pos = 0;
+            pos = sitios.size()-1;
         }
         despliege();
     }//GEN-LAST:event_BtIActionPerformed
