@@ -8,12 +8,14 @@ import entidades.Imagenes;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class BaseDatos {
 
@@ -44,7 +46,7 @@ public class BaseDatos {
     public boolean crearConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");                         //database   //user  //pass
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "anis1002");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "clancy");
             st = conexion.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -98,30 +100,29 @@ public class BaseDatos {
         return update;
     }
 
-    public LinkedList<Object> read(String sql) {
-
-        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-        LinkedList<Object> obj = new LinkedList();
-        int contador = 1;
-
-        try {
-            ResultSet rs = st.executeQuery("SELECT * FROM " + sql);
-            ResultSetMetaData rsm = rs.getMetaData();
-            int numColumn = rsm.getColumnCount();
-
-            while (rs.next()) {
-                while (contador <= numColumn) {
-                    obj.add(rs.getObject(contador));
-                    contador++;
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println("error en la base de datos");
-        }
-        return obj;
-    }
-
-    public LinkedList<Object> readM(String sql) {
+    /*public LinkedList<Object> read(String sql) {
+    
+     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+     LinkedList<Object> obj = new LinkedList();
+     int contador = 1;
+    
+     try {
+     ResultSet rs = st.executeQuery("SELECT * FROM " + sql);
+     ResultSetMetaData rsm = rs.getMetaData();
+     int numColumn = rsm.getColumnCount();
+    
+     while (rs.next()) {
+     while (contador <= numColumn) {
+     obj.add(rs.getObject(contador));
+     contador++;
+     }
+     }
+     } catch (SQLException ex) {
+     System.out.println("error en la base de datos");
+     }
+     return obj;
+     }*/
+    public LinkedList<Object> select(String sql) {
 
         LinkedList<Object> obj = new LinkedList();
         int contador = 1;
@@ -142,6 +143,26 @@ public class BaseDatos {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
+    }
+
+    public ImageIcon selectImage(String sql) {
+
+        ImageIcon imagen = new ImageIcon();
+        BufferedImage img;
+        try {
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                Blob blob = rs.getBlob("imagen");
+                byte[] data = blob.getBytes(1, (int) blob.length());
+                img = ImageIO.read(new ByteArrayInputStream(data));
+                System.out.println(img);
+                imagen = new ImageIcon(img);
+            }
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return imagen;
     }
 
     public boolean insertImage(Imagenes imagen) {

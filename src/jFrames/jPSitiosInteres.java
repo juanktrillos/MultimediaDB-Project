@@ -20,8 +20,9 @@ import javax.swing.JOptionPane;
 public class jPSitiosInteres extends javax.swing.JPanel {
 
     LinkedList<Sitios_Interes> sitios;
+    LinkedList<Contenidos_Multimedia> contenido;
     LinkedList<Imagenes> imagen;
-    LinkedList<Comentario> coment;
+    LinkedList<Comentario> comment;
     private int pos = 0;
     private int posC = 0;
     Ventana ven;
@@ -30,61 +31,80 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         initComponents();
         sitios = new LinkedList<>();
         imagen = new LinkedList<>();
-        coment = new LinkedList<>();
-        ObtenerInfo(caso);
+        contenido = new LinkedList<>();
+        comment = new LinkedList<>();
+        ObtenerInfo(caso);//solucionar
         this.ven = ven;
         JComentario.setEnabled(false);
-
     }
 
     public void ObtenerInfo(String caso) {
 
         BaseDatos db = new BaseDatos();
-        String select = "SELECT sitios_interes.* FROM ";
-        LinkedList<Object> listHotel;
-        String sql = select + "categorias, sitios_interes "
+        LinkedList<Object> listSitios;
+        String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
                 + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
 
-        System.out.println(sql);
         if (db.crearConexion()) {
-            LinkedList<Object> list = db.readM(sql);
+            LinkedList<Object> list = db.select(sql);
             int size = list.size();
             int cant = size / 8;
 
-            System.out.println("cantidad :" + cant);
+            System.out.println("cantidad sitios :" + cant);
             for (int i = 0; i < cant; i++) {
-                listHotel = new LinkedList<>();
+                listSitios = new LinkedList<>();
                 for (int j = 0; j < 8; j++) {
                     if (!list.isEmpty()) {
-                        listHotel.add(list.removeFirst());
+                        listSitios.add(list.removeFirst());
                     }
                 }
-                Sitios_Interes hotel = new Sitios_Interes();
-                hotel.read(listHotel);
-                sitios.add(hotel);
+                Sitios_Interes sitio = new Sitios_Interes();
+                sitio.read(listSitios);
+                sitios.add(sitio);
             }
 
-            Contenidos_Multimedia cont = new Contenidos_Multimedia(sitios.get(pos).getIdSitio());
-            LinkedList<Object> listContenido = db.read(cont.selectFK());
-            if (!listContenido.isEmpty()) {
-                cont.read(list);
+            LinkedList<Object> listContenidos;
+            sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
+                    + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + caso + "'";
+            list = db.select(sql);
+            System.out.println(list);
+            size = list.size();
+            cant = size / 3;
+
+            System.out.println("cantidad contenidos :" + cant);
+            for (int i = 0; i < cant; i++) {
+                listContenidos = new LinkedList<>();
+                for (int j = 0; j < 8; j++) {
+                    if (!list.isEmpty()) {
+                        listContenidos.add(list.removeFirst());
+                    }
+                }
+                Contenidos_Multimedia cont = new Contenidos_Multimedia();
+                cont.read(listContenidos);
+                contenido.add(cont);
+            }
+
+            LinkedList<Object> listImages;
+            for (Contenidos_Multimedia cont : contenido) {
 
                 Imagenes img = new Imagenes(cont.getIdContenido());
-                LinkedList<Object> listImagen = db.read(cont.selectFK());
-                if (!listImagen.isEmpty()) {
-                    img.read(list);
+                list = db.select(img.selectFK());
+                size = list.size();
+                cant = size / 6;
+
+                for (int i = 0; i < cant; i++) {
+                    listImages = new LinkedList<>();
+                    for (int j = 0; j < 8; j++) {
+                        if (!list.isEmpty()) {
+                            listImages.add(list.removeFirst());
+                        }
+                    }
+                    img.read(listImages);
                     imagen.add(img);
-
-                } else {
-                    System.out.println("Error al buscar imagen");
                 }
-
-            } else {
-                System.out.println("Error al buscar Contenido_multimedia");
             }
-
+            despliege();
         }
-        despliege();
     }
 
     @SuppressWarnings("unchecked")
@@ -281,26 +301,24 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void Comentario() {
+    public void comment() {
         Comentario comentario = new Comentario(sitios.get(pos).getIdSitio());
         BaseDatos base = new BaseDatos();
-        LinkedList<Object> list = new LinkedList<>();
+        LinkedList<Object> list;
 
-        System.out.println(comentario.toString());
-
+//        System.out.println(comentario.toString());
         if (base.crearConexion()) {
-            list = base.read(comentario.select());
-            Comentario comtemp = new Comentario();
-            comtemp.read(list);
-            coment.add(comtemp);
-            System.out.println(coment.toString());
-            System.out.println("Entre");
+            list = base.select(comentario.selectFK());
+            comentario.read(list);
+            comment.add(comentario);
+            JComentario.setText(comentario.getTexto());
+            System.out.println(comment.toString());
         }
-
     }
 
     public void despliege() {
-        Comentario();
+
+        comment();
 
         JNombre.setText(sitios.get(pos).getNombre());
         JDir.setText(sitios.get(pos).getDireccion());
@@ -309,13 +327,13 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         JHorario.setText(sitios.get(pos).getHorario());
         JFondo.setIcon(imagen.get(pos).getImagen());
 
-        if (coment.get(pos).getTexto() == "") {
+        if ("".equals(comment.get(pos).getTexto())) {
 
             JComentario.setText("");
             System.out.println("No tengo nada");
 
         } else {
-            JComentario.setText(coment.get(pos).getTexto());
+            JComentario.setText(comment.get(pos).getTexto());
 
         }
 
@@ -381,9 +399,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             posC = 0;
         }
 
-        JComentario.setText(coment.get(posC).getTexto());
-
-        System.out.println(coment.get(posC).getTexto());
+        System.out.println(comment.get(posC).getTexto());
 
         System.out.println(posC);
 
@@ -398,9 +414,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         }
         System.out.println(posC);
 
-        JComentario.setText(coment.get(posC).getTexto());
-
-        System.out.println(coment.get(posC).getTexto());
+        System.out.println(comment.get(posC).getTexto());
 
 
     }//GEN-LAST:event_jNext1ActionPerformed

@@ -27,12 +27,6 @@ public class Contenidos_Multimedia {
         this.idSitiosC = idSitiosC;
         this.correoCuentasC = correoCuentasC;
     }
-
-    public Contenidos_Multimedia(int idSitiosC) {
-        this.idSitiosC = idSitiosC;
-    }
-
-    
     
     public Contenidos_Multimedia() {
 
@@ -123,7 +117,7 @@ public class Contenidos_Multimedia {
      * @return String
      */
     public String select() {
-        String select = "Contenidos_Multimedia WHERE idContenido=" + idContenido + "";
+        String select = "SELECT * FROM Contenidos_Multimedia WHERE idContenido=" + idContenido + "";
 
         return select;
     }
@@ -134,7 +128,7 @@ public class Contenidos_Multimedia {
      * @return String
      */
     public String selectFK() {
-        String select = "Contenidos_Multimedia WHERE idSitiosC=" + idSitiosC + "";
+        String select = "SELECT * FROM Contenidos_Multimedia WHERE idSitiosC=" + idSitiosC + "";
 
         return select;
     }

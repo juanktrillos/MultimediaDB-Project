@@ -85,7 +85,17 @@ public class Comentario {
      * @return String
      */
     public String select() {
-        String select = "comentarios WHERE idSitioComent="  + idSitioComent;
+        String select = "SELECT * FROM comentarios WHERE idComentario="  + idComentario;
+        return select;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para selecionar una ocurrencia
+     *
+     * @return String
+     */
+    public String selectFK() {
+        String select = "SELECT * FROM comentarios WHERE idSitioComent="  + idSitioComent;
         return select;
     }
     
@@ -95,7 +105,7 @@ public class Comentario {
      * @return String
      */
     public String insert() {
-        String insert = "comentarios(textComentario,idSitioComent) "
+        String insert = "SELECT * FROM comentarios(textComentario,idSitioComent) "
                 + "values(" + "\"" + textComentario + "\"" + ","  + idSitioComent  + ")";
         return insert;
     }

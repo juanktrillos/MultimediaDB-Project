@@ -151,7 +151,7 @@ public class Cuentas {
      * @return String
      */
     public String select() {
-        String select = "Cuentas WHERE correoCuenta=" + "\"" + correoCuenta + "\"";
+        String select = "SELECT * FROM Cuentas WHERE correoCuenta=" + "\"" + correoCuenta + "\"";
 
         return select;
 

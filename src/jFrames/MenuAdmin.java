@@ -33,7 +33,6 @@ public class MenuAdmin extends JPanel {
         initComponents();
         this.ven = ven;
         sitios = new LinkedList<>();
-
     }
 
     /**
@@ -45,7 +44,7 @@ public class MenuAdmin extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jlista = new javax.swing.JComboBox<>();
+        Jlista = new javax.swing.JComboBox<String>();
         Jinsert = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
@@ -57,7 +56,7 @@ public class MenuAdmin extends JPanel {
         jLabel5 = new javax.swing.JLabel();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
-        JCalificacion = new javax.swing.JComboBox<>();
+        JCalificacion = new javax.swing.JComboBox<String>();
         JReseña = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
@@ -65,70 +64,65 @@ public class MenuAdmin extends JPanel {
         JAdd = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(662, 374));
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
         Jlista.setSelectedIndex(1);
-        add(Jlista);
-        Jlista.setBounds(50, 10, 209, 27);
+        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 209, -1));
 
         Jinsert.setText("Insertar");
+        Jinsert.setEnabled(false);
         Jinsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JinsertActionPerformed(evt);
             }
         });
-        add(Jinsert);
-        Jinsert.setBounds(220, 310, 92, 29);
+        add(Jinsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
 
         JDelete.setText("Borrar");
-        add(JDelete);
-        JDelete.setBounds(29, 391, 81, 29);
+        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 391, -1, -1));
 
         JMod.setText("Modificar");
-        add(JMod);
-        JMod.setBounds(128, 391, 103, 29);
+        JMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JModActionPerformed(evt);
+            }
+        });
+        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 391, -1, -1));
 
         jLabel1.setText("Nombre");
-        add(jLabel1);
-        jLabel1.setBounds(60, 50, 50, 16);
-        add(JNombre);
-        JNombre.setBounds(150, 40, 223, 26);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 223, -1));
 
         jLabel2.setText("Direccion");
-        add(jLabel2);
-        jLabel2.setBounds(60, 80, 60, 16);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         jLabel3.setText("Calificacion");
-        add(jLabel3);
-        jLabel3.setBounds(60, 110, 74, 16);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         jLabel4.setText("Reseña");
-        add(jLabel4);
-        jLabel4.setBounds(70, 170, 44, 16);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 196, -1, -1));
 
         jLabel5.setText("Informacion adicional");
-        add(jLabel5);
-        jLabel5.setBounds(10, 240, 137, 16);
-        add(JDireccion);
-        JDireccion.setBounds(150, 70, 223, 26);
-        add(JInfo);
-        JInfo.setBounds(150, 240, 223, 66);
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 266, -1, -1));
+        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 223, -1));
+        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 223, 66));
 
-        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
-        add(JCalificacion);
-        JCalificacion.setBounds(160, 100, 64, 27);
-        add(JReseña);
-        JReseña.setBounds(150, 170, 223, 66);
+        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+
+        JReseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JReseñaActionPerformed(evt);
+            }
+        });
+        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 223, 66));
 
         jLabel6.setText("Horario");
-        add(jLabel6);
-        jLabel6.setBounds(60, 140, 47, 16);
-        add(JHorario);
-        JHorario.setBounds(150, 140, 223, 26);
-        add(JImagen);
-        JImagen.setBounds(400, 30, 220, 230);
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 137, 223, -1));
+        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 40, 220, 230));
 
         JAdd.setText("Agregar");
         JAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -136,125 +130,48 @@ public class MenuAdmin extends JPanel {
                 JAddActionPerformed(evt);
             }
         });
-        add(JAdd);
-        JAdd.setBounds(460, 280, 93, 29);
+        add(JAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 281, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JinsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JinsertActionPerformed
 
         BaseDatos base = new BaseDatos();
-        Contenidos_Multimedia cont = null;
-        Cuentas cuenta = ven.cuenta;
-        Sitios_Interes sitio = new Sitios_Interes();
-        Contenidos_Multimedia conttemp = new Contenidos_Multimedia();
-        Imagenes img = new Imagenes();
+        Contenidos_Multimedia cont;
+        //Cuentas cuenta = ven.cuenta;
+        Sitios_Interes sitioTemp;
+        //Contenidos_Multimedia conttemp;
+        Imagenes img;
 
         String nombre = JNombre.getText();
-        String Dir = JDireccion.getText();
-        int Calificacion = new Integer(JCalificacion.getSelectedItem().toString());
-        String Horario = JHorario.getText();
+        String dir = JDireccion.getText();
+        int calificacion = Integer.parseInt(JCalificacion.getSelectedItem().toString());
+        String horario = JHorario.getText();
         String reseña = JReseña.getText();
         String info = JInfo.getText();
-        int Categoria = (Jlista.getSelectedIndex() + 1);
+        int categoria = (Jlista.getSelectedIndex() + 1);
 
-        switch (Jlista.getSelectedItem().toString()) {
+        String categoryString = Jlista.getSelectedItem().toString();
+//        boolean sCategory = searchCategory(base, categoryString);
+        //ObtenerInfo(categoryString);//CAMBIAR
+        if (base.crearConexion()) {
+            sitioTemp = new Sitios_Interes(nombre, dir, calificacion, reseña, horario, info, categoria);
+            //Se agrega el sitio a la bd
+            base.insert(sitioTemp.insert());
+            //se agrega la informacion buscada
+            LinkedList<Object> idsSitio = base.select("select idSitio from sitios_interes, categorias "
+                    + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + categoryString + "'");
+            int idSitio = (int) idsSitio.getLast();
 
-            case "Centro Comercial":
+            Contenidos_Multimedia contTemp = new Contenidos_Multimedia(idSitio, ven.cuenta.getCorreo());
+            base.insert(contTemp.insert());
 
-                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
-                ObtenerInfo(Jlista.getSelectedItem().toString());
-                if (base.crearConexion()) {
-                    //Se agrega el sitio a la bd
-                    base.insert(sitio.insert());
-                    //se agrega la informacion buscada
-                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
-                    System.out.println("Contenido :" + cont.toString());
-                    //Se agrega el contenido_multimeida a la bd
-                    base.insert(cont.insert());
-                    LinkedList<Object> list = base.read(cont.selectFK());
-                    
-                    System.out.println("Lista cont :"+ list.toString());
-
-                    if (!list.isEmpty()) {
-                        cont.read(list);
-                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
-                        //Se agrega el contenido_multimeida a la bd
-                        System.out.println("interna obj imagen: "+img.toString());
-                        //Se agrega Imagenes a la bd
-                        base.insertImage(img);
-
-                    }else{
-                        System.out.println("Error de insert");
-                    }
-
-                }
-
-                break;
-
-            case "Hotel":
-
-                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
-                ObtenerInfo(Jlista.getSelectedItem().toString());
-                if (base.crearConexion()) {
-                    //Se agrega el sitio a la bd
-                    base.insert(sitio.insert());
-                    //se agrega la informacion buscada
-                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
-                    System.out.println("Contenido :" + cont.toString());
-                    //Se agrega el contenido_multimeida a la bd
-                    base.insert(cont.insert());
-                    LinkedList<Object> list = base.read(cont.selectFK());
-                    
-                    System.out.println("Lista cont :"+ list.toString());
-
-                    if (!list.isEmpty()) {
-                        cont.read(list);
-                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
-                        //Se agrega el contenido_multimeida a la bd
-                        System.out.println("interna obj imagen: "+img.toString());
-                        //Se agrega Imagenes a la bd
-                        base.insertImage(img);
-
-                    }else{
-                        System.out.println("Error de insert");
-                    }
-
-                }
-                break;
-            case "Restaurante":
-
-                sitio = new Sitios_Interes(nombre, Dir, Calificacion, reseña, Horario, info, Categoria);
-                ObtenerInfo(Jlista.getSelectedItem().toString());
-                if (base.crearConexion()) {
-                    //Se agrega el sitio a la bd
-                    base.insert(sitio.insert());
-                    //se agrega la informacion buscada
-                    cont = new Contenidos_Multimedia(sitios.getLast().getIdSitio(), cuenta.getCorreo());
-                    System.out.println("Contenido :" + cont.toString());
-                    //Se agrega el contenido_multimeida a la bd
-                    base.insert(cont.insert());
-                    LinkedList<Object> list = base.read(cont.selectFK());
-                    
-                    System.out.println("Lista cont :"+ list.toString());
-
-                    if (!list.isEmpty()) {
-                        cont.read(list);
-                        img = new Imagenes(sitios.getLast().getNombre(), sitios.getLast().getReseña(), imagen, cont.getIdContenido());
-                        //Se agrega el contenido_multimeida a la bd
-                        System.out.println("interna obj imagen: "+img.toString());
-                        //Se agrega Imagenes a la bd
-                        base.insertImage(img);
-
-                    }else{
-                        System.out.println("Error de insert");
-                    }
-
-                }
-                break;
-
+            LinkedList<Object> idsCont = base.select("select idContenido from "
+                    + "contenidos_multimedia where idSitiosc=" + idSitio + "");
+            int idCont = (int) idsCont.getLast();
+            
+            img = new Imagenes(nombre, reseña, imagen, idCont);
+            base.insertImage(img);
         }
-
-
     }//GEN-LAST:event_JinsertActionPerformed
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
@@ -262,19 +179,27 @@ public class MenuAdmin extends JPanel {
         BaseDatos base = new BaseDatos();
         imagen = Imagenes.cargarArchivos();
         JImagen.setIcon(imagen);
+        Jinsert.setEnabled(true);
 
     }//GEN-LAST:event_JAddActionPerformed
+
+    private void JModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JModActionPerformed
+
+    private void JReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JReseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JReseñaActionPerformed
     public void ObtenerInfo(String caso) {
 
         BaseDatos db = new BaseDatos();
-        String select = "SELECT sitios_interes.* FROM ";
         LinkedList<Object> listTemp;
-        String sql = select + "categorias, sitios_interes "
+        String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
                 + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
 
         System.out.println(sql);
         if (db.crearConexion()) {
-            LinkedList<Object> list = db.readM(sql);
+            LinkedList<Object> list = db.select(sql);
             int size = list.size();
             int cant = size / 8;
 
@@ -315,4 +240,12 @@ public class MenuAdmin extends JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+
+    /* private boolean searchCategory(BaseDatos base, String category) {
+    
+    String sql = "Select * from categorias where nombreCategoria=" + category + "";
+    LinkedList<Object> select = base.select(sql);
+    
+    return !select.isEmpty();
+    }*/
 }

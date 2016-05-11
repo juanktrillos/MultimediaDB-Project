@@ -148,7 +148,7 @@ public class jPCuenta extends JPanel {
         Cuentas cuenta = new Cuentas(correo, cifrado);
 
         if (base.crearConexion()) {
-            LinkedList<Object> list = base.read(cuenta.select());
+            LinkedList<Object> list = base.select(cuenta.select());
 
             if (!list.isEmpty()) {
                 cuenta.read(list);

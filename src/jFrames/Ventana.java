@@ -15,14 +15,13 @@ public class Ventana extends JFrame {
     Cuentas cuenta;
 
     public Ventana() {
-        
         initComponents();
-        this.setLocationRelativeTo(null);
         super.setTitle("Turismo");
+//        this.setLocationRelativeTo(null);
         jFondo.setIcon(new ImageIcon("src/Fotos/Fondo.jpg"));
         cuenta = null;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

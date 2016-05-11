@@ -5,13 +5,24 @@
  */
 package entidades;
 
+import database.BaseDatos;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+//import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +56,7 @@ public class Imagenes {
         System.out.println("hola");
         this.descripcionImagen = Descripcion;
         this.fechaImagen = Date.valueOf(LocalDate.now());
+//        this.fechaImagen = new Date();
         this.imagen = Imagen;
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
@@ -53,7 +65,6 @@ public class Imagenes {
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
 
-    
     public int getIdImagen() {
         return idImagen;
     }
@@ -173,7 +184,7 @@ public class Imagenes {
      * @return String
      */
     public String delete() {
-        String delete = "Imagenes WHERE idImagen=" + idImagen + "";
+        String delete = "SELECT * FROM Imagenes WHERE idImagen=" + idImagen + "";
 
         return delete;
     }
@@ -189,9 +200,13 @@ public class Imagenes {
             this.idImagen = (int) list.get(0);
             this.nombreImagen = (String) list.get(1);
             this.descripcionImagen = (String) list.get(2);
-            this.fechaImagen = (Date) list.get(3);
-            this.imagen = (ImageIcon) list.get(4);
-            this.idContenidoMultimediaI = (int) list.get(4);
+            this.fechaImagen = Date.valueOf((String) list.get(3));
+            this.idContenidoMultimediaI = (int) list.get(5);
+//            this.imagen = (ImageIcon) list.get(4);
+            BaseDatos db = new BaseDatos();
+            if (db.crearConexion()) {
+                this.imagen = db.selectImage("SELECT * FROM imagenes WHERE idimagen=" + this.getIdImagen());
+            }
         }
     }
 
@@ -201,13 +216,13 @@ public class Imagenes {
      * @return String
      */
     public String select() {
-        String select = "Imagenes WHERE idImagen=" + idImagen + "";
+        String select = "SELECT * FROM Imagenes WHERE idImagen=" + idImagen + "";
 
         return select;
     }
 
     public String selectFK() {
-        String select = "Imagenes WHERE idContenidoMultimediaI=" + idContenidoMultimediaI + "";
+        String select = "SELECT * FROM Imagenes WHERE idContenidoMultimediaI=" + idContenidoMultimediaI + "";
 
         return select;
     }
