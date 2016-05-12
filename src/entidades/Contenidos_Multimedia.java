@@ -105,7 +105,6 @@ public class Contenidos_Multimedia {
      */
     public void read(LinkedList list) {
         if (!list.isEmpty()) {
-            System.out.println("conte List 0: "+list.get(0));
             this.idContenido = (int) list.get(0);
             this.idSitiosC = (int) list.get(1);
             this.correoCuentasC = (String) list.get(2);

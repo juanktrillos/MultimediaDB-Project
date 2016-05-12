@@ -5,7 +5,8 @@
  */
 package entidades;
 
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 import java.util.LinkedList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.LinkedList;
  * @author CATV
  */
 public class Registro_Visitas {
-    
+
     private int codigoVisita;// AUTO INCREMENT
     private Date fechaVisita;
     private int idSitios;//FK SITIOS_INTERES
@@ -23,8 +24,8 @@ public class Registro_Visitas {
 
     }
 
-    public Registro_Visitas(int codigoVisita, Date fechaVisita, int idSitios, String correoCuentas) {
-        this.codigoVisita = codigoVisita;
+    public Registro_Visitas(/*int codigoVisita,*/Date fechaVisita, int idSitios, String correoCuentas) {
+//        this.codigoVisita = codigoVisita;
         this.fechaVisita = fechaVisita;
         this.idSitios = idSitios;
         this.correoCuentas = correoCuentas;
@@ -64,7 +65,7 @@ public class Registro_Visitas {
 
     @Override
     public String toString() {
-        return "Registro_Visitas{" + "codigoVisita=" + codigoVisita + ", fechaVisita=" + fechaVisita + ", idSitios=" + idSitios + ", correoCuentas=" + correoCuentas + '}';
+        return "Registros_Visitas{" + "codigoVisita=" + codigoVisita + ", fechaVisita=" + fechaVisita + ", idSitios=" + idSitios + ", correoCuentas=" + correoCuentas + '}';
     }
 
     /**
@@ -73,9 +74,8 @@ public class Registro_Visitas {
      * @return String
      */
     public String insert() {
-        String insert = "Registros_Visita(codigoVisita,fechaVisita,idSitios,correoCuenta) "
-                + "values(" + codigoVisita + "," + fechaVisita + "," + idSitios + "," + correoCuentas + ")";
-
+        String insert = "Registros_Visitas(fechaVisita,idSitios,correoCuentas) "
+                + "values('" + fechaVisita + "'," + idSitios + ",'" + correoCuentas + "')";
         return insert;
     }
 
@@ -85,8 +85,8 @@ public class Registro_Visitas {
      * @return String
      */
     public String update() {
-        String update = "Registros_Visita SET codigoVisita=" + codigoVisita + " fechaVisita=" + fechaVisita + " idSitios="
-                + idSitios + " " + "correoCuenta=" + correoCuentas + " WHERE codigoVisita=" + codigoVisita + "";
+        String update = "Registros_Visitas SET fechaVisita=" + fechaVisita + " idSitios="
+                + idSitios + " " + "correoCuenta='" + correoCuentas + "' WHERE codigoVisita=" + codigoVisita + "";
 
         return update;
     }
@@ -97,7 +97,7 @@ public class Registro_Visitas {
      * @return String
      */
     public String delete() {
-        String delete = "Registros_Visita WHERE codigoVisita=" + codigoVisita + "";
+        String delete = "Registros_Visitas WHERE codigoVisita=" + codigoVisita + "";
 
         return delete;
     }
@@ -123,10 +123,9 @@ public class Registro_Visitas {
      * @return String
      */
     public String select() {
-        String select = "Registros_Visita WHERE codigoVisita=" + codigoVisita + "";
+        String select = "SELECT * FROM Registros_Visitas WHERE codigoVisita=" + codigoVisita + "";
 
         return select;
     }
-    
-    
+
 }

@@ -79,8 +79,6 @@ public class BaseDatos {
 
         String sql = "INSERT INTO " + consulta;
         boolean insert = querySQL(sql);
-        System.out.println("inserte datos  " + sql);
-
         return insert;
     }
 
@@ -88,7 +86,6 @@ public class BaseDatos {
 
         String sql = "UPDATE " + consulta;
         boolean update = querySQL(sql);
-        System.out.println("Actualize: " + sql);
         return update;
     }
 
@@ -156,7 +153,6 @@ public class BaseDatos {
                 Blob blob = rs.getBlob("imagen");
                 byte[] data = blob.getBytes(1, (int) blob.length());
                 img = ImageIO.read(new ByteArrayInputStream(data));
-                System.out.println(img);
                 imagen = new ImageIcon(img);
             }
         } catch (SQLException | IOException ex) {
@@ -187,11 +183,8 @@ public class BaseDatos {
             ps.executeUpdate();
 
             conexion.commit();
-            System.out.println("inserte datos  " + ps.toString());
-
             return true;
         } catch (Exception ex) {
-            System.out.println("Error al Insertar Imagen");
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
@@ -229,7 +222,6 @@ public class BaseDatos {
             conexion.commit();
             return true;
         } catch (Exception ex) {
-            System.out.println("Error al Insertar Imagen");
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {

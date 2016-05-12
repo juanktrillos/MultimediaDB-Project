@@ -154,8 +154,6 @@ public class jPCuenta extends JPanel {
                 cuenta.read(list);
 
                 if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
-                    System.out.println("Correo valido");
-                    System.out.println("Contraseña valida");
                     if (jCorreo.getText().equals("root")) {
                         root = true;
                     }

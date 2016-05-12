@@ -9,7 +9,10 @@ import database.BaseDatos;
 import entidades.Comentario;
 import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
+import entidades.Registro_Visitas;
 import entidades.Sitios_Interes;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
@@ -23,9 +26,9 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     LinkedList<Contenidos_Multimedia> contenido;
     LinkedList<Imagenes> imagen;
     LinkedList<Comentario> comment;
-    String sitio;
-    private int pos = 0;
-    private int posC = 0;
+    String category;
+    int pos = 0;
+    int posC = 0;
     Ventana ven;
 
     public jPSitiosInteres(String caso, Ventana ven) {
@@ -34,37 +37,39 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         imagen = new LinkedList<>();
         contenido = new LinkedList<>();
         comment = new LinkedList<>();
-        sitio = caso;
-        ObtenerInfo();//solucionar
+        category = caso;
         this.ven = ven;
         JComentario.setEnabled(false);
+        ObtenerInfo();
     }
 
-    public void ObtenerInfo() {
+    //<editor-fold defaultstate="collapsed" desc="ObtenerInfo(): Metodo que Busca los Sitios en la DB">
+    private void ObtenerInfo() {
 
         BaseDatos db = new BaseDatos();
-        String sql;
 
         if (db.crearConexion()) {
             //SE BUSCAN LOS SITIOS DE INTERES
-            chargeDataSitios(db, sitio, 8);
+            chargeDataSitios(db, 8);
 
             //SE BUSCAN LOS CONTENIDOS MULTIMEDIA DEL SITIO DE INTERES
-            chargeDataContenido(db, sitio, 3);
+            chargeDataContenido(db, 3);
             //SE BUSCAN LAS IMAGENES DE LOS CONTENIDOS MULTIMEDIA
             if (!contenido.isEmpty()) {
                 chargeDataImagenes(db, 6);
             }
 
             //SE BUSCAN LOS COMENTARIOS DEL SITIO DE INTERES
-            chargeDataComentarios(db, sitio, 3);
+            chargeDataComentarios(db, 3);
             despliege();
         }
     }
+//</editor-fold>
 
-    public void chargeDataSitios(BaseDatos db, String sitio, int attri) {
+    //<editor-fold defaultstate="collapsed" desc="chargeDataSitios(BaseDatos, int)">
+    public void chargeDataSitios(BaseDatos db, int attri) {
         String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
-                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + sitio + "'";
+                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + category + "'";
         LinkedList<Object> list = db.select(sql);
         LinkedList<Object> listValues;
 
@@ -83,10 +88,12 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             sitios.add(sitioTemp);
         }
     }
+//</editor-fold>
 
-    public void chargeDataContenido(BaseDatos db, String sitio, int attri) {
+    //<editor-fold defaultstate="collapsed" desc="chargeDataContenido(BaseDatos, int)">
+    public void chargeDataContenido(BaseDatos db, int attri) {
         String sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
-                + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + sitio + "'";
+                + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + category + "'";
         LinkedList<Object> list = db.select(sql);
         LinkedList<Object> listValues;
 
@@ -105,7 +112,9 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             contenido.add(cont);
         }
     }
+//</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="chargeDataImagenes(BaseDatos, int)">
     public void chargeDataImagenes(BaseDatos db, int attri) {
 
         LinkedList<Object> list;
@@ -130,11 +139,13 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             }
         }
     }
+//</editor-fold>
 
-    public void chargeDataComentarios(BaseDatos db, String sitio, int attri) {
+    //<editor-fold defaultstate="collapsed" desc="chargeDataComentarios(BaseDatos, int)">
+    public void chargeDataComentarios(BaseDatos db, int attri) {
 
         String sql = "SELECT comentarios.* FROM categorias, sitios_interes, comentarios "
-                + "WHERE idCategoria=idCategoriaS and idSitio=idSitioComent and nombreCategoria='" + sitio + "'";
+                + "WHERE idCategoria=idCategoriaS and idSitio=idSitioComent and nombreCategoria='" + category + "'";
         LinkedList<Object> list = db.select(sql);
         LinkedList<Object> listValues;
 
@@ -153,6 +164,60 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             comment.add(com);
         }
     }
+//</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="despliege()">
+    public void despliege() {
+
+        if (!sitios.isEmpty()) {
+            JNombre.setText(sitios.get(pos).getNombre());
+            JDir.setText(sitios.get(pos).getDireccion());
+            JReseña.setText(sitios.get(pos).getReseña());
+            JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
+            JHorario.setText(sitios.get(pos).getHorario());
+        }
+        if (!imagen.isEmpty()) {
+            JFondo.setIcon(imagen.get(pos).getImagen());
+        }
+        if (!comment.isEmpty()) {
+            commentDisplay(posC, 1);
+        }
+        registro();
+    }
+//</editor-fold>
+
+    public void commentDisplay(int posCTemp, int dir) {
+
+        int id = sitios.get(pos).getIdSitio();
+        Comentario comTemp = comment.get(posCTemp);
+        if (comTemp.getIdSitioComent() == id) {
+            JComentario.setText(comTemp.getTexto());
+        } else {
+            posCTemp += dir;
+            if (posCTemp >= comment.size()) {
+                posCTemp = 0;
+            }
+            if (posCTemp < 0) {
+                posCTemp = comment.size() - 1;
+            }
+            posC = posCTemp;
+            commentDisplay(posCTemp, dir);
+        }
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="registro()">
+    public void registro() {
+
+        Date date = Date.valueOf(LocalDate.now());
+        int idS = sitios.get(pos).getIdSitio();
+        String correo = ven.cuenta.getCorreo();
+        Registro_Visitas rv = new Registro_Visitas(date, idS, correo);
+        BaseDatos db = new BaseDatos();
+        if (db.crearConexion()) {
+            db.insert(rv.insert());
+        }
+    }
+//</editor-fold>
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -348,36 +413,6 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    /*public void comment() {
-     Comentario comentario = new Comentario(sitios.get(pos).getIdSitio());
-     BaseDatos base = new BaseDatos();
-     LinkedList<Object> list;
-    
-     if (base.crearConexion()) {
-     list = base.select(comentario.selectFK());
-     comentario.read(list);
-     comment.add(comentario);
-     JComentario.setText(comentario.getTexto());
-     }
-     }*/
-    public void despliege() {
-
-//        comment();
-        if (!sitios.isEmpty()) {
-            JNombre.setText(sitios.get(pos).getNombre());
-            JDir.setText(sitios.get(pos).getDireccion());
-            JReseña.setText(sitios.get(pos).getReseña());
-            JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
-            JHorario.setText(sitios.get(pos).getHorario());
-        }
-        if (!imagen.isEmpty()) {
-            JFondo.setIcon(imagen.get(pos).getImagen());
-        }
-        if (!comment.isEmpty()) {
-            JComentario.setText(comment.get(posC).getTexto());
-        }
-    }
-
     private void BtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDActionPerformed
         pos++;
         if (pos >= sitios.size()) {
@@ -416,7 +451,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         if (posC >= comment.size()) {
             posC = 0;
         }
-        despliege();
+        commentDisplay(posC, 1);
     }//GEN-LAST:event_jNextActionPerformed
 
     private void jNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNext1ActionPerformed
@@ -425,7 +460,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         if (posC < 0) {
             posC = comment.size() - 1;
         }
-        despliege();
+        commentDisplay(posC, -1);
     }//GEN-LAST:event_jNext1ActionPerformed
 
 
