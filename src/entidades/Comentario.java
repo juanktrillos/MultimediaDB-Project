@@ -75,7 +75,6 @@ public class Comentario {
             this.idComentario = (Integer) list.get(0);
             this.textComentario = (String) list.get(1);
             this.idSitioComent = (Integer) list.get(2);
-
         }
     }
 
@@ -105,7 +104,7 @@ public class Comentario {
      * @return String
      */
     public String insert() {
-        String insert = "SELECT * FROM comentarios(textComentario,idSitioComent) "
+        String insert = "comentarios(textComentario,idSitioComent) "
                 + "values(" + "\"" + textComentario + "\"" + ","  + idSitioComent  + ")";
         return insert;
     }

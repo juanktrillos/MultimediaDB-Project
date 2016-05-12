@@ -75,26 +75,26 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean insert(String Consulta) {
+    public boolean insert(String consulta) {
 
-        String sql = "INSERT INTO " + Consulta;
+        String sql = "INSERT INTO " + consulta;
         boolean insert = querySQL(sql);
         System.out.println("inserte datos  " + sql);
 
         return insert;
     }
 
-    public boolean update(String Consulta) {
+    public boolean update(String consulta) {
 
-        String sql = "UPDATE " + Consulta;
+        String sql = "UPDATE " + consulta;
         boolean update = querySQL(sql);
         System.out.println("Actualize: " + sql);
         return update;
     }
 
-    public boolean delete(String Consulta) {
+    public boolean delete(String consulta) {
 
-        String sql = "DELETE FROM " + Consulta;
+        String sql = "DELETE FROM " + consulta;
         boolean update = querySQL(sql);
 
         return update;

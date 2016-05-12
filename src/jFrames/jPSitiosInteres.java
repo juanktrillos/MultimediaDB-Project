@@ -23,6 +23,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     LinkedList<Contenidos_Multimedia> contenido;
     LinkedList<Imagenes> imagen;
     LinkedList<Comentario> comment;
+    String sitio;
     private int pos = 0;
     private int posC = 0;
     Ventana ven;
@@ -33,80 +34,123 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         imagen = new LinkedList<>();
         contenido = new LinkedList<>();
         comment = new LinkedList<>();
-        ObtenerInfo(caso);//solucionar
+        sitio = caso;
+        ObtenerInfo();//solucionar
         this.ven = ven;
         JComentario.setEnabled(false);
     }
 
-    public void ObtenerInfo(String caso) {
+    public void ObtenerInfo() {
 
         BaseDatos db = new BaseDatos();
-        LinkedList<Object> listSitios;
-        String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
-                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + caso + "'";
+        String sql;
 
         if (db.crearConexion()) {
-            LinkedList<Object> list = db.select(sql);
+            //SE BUSCAN LOS SITIOS DE INTERES
+            chargeDataSitios(db, sitio, 8);
+
+            //SE BUSCAN LOS CONTENIDOS MULTIMEDIA DEL SITIO DE INTERES
+            chargeDataContenido(db, sitio, 3);
+            //SE BUSCAN LAS IMAGENES DE LOS CONTENIDOS MULTIMEDIA
+            if (!contenido.isEmpty()) {
+                chargeDataImagenes(db, 6);
+            }
+
+            //SE BUSCAN LOS COMENTARIOS DEL SITIO DE INTERES
+            chargeDataComentarios(db, sitio, 3);
+            despliege();
+        }
+    }
+
+    public void chargeDataSitios(BaseDatos db, String sitio, int attri) {
+        String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
+                + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + sitio + "'";
+        LinkedList<Object> list = db.select(sql);
+        LinkedList<Object> listValues;
+
+        int size = list.size();
+        int cant = size / attri;
+
+        for (int i = 0; i < cant; i++) {
+            listValues = new LinkedList<>();
+            for (int j = 0; j < attri; j++) {
+                if (!list.isEmpty()) {
+                    listValues.add(list.removeFirst());
+                }
+            }
+            Sitios_Interes sitioTemp = new Sitios_Interes();
+            sitioTemp.read(listValues);
+            sitios.add(sitioTemp);
+        }
+    }
+
+    public void chargeDataContenido(BaseDatos db, String sitio, int attri) {
+        String sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
+                + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + sitio + "'";
+        LinkedList<Object> list = db.select(sql);
+        LinkedList<Object> listValues;
+
+        int size = list.size();
+        int cant = size / attri;
+
+        for (int i = 0; i < cant; i++) {
+            listValues = new LinkedList<>();
+            for (int j = 0; j < attri; j++) {
+                if (!list.isEmpty()) {
+                    listValues.add(list.removeFirst());
+                }
+            }
+            Contenidos_Multimedia cont = new Contenidos_Multimedia();
+            cont.read(listValues);
+            contenido.add(cont);
+        }
+    }
+
+    public void chargeDataImagenes(BaseDatos db, int attri) {
+
+        LinkedList<Object> list;
+        LinkedList<Object> listValues;
+        for (Contenidos_Multimedia cont : contenido) {
+
+            Imagenes img = new Imagenes(cont.getIdContenido());
+            list = db.select(img.selectFK());
+
             int size = list.size();
-            int attri = 8;
             int cant = size / attri;
 
-            System.out.println("cantidad sitios :" + cant);
             for (int i = 0; i < cant; i++) {
-                listSitios = new LinkedList<>();
+                listValues = new LinkedList<>();
                 for (int j = 0; j < attri; j++) {
                     if (!list.isEmpty()) {
-                        listSitios.add(list.removeFirst());
+                        listValues.add(list.removeFirst());
                     }
                 }
-                Sitios_Interes sitio = new Sitios_Interes();
-                sitio.read(listSitios);
-                sitios.add(sitio);
+                img.read(listValues);
+                imagen.add(img);
             }
+        }
+    }
 
-            LinkedList<Object> listContenidos;
-            sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
-                    + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + caso + "'";
-            list = db.select(sql);
-            System.out.println(list);
-            size = list.size();
-            attri = 3;
-            cant = size / attri;
+    public void chargeDataComentarios(BaseDatos db, String sitio, int attri) {
 
-            System.out.println("cantidad contenidos :" + cant);
-            for (int i = 0; i < cant; i++) {
-                listContenidos = new LinkedList<>();
-                for (int j = 0; j < attri; j++) {
-                    if (!list.isEmpty()) {
-                        listContenidos.add(list.removeFirst());
-                    }
-                }
-                Contenidos_Multimedia cont = new Contenidos_Multimedia();
-                cont.read(listContenidos);
-                contenido.add(cont);
-            }
+        String sql = "SELECT comentarios.* FROM categorias, sitios_interes, comentarios "
+                + "WHERE idCategoria=idCategoriaS and idSitio=idSitioComent and nombreCategoria='" + sitio + "'";
+        LinkedList<Object> list = db.select(sql);
+        LinkedList<Object> listValues;
 
-            LinkedList<Object> listImages;
-            for (Contenidos_Multimedia cont : contenido) {
+        int size = list.size();
+        int cant = size / attri;
 
-                Imagenes img = new Imagenes(cont.getIdContenido());
-                list = db.select(img.selectFK());
-                size = list.size();
-                attri = 6;
-                cant = size / attri;
-
-                for (int i = 0; i < cant; i++) {
-                    listImages = new LinkedList<>();
-                    for (int j = 0; j < attri; j++) {
-                        if (!list.isEmpty()) {
-                            listImages.add(list.removeFirst());
-                        }
-                    }
-                    img.read(listImages);
-                    imagen.add(img);
+        for (int i = 0; i < cant; i++) {
+            listValues = new LinkedList<>();
+            for (int j = 0; j < attri; j++) {
+                if (!list.isEmpty()) {
+                    listValues.add(list.removeFirst());
                 }
             }
-            despliege();
+            Comentario com = new Comentario();
+            com.read(listValues);
+            comment.add(com);
         }
     }
 
@@ -304,71 +348,49 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void comment() {
-        Comentario comentario = new Comentario(sitios.get(pos).getIdSitio());
-        BaseDatos base = new BaseDatos();
-        LinkedList<Object> list;
-
-//        System.out.println(comentario.toString());
-        if (base.crearConexion()) {
-            list = base.select(comentario.selectFK());
-            comentario.read(list);
-            comment.add(comentario);
-            JComentario.setText(comentario.getTexto());
-            System.out.println(comment.toString());
-        }
-    }
-
+    /*public void comment() {
+     Comentario comentario = new Comentario(sitios.get(pos).getIdSitio());
+     BaseDatos base = new BaseDatos();
+     LinkedList<Object> list;
+    
+     if (base.crearConexion()) {
+     list = base.select(comentario.selectFK());
+     comentario.read(list);
+     comment.add(comentario);
+     JComentario.setText(comentario.getTexto());
+     }
+     }*/
     public void despliege() {
 
-        comment();
-
-        JNombre.setText(sitios.get(pos).getNombre());
-        JDir.setText(sitios.get(pos).getDireccion());
-        JReseña.setText(sitios.get(pos).getReseña());
-        JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
-        JHorario.setText(sitios.get(pos).getHorario());
-        JFondo.setIcon(imagen.get(pos).getImagen());
-
-        if ("".equals(comment.get(pos).getTexto())) {
-
-            JComentario.setText("");
-            System.out.println("No tengo nada");
-
-        } else {
-            JComentario.setText(comment.get(pos).getTexto());
-
+//        comment();
+        if (!sitios.isEmpty()) {
+            JNombre.setText(sitios.get(pos).getNombre());
+            JDir.setText(sitios.get(pos).getDireccion());
+            JReseña.setText(sitios.get(pos).getReseña());
+            JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
+            JHorario.setText(sitios.get(pos).getHorario());
         }
-
-//        //Comentario
-//        jPComentario com = new jPComentario();
-//        this.PComentatio.add(com);
-//        Imagenes img = new Imagenes();
-//        ArrayList<Image> lista = null;
-//        try {
-//            lista = img.getImagenes();
-//        } catch (IOException ex) {
-//            Logger.getLogger(jPSitiosInteres.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        JFondo.setIcon(new ImageIcon(lista.get(0)));
+        if (!imagen.isEmpty()) {
+            JFondo.setIcon(imagen.get(pos).getImagen());
+        }
+        if (!comment.isEmpty()) {
+            JComentario.setText(comment.get(posC).getTexto());
+        }
     }
 
     private void BtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDActionPerformed
         pos++;
-
         if (pos >= sitios.size()) {
             pos = 0;
         }
         despliege();
-
     }//GEN-LAST:event_BtDActionPerformed
 
     private void BtIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIActionPerformed
         // TODO add your handling code here:
         pos--;
-
         if (pos < 0) {
-            pos = sitios.size()-1;
+            pos = sitios.size() - 1;
         }
         despliege();
     }//GEN-LAST:event_BtIActionPerformed
@@ -376,50 +398,34 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
 
         String add = JOptionPane.showInputDialog("Mensaje");
-
-        System.out.println("Mensaje :" + add);
-
         BaseDatos base = new BaseDatos();
 
         if (base.crearConexion()) {
             Comentario com = new Comentario(add, sitios.get(pos).getIdSitio());
             boolean insert = base.insert(com.insert());
-
             if (insert) {
+                comment.add(com);
                 JOptionPane.showMessageDialog(null, "Comentario add");
                 despliege();
             }
         }
-
-
     }//GEN-LAST:event_JAddActionPerformed
 
     private void jNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNextActionPerformed
-
         posC++;
-
-        if (posC >= sitios.size()) {
+        if (posC >= comment.size()) {
             posC = 0;
         }
-
-        System.out.println(comment.get(posC).getTexto());
-
-        System.out.println(posC);
-
+        despliege();
     }//GEN-LAST:event_jNextActionPerformed
 
     private void jNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNext1ActionPerformed
         // TODO add your handling code here:
         posC--;
-
         if (posC < 0) {
-            posC = 0;
+            posC = comment.size() - 1;
         }
-        System.out.println(posC);
-
-        System.out.println(comment.get(posC).getTexto());
-
-
+        despliege();
     }//GEN-LAST:event_jNext1ActionPerformed
 
 

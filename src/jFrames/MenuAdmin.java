@@ -151,8 +151,8 @@ public class MenuAdmin extends JPanel {
         int categoria = (Jlista.getSelectedIndex() + 1);
 
         String categoryString = Jlista.getSelectedItem().toString();
-//        boolean sCategory = searchCategory(base, categoryString);
-        //ObtenerInfo(categoryString);//CAMBIAR
+//        boolean sCategory = searchCategory(base, categoryString);             //CREAR CATEGORIA NUEVA - por implementar
+        //ObtenerInfo(categoryString);//
         if (base.crearConexion()) {
             sitioTemp = new Sitios_Interes(nombre, dir, calificacion, reseña, horario, info, categoria);
             //Se agrega el sitio a la bd
