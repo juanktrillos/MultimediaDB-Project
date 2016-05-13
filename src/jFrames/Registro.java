@@ -34,32 +34,30 @@ public class Registro extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jCelular = new javax.swing.JTextField();
         JPasscon = new javax.swing.JPasswordField();
         BtCrear = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jApellido = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jCorreo = new javax.swing.JTextField();
         jNombre = new javax.swing.JTextField();
         JPass = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
+        JFondo = new javax.swing.JLabel();
 
         setToolTipText("Cuenta");
-        setPreferredSize(new java.awt.Dimension(400, 300));
-
-        jLabel1.setText("Celular");
-
-        jLabel2.setText("Confirmar");
+        setMinimumSize(new java.awt.Dimension(450, 450));
+        setPreferredSize(new java.awt.Dimension(450, 450));
+        setSize(new java.awt.Dimension(450, 450));
+        setLayout(null);
+        add(jCelular);
+        jCelular.setBounds(150, 200, 198, 26);
 
         JPasscon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPassconActionPerformed(evt);
             }
         });
+        add(JPasscon);
+        JPasscon.setBounds(150, 350, 198, 26);
 
         BtCrear.setText("Crear");
         BtCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -67,79 +65,27 @@ public class Registro extends JPanel {
                 BtCrearActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Nombre");
-
-        jLabel4.setText("Apellido");
-
-        jLabel6.setText("Correo");
+        add(BtCrear);
+        BtCrear.setBounds(210, 400, 77, 29);
+        add(jApellido);
+        jApellido.setBounds(150, 140, 198, 26);
+        add(jCorreo);
+        jCorreo.setBounds(150, 250, 198, 26);
+        add(jNombre);
+        jNombre.setBounds(150, 90, 198, 26);
 
         JPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPassActionPerformed(evt);
             }
         });
+        add(JPass);
+        JPass.setBounds(150, 300, 198, 26);
 
-        jLabel5.setText("Contraseña");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtCrear)
-                .addGap(140, 140, 140))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPasscon, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(JPasscon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(BtCrear)
-                .addContainerGap())
-        );
+        JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Registo.jpg"))); // NOI18N
+        JFondo.setMaximumSize(new java.awt.Dimension(420, 450));
+        add(JFondo);
+        JFondo.setBounds(0, -3, 400, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JPassconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPassconActionPerformed
@@ -186,17 +132,12 @@ public class Registro extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtCrear;
+    private javax.swing.JLabel JFondo;
     private javax.swing.JPasswordField JPass;
     private javax.swing.JPasswordField JPasscon;
     private javax.swing.JTextField jApellido;
     private javax.swing.JTextField jCelular;
     private javax.swing.JTextField jCorreo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jNombre;
     // End of variables declaration//GEN-END:variables
 }

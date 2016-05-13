@@ -31,84 +31,48 @@ public class jPCuenta extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jCorreo = new javax.swing.JTextField();
         JPass = new javax.swing.JPasswordField();
         BtIngreso = new javax.swing.JButton();
-        BtRegistro = new javax.swing.JButton();
+        JFondo = new javax.swing.JLabel();
 
         setToolTipText("Cuenta");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(400, 300));
-
-        jLabel1.setText("Correo");
-
-        jLabel2.setText("Contraseña");
+        setSize(new java.awt.Dimension(400, 300));
+        setLayout(null);
+        add(jCorreo);
+        jCorreo.setBounds(140, 90, 198, 26);
 
         JPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPassActionPerformed(evt);
             }
         });
+        add(JPass);
+        JPass.setBounds(140, 130, 198, 26);
 
-        BtIngreso.setText("Ingresar");
+        BtIngreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/BtIcon.jpg"))); // NOI18N
+        BtIngreso.setBorder(null);
+        BtIngreso.setMargin(new java.awt.Insets(0, 5, 0, 2));
+        BtIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtIngresoMousePressed(evt);
+            }
+        });
         BtIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtIngresoActionPerformed(evt);
             }
         });
+        add(BtIngreso);
+        BtIngreso.setBounds(170, 180, 120, 40);
 
-        BtRegistro.setText("Registro");
-        BtRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtRegistroActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtRegistro)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(46, 46, 46)
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(173, 173, 173)
-                            .addComponent(BtIngreso))))
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(BtIngreso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(BtRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
+        JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Login.jpg"))); // NOI18N
+        JFondo.setPreferredSize(new java.awt.Dimension(400, 300));
+        JFondo.setSize(new java.awt.Dimension(400, 300));
+        add(JFondo);
+        JFondo.setBounds(0, 0, 418, 300);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPassActionPerformed
@@ -132,11 +96,12 @@ public class jPCuenta extends JPanel {
         }
     }//GEN-LAST:event_BtIngresoActionPerformed
 
-    private void BtRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegistroActionPerformed
-        Registro reg = new Registro(ven);
-        ven.setContentPane(reg);
-        ven.setSize(450, 450);
-    }//GEN-LAST:event_BtRegistroActionPerformed
+    private void BtIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtIngresoMousePressed
+        // TODO add your handling code here
+        
+        
+        
+    }//GEN-LAST:event_BtIngresoMousePressed
 
     public boolean ComprobarUser() {
 
@@ -173,10 +138,8 @@ public class jPCuenta extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtIngreso;
-    private javax.swing.JButton BtRegistro;
+    private javax.swing.JLabel JFondo;
     private javax.swing.JPasswordField JPass;
     private javax.swing.JTextField jCorreo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

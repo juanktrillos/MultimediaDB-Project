@@ -7,7 +7,6 @@ package jFrames;
 
 import database.BaseDatos;
 import entidades.Contenidos_Multimedia;
-import entidades.Cuentas;
 import entidades.Imagenes;
 import entidades.Sitios_Interes;
 import java.util.LinkedList;
@@ -44,7 +43,7 @@ public class MenuAdmin extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jlista = new javax.swing.JComboBox<String>();
+        Jlista = new javax.swing.JComboBox<>();
         Jinsert = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
@@ -56,7 +55,7 @@ public class MenuAdmin extends JPanel {
         jLabel5 = new javax.swing.JLabel();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
-        JCalificacion = new javax.swing.JComboBox<String>();
+        JCalificacion = new javax.swing.JComboBox<>();
         JReseña = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
@@ -66,7 +65,7 @@ public class MenuAdmin extends JPanel {
         setPreferredSize(new java.awt.Dimension(662, 374));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
         Jlista.setSelectedIndex(1);
         add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 209, -1));
 
@@ -108,7 +107,7 @@ public class MenuAdmin extends JPanel {
         add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 223, -1));
         add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 223, 66));
 
-        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
         add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
@@ -185,6 +184,9 @@ public class MenuAdmin extends JPanel {
 
     private void JModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JModActionPerformed
         // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_JModActionPerformed
 
     private void JReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JReseñaActionPerformed
