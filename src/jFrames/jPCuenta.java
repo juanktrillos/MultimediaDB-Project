@@ -56,21 +56,14 @@ public class jPCuenta extends JPanel {
         BtIngreso.setBorder(null);
         BtIngreso.setMargin(new java.awt.Insets(0, 5, 0, 2));
         BtIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtIngresoMousePressed(evt);
-            }
-        });
-        BtIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtIngresoActionPerformed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtIngresoMouseClicked(evt);
             }
         });
         add(BtIngreso);
         BtIngreso.setBounds(170, 180, 120, 40);
 
         JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Login.jpg"))); // NOI18N
-        JFondo.setPreferredSize(new java.awt.Dimension(400, 300));
-        JFondo.setSize(new java.awt.Dimension(400, 300));
         add(JFondo);
         JFondo.setBounds(0, 0, 418, 300);
     }// </editor-fold>//GEN-END:initComponents
@@ -79,29 +72,9 @@ public class jPCuenta extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_JPassActionPerformed
 
-    private void BtIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresoActionPerformed
-
-        if (ComprobarUser()) {
-            if (root) {
-                MenuAdmin menu = new MenuAdmin(ven);
-                ven.setContentPane(menu);
-                ven.setSize(640, 480);
-
-            } else {
-                PagInfo pag = new PagInfo(ven);
-//            Ajustes ajuste = new Ajustes(ven, cuenta.getCorreo());
-                ven.setContentPane(pag);
-                ven.setSize(640, 480);
-            }
-        }
-    }//GEN-LAST:event_BtIngresoActionPerformed
-
-    private void BtIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtIngresoMousePressed
-        // TODO add your handling code here
-        
-        
-        
-    }//GEN-LAST:event_BtIngresoMousePressed
+    private void BtIngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtIngresoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtIngresoMouseClicked
 
     public boolean ComprobarUser() {
 

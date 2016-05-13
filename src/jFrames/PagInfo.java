@@ -23,12 +23,6 @@ public class PagInfo extends JPanel {
      */
     public PagInfo(Ventana ven) {
         initComponents();
-        LCentroC.setIcon(new ImageIcon("src/Lugares/Goku_ssj_4_kamehameha_x10.gif"));
-        LZoo.setIcon(new ImageIcon("src/Lugares/000aa_Hypnotoad_animated.gif"));
-        LSitios.setIcon(new ImageIcon("src/Lugares/2-Ninja-150x100.gif"));
-        LHotel.setIcon(new ImageIcon("src/Lugares/huevo-imagen-animada-0022.gif"));
-        LRestaurante.setIcon(new ImageIcon("src/Lugares/luces_disco.gif"));
-        LMuseo.setIcon(new ImageIcon("src/Lugares/mirajane_3_by_salamanderkaze-d32mlde.gif"));
         this.ven = ven;
     }
 
@@ -41,114 +35,54 @@ public class PagInfo extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        LCentroC = new javax.swing.JLabel();
         LMuseo = new javax.swing.JLabel();
         LRestaurante = new javax.swing.JLabel();
         LHotel = new javax.swing.JLabel();
-        LCentroC = new javax.swing.JLabel();
-        LSitios = new javax.swing.JLabel();
-        LZoo = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        JFondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(662, 374));
-
-        jLabel3.setText("Centro Comercial");
-
-        LMuseo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LMuseoMouseClicked(evt);
-            }
-        });
-
-        LRestaurante.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LRestauranteMouseClicked(evt);
-            }
-        });
-
-        LHotel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LHotelMouseClicked(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(900, 334));
+        setSize(new java.awt.Dimension(900, 334));
+        setLayout(null);
 
         LCentroC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LCentroCMouseClicked(evt);
             }
         });
+        add(LCentroC);
+        LCentroC.setBounds(500, 0, 400, 170);
 
-        jLabel13.setText("Hotel");
+        LMuseo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LMuseoMouseClicked(evt);
+            }
+        });
+        add(LMuseo);
+        LMuseo.setBounds(510, 170, 390, 160);
 
-        jLabel14.setText("Museo");
+        LRestaurante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LRestauranteMouseClicked(evt);
+            }
+        });
+        add(LRestaurante);
+        LRestaurante.setBounds(0, 0, 500, 170);
 
-        jLabel15.setText("Restaurantes");
+        LHotel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LHotelMouseClicked(evt);
+            }
+        });
+        add(LHotel);
+        LHotel.setBounds(0, 170, 500, 160);
 
-        jLabel16.setText("Sitios de interes");
-
-        jLabel17.setText("Zoologico");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(LCentroC, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(LMuseo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(LRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel3)
-                .addGap(148, 148, 148)
-                .addComponent(jLabel14)
-                .addGap(149, 149, 149)
-                .addComponent(jLabel15))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(LHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(LSitios, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(LZoo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel13)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel16)
-                .addGap(144, 144, 144)
-                .addComponent(jLabel17))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LCentroC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LMuseo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LSitios, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LZoo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)))
-        );
+        JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Collage.jpg"))); // NOI18N
+        JFondo.setMaximumSize(new java.awt.Dimension(900, 334));
+        JFondo.setMinimumSize(new java.awt.Dimension(900, 334));
+        JFondo.setPreferredSize(new java.awt.Dimension(900, 334));
+        add(JFondo);
+        JFondo.setBounds(0, 0, 900, 334);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LCentroCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LCentroCMouseClicked
@@ -164,13 +98,6 @@ public class PagInfo extends JPanel {
         ven.setSize(900, 650);
     }//GEN-LAST:event_LHotelMouseClicked
 
-    private void LMuseoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LMuseoMouseClicked
-        // TODO add your handling code here:
-        jPSitiosInteres sitio = new jPSitiosInteres("Museo", ven);
-        ven.setContentPane(sitio);
-        ven.setSize(900, 650);
-    }//GEN-LAST:event_LMuseoMouseClicked
-
     private void LRestauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LRestauranteMouseClicked
         // TODO add your handling code here:
         jPSitiosInteres sitio = new jPSitiosInteres("Restaurante", ven);
@@ -178,19 +105,19 @@ public class PagInfo extends JPanel {
         ven.setSize(900, 650);
     }//GEN-LAST:event_LRestauranteMouseClicked
 
+    private void LMuseoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LMuseoMouseClicked
+        // TODO add your handling code here:
+        jPSitiosInteres sitio = new jPSitiosInteres("Museo", ven);
+        ven.setContentPane(sitio);
+        ven.setSize(900, 650);
+    }//GEN-LAST:event_LMuseoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JFondo;
     private javax.swing.JLabel LCentroC;
     private javax.swing.JLabel LHotel;
     private javax.swing.JLabel LMuseo;
     private javax.swing.JLabel LRestaurante;
-    private javax.swing.JLabel LSitios;
-    private javax.swing.JLabel LZoo;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

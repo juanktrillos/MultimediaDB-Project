@@ -46,7 +46,7 @@ public class BaseDatos {
     public boolean crearConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");                         //database   //user  //pass
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "clancy");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "anis1002");
             st = conexion.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
