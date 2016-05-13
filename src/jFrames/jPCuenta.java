@@ -60,6 +60,11 @@ public class jPCuenta extends JPanel {
                 BtIngresoMouseClicked(evt);
             }
         });
+        BtIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtIngresoActionPerformed(evt);
+            }
+        });
         add(BtIngreso);
         BtIngreso.setBounds(170, 180, 120, 40);
 
@@ -75,6 +80,25 @@ public class jPCuenta extends JPanel {
     private void BtIngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtIngresoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_BtIngresoMouseClicked
+
+    private void BtIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresoActionPerformed
+        // TODO add your handling code here:
+
+        if (ComprobarUser()) {
+            if (root) {
+                MenuAdmin menu = new MenuAdmin(ven);
+                ven.setContentPane(menu);
+                ven.setSize(640, 480);
+
+            } else {
+                PagInfo pag = new PagInfo(ven);
+                ven.setContentPane(pag);
+                ven.setSize(900, 378);
+            }
+        }
+
+
+    }//GEN-LAST:event_BtIngresoActionPerformed
 
     public boolean ComprobarUser() {
 
