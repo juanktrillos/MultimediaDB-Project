@@ -209,13 +209,12 @@ public class BaseDatos {
             InputStream inputStream = new ByteArrayInputStream(byteArray.toByteArray());
 
             ps = conexion.prepareStatement(imagen.update());
-            ps.setInt(1, imagen.getIdImagen());
-            ps.setString(2, imagen.getNombreImagen());
-            ps.setString(3, imagen.getDescripcionImagen());
-            ps.setDate(4, (Date) imagen.getFechaImagen());
-            ps.setBinaryStream(5, inputStream, inputStream.available());
+            ps.setString(1, imagen.getNombreImagen());
+            ps.setString(2, imagen.getDescripcionImagen());
+            ps.setDate(3, (Date) imagen.getFechaImagen());
+            ps.setBinaryStream(4, inputStream, inputStream.available());
+            ps.setInt(5, imagen.getIdImagen());
             ps.setInt(6, imagen.getIdContenidoMultimediaI());
-            ps.setInt(7, imagen.getIdImagen());
 
             ps.executeUpdate();
 

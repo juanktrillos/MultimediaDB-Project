@@ -32,6 +32,12 @@ public class Contenidos_Multimedia {
 
     }
 
+    public Contenidos_Multimedia(int idContenido) {
+        this.idContenido = idContenido;
+    }
+    
+    
+
     public int getIdContenido() {
         return idContenido;
     }

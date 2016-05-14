@@ -56,10 +56,22 @@ public class Imagenes {
         System.out.println("hola");
         this.descripcionImagen = Descripcion;
         this.fechaImagen = Date.valueOf(LocalDate.now());
-//        this.fechaImagen = new Date();
         this.imagen = Imagen;
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
+
+    public Imagenes(int idImagen, String nombreImagen, String descripcionImagen, ImageIcon imagen, int idContenidoMultimediaI) {
+        this.idImagen = idImagen;
+        this.nombreImagen = nombreImagen;
+        this.descripcionImagen = descripcionImagen;
+        this.fechaImagen = Date.valueOf(LocalDate.now());;
+        this.imagen = imagen;
+        this.idContenidoMultimediaI = idContenidoMultimediaI;
+    }
+
+    
+    
+    
 
     public Imagenes(int idContenidoMultimediaI) {
         this.idContenidoMultimediaI = idContenidoMultimediaI;
@@ -120,39 +132,7 @@ public class Imagenes {
                 + "imagen=" + imagen + ", idContenidoMultimediaI=" + idContenidoMultimediaI + '}';
     }
 
-    public ArrayList<Image> getImagenes() throws IOException {
-        ArrayList<Image> lista = new ArrayList();
-        // try {
-        // ResultSet rs = st.executeQuery("SELECT imagen,nombre FROM Imagenes");
-        // while (rs.next()) {
-        //  Blob blob = rs.getBlob("imagen");
-        //String nombre = rs.getObject("nombre").toString();
-        //byte[] data = blob.getBytes(1, (int) blob.length());
-        //BufferedImage img = null;
-        // try {
-        //      img = ImageIO.read(new ByteArrayInputStream(data));
-        // } catch (IOException ex) {
-        //   Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-
-        //imagen.setImagen(img);
-        //imagen.setNombre(nombre);
-        //    lista.add( new ImageIcon("/Users/CATV/NetBeansProjects/ProyectoFINAl/src/Fotos/Sariska-Palace.jpg"));
-        lista.add(ImageIO.read(new File("src/Fotos/Sariska-Palace.jpg")));
-        lista.add(ImageIO.read(new File("src/Fotos/59513efc2ec00974d17049f6ba86bdf3.jpg")));
-        lista.add(ImageIO.read(new File("src/Fotos/alberca1.jpg")));
-        lista.add(ImageIO.read(new File("src/Fotos/cancha-juegos.jpg")));
-        lista.add(ImageIO.read(new File("src/Fotos/entrada_principal.jpg")));
-        lista.add(ImageIO.read(new File("src/Fotos/hotel-restinn-estado-mexico-entrada.jpg")));
-
-        //  }
-//            rs.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        return lista;
-    }
-
+   
     /**
      * cadena que recibe la base de datos, para inserciones
      *
@@ -172,8 +152,8 @@ public class Imagenes {
      */
     public String update() {
 
-        String update = "UPDATE Imagenes SET idImagen=? nombreImagen=? descripcionImagen=? fechaImagen=? "
-                + "imagen=? idContenidoMultimediaI=? WHERE idImagen=?";
+        String update = "UPDATE Imagenes SET nombreImagen=?,descripcionImagen=?, fechaImagen=?, "
+                + "imagen=?  WHERE idImagen=? AND idContenidoMultimediaI=?";
 
         return update;
     }
@@ -184,7 +164,7 @@ public class Imagenes {
      * @return String
      */
     public String delete() {
-        String delete = "SELECT * FROM Imagenes WHERE idImagen=" + idImagen + "";
+        String delete = "Imagenes WHERE idContenidoMultimediaI=" +idContenidoMultimediaI;
 
         return delete;
     }

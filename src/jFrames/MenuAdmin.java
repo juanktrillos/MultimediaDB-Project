@@ -61,6 +61,7 @@ public class MenuAdmin extends JPanel {
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
+        JAtras = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(662, 374));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +80,12 @@ public class MenuAdmin extends JPanel {
         add(Jinsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
 
         JDelete.setText("Borrar");
-        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 391, -1, -1));
+        JDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JDeleteActionPerformed(evt);
+            }
+        });
+        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
 
         JMod.setText("Modificar");
         JMod.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +93,7 @@ public class MenuAdmin extends JPanel {
                 JModActionPerformed(evt);
             }
         });
-        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 391, -1, -1));
+        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
         jLabel1.setText("Nombre");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
@@ -130,6 +136,14 @@ public class MenuAdmin extends JPanel {
             }
         });
         add(JAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 281, -1, -1));
+
+        JAtras.setText("Atras");
+        JAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JAtrasActionPerformed(evt);
+            }
+        });
+        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JinsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JinsertActionPerformed
@@ -167,7 +181,7 @@ public class MenuAdmin extends JPanel {
             LinkedList<Object> idsCont = base.select("select idContenido from "
                     + "contenidos_multimedia where idSitiosc=" + idSitio + "");
             int idCont = (int) idsCont.getLast();
-            
+
             img = new Imagenes(nombre, reseña, imagen, idCont);
             base.insertImage(img);
         }
@@ -184,14 +198,34 @@ public class MenuAdmin extends JPanel {
 
     private void JModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JModActionPerformed
         // TODO add your handling code here:
-        
-        
-        
+
+        Modificar mod = new Modificar(ven);
+        ven.setContentPane(mod);
+        ven.setSize(850, 490);
+
     }//GEN-LAST:event_JModActionPerformed
 
     private void JReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JReseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JReseñaActionPerformed
+
+    private void JAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAtrasActionPerformed
+        // TODO add your handling code here:
+
+        jPCuenta jPCuenta = new jPCuenta(ven);
+        ven.setContentPane(jPCuenta);
+        ven.setSize(410, 350);
+
+    }//GEN-LAST:event_JAtrasActionPerformed
+
+    private void JDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDeleteActionPerformed
+        // TODO add your handling code here:
+        Delete delete = new Delete(ven);
+        ven.setContentPane(delete);
+        ven.setSize(850, 490);
+
+
+    }//GEN-LAST:event_JDeleteActionPerformed
     public void ObtenerInfo(String caso) {
 
         BaseDatos db = new BaseDatos();
@@ -224,6 +258,7 @@ public class MenuAdmin extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JAdd;
+    private javax.swing.JButton JAtras;
     private javax.swing.JComboBox<String> JCalificacion;
     private javax.swing.JButton JDelete;
     private javax.swing.JTextField JDireccion;

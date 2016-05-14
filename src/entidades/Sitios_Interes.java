@@ -47,6 +47,8 @@ public class Sitios_Interes {
         this.Categoria = Categoria;
     }
 
+   
+
     public int getIdSitio() {
         return idSitio;
     }
@@ -143,13 +145,12 @@ public class Sitios_Interes {
     public String update() {
         String update = "Sitios_Interes SET "
                 + " nombreSitio=" + "\"" + Nombre + "\""
-                + " direccionSitio=" + "\"" + Direccion + "\""
-                + "calificacionSitio=" + Calificacion
-                + "reseñaSitio=" + "\"" + Reseña + "\""
-                + "horarioSitio=" + "\"" + Horario + "\""
-                + "infoAdicionalSitio=" + "\"" + infoAdicional + "\""
-                + "idCategoriaS=" + Categoria
-                + " WHERE idSitio=" + "\"" + idSitio + "\"" + "";
+                + ",direccionSitio=" + "\"" + Direccion + "\""
+                + ",calificacionSitio=" + Calificacion
+                + ",reseñaSitio=" + "\"" + Reseña + "\""
+                + ",horarioSitio=" + "\"" + Horario + "\""
+                + ",infoAdicionalSitio=" + "\"" + infoAdicional + "\""
+                + " WHERE idSitio=" + idSitio;
 
         return update;
     }
