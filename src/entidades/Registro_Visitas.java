@@ -31,6 +31,12 @@ public class Registro_Visitas {
         this.correoCuentas = correoCuentas;
     }
 
+    public Registro_Visitas(int idSitios) {
+        this.idSitios = idSitios;
+    }
+    
+    
+
     public int getCodigoVisita() {
         return codigoVisita;
     }
@@ -97,7 +103,7 @@ public class Registro_Visitas {
      * @return String
      */
     public String delete() {
-        String delete = "Registros_Visitas WHERE codigoVisita=" + codigoVisita + "";
+        String delete = "Registros_Visitas WHERE idSitios=" + idSitios;
 
         return delete;
     }

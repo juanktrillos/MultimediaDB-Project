@@ -57,30 +57,23 @@ public class Modificar extends JPanel {
         Jlista = new javax.swing.JComboBox<>();
         JAtras = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         JNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
         JCalificacion = new javax.swing.JComboBox<>();
         JReseña = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
         jLugares = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         JID = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         JidImagen = new javax.swing.JLabel();
         JIdContenido = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        Jfondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(662, 374));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(718, 529));
+        setSize(new java.awt.Dimension(718, 529));
+        setLayout(null);
 
         Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
         Jlista.setSelectedIndex(1);
@@ -89,7 +82,8 @@ public class Modificar extends JPanel {
                 JlistaActionPerformed(evt);
             }
         });
-        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 209, -1));
+        add(Jlista);
+        Jlista.setBounds(70, 70, 209, 27);
 
         JAtras.setText("Atras");
         JAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +91,8 @@ public class Modificar extends JPanel {
                 JAtrasActionPerformed(evt);
             }
         });
-        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 391, -1, -1));
+        add(JAtras);
+        JAtras.setBounds(30, 490, 77, 29);
 
         JMod.setText("Modificar");
         JMod.addActionListener(new java.awt.event.ActionListener() {
@@ -105,35 +100,25 @@ public class Modificar extends JPanel {
                 JModActionPerformed(evt);
             }
         });
-        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
-
-        jLabel1.setText("Nombre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 223, -1));
-
-        jLabel2.setText("Direccion");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
-
-        jLabel3.setText("Calificacion");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
-
-        jLabel4.setText("Reseña");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
-
-        jLabel5.setText("Informacion adicional");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
-        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 223, -1));
-        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 223, 66));
+        add(JMod);
+        JMod.setBounds(210, 490, 103, 29);
+        add(JNombre);
+        JNombre.setBounds(150, 210, 223, 26);
+        add(JDireccion);
+        JDireccion.setBounds(150, 240, 223, 26);
+        add(JInfo);
+        JInfo.setBounds(150, 410, 223, 66);
 
         JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
-        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
-        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 223, 66));
-
-        jLabel6.setText("Horario");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
-        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 223, -1));
-        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 220, 230));
+        add(JCalificacion);
+        JCalificacion.setBounds(160, 280, 64, 27);
+        add(JReseña);
+        JReseña.setBounds(150, 340, 223, 66);
+        add(JHorario);
+        JHorario.setBounds(150, 310, 223, 26);
+        add(JImagen);
+        JImagen.setBounds(420, 70, 260, 210);
 
         JAdd.setText("Agregar");
         JAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -141,26 +126,35 @@ public class Modificar extends JPanel {
                 JAddActionPerformed(evt);
             }
         });
-        add(JAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, -1, -1));
+        add(JAdd);
+        JAdd.setBounds(490, 370, 93, 29);
 
         jLugares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLugaresActionPerformed(evt);
             }
         });
-        add(jLugares, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 80, 200, -1));
+        add(jLugares);
+        jLugares.setBounds(70, 130, 200, 27);
 
-        jLabel7.setText("ID");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
-        add(JID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 80, 20));
+        JID.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
+        JID.setForeground(new java.awt.Color(255, 255, 255));
+        add(JID);
+        JID.setBounds(120, 160, 80, 30);
 
-        jLabel8.setText("ID Imagen");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
-        add(JidImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 80, 20));
-        add(JIdContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, 80, 20));
+        JidImagen.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
+        JidImagen.setForeground(new java.awt.Color(255, 255, 255));
+        add(JidImagen);
+        JidImagen.setBounds(530, 290, 80, 30);
 
-        jLabel9.setText("ID Contenido");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, -1, -1));
+        JIdContenido.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
+        JIdContenido.setForeground(new java.awt.Color(255, 255, 255));
+        add(JIdContenido);
+        JIdContenido.setBounds(560, 320, 80, 30);
+
+        Jfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuMod.png"))); // NOI18N
+        add(Jfondo);
+        Jfondo.setBounds(0, 0, 718, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
@@ -192,7 +186,7 @@ public class Modificar extends JPanel {
             base.update(lugar.update());
 
             System.out.println("Actualizareeeee a Sitio: " + lugar.toString());
-            System.out.println("Actualizacion: Sitio" + base.update(lugar.update()));
+            System.out.println(base.update(lugar.update()));
 
             //IMAGEN
             int idContenido = new Integer(JIdContenido.getText());
@@ -249,7 +243,7 @@ public class Modificar extends JPanel {
 
         MenuAdmin menu = new MenuAdmin(ven);
         ven.setContentPane(menu);
-        ven.setSize(640, 480);
+        ven.setSize(718, 570);
 
     }//GEN-LAST:event_JAtrasActionPerformed
 
@@ -361,17 +355,9 @@ public class Modificar extends JPanel {
     private javax.swing.JButton JMod;
     private javax.swing.JTextField JNombre;
     private javax.swing.JTextField JReseña;
+    private javax.swing.JLabel Jfondo;
     private javax.swing.JLabel JidImagen;
     private javax.swing.JComboBox<String> Jlista;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> jLugares;
     // End of variables declaration//GEN-END:variables
 

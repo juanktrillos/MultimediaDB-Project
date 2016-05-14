@@ -34,6 +34,7 @@ public class jPCuenta extends JPanel {
         jCorreo = new javax.swing.JTextField();
         JPass = new javax.swing.JPasswordField();
         BtIngreso = new javax.swing.JButton();
+        Jatras = new javax.swing.JButton();
         JFondo = new javax.swing.JLabel();
 
         setToolTipText("Cuenta");
@@ -68,6 +69,15 @@ public class jPCuenta extends JPanel {
         add(BtIngreso);
         BtIngreso.setBounds(170, 180, 120, 40);
 
+        Jatras.setText("Atras");
+        Jatras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JatrasActionPerformed(evt);
+            }
+        });
+        add(Jatras);
+        Jatras.setBounds(30, 250, 77, 29);
+
         JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Login.jpg"))); // NOI18N
         add(JFondo);
         JFondo.setBounds(0, 0, 418, 300);
@@ -88,7 +98,7 @@ public class jPCuenta extends JPanel {
             if (root) {
                 MenuAdmin menu = new MenuAdmin(ven);
                 ven.setContentPane(menu);
-                ven.setSize(640, 480);
+                ven.setSize(718, 570);
 
             } else {
                 PagInfo pag = new PagInfo(ven);
@@ -99,6 +109,16 @@ public class jPCuenta extends JPanel {
 
 
     }//GEN-LAST:event_BtIngresoActionPerformed
+
+    private void JatrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JatrasActionPerformed
+        // TODO add your handling code here:
+        
+        ven.dispose();
+        Ventana v= new Ventana();
+        v.setVisible(true);
+        v.setSize(900, 635);
+        
+    }//GEN-LAST:event_JatrasActionPerformed
 
     public boolean ComprobarUser() {
 
@@ -137,6 +157,7 @@ public class jPCuenta extends JPanel {
     private javax.swing.JButton BtIngreso;
     private javax.swing.JLabel JFondo;
     private javax.swing.JPasswordField JPass;
+    private javax.swing.JButton Jatras;
     private javax.swing.JTextField jCorreo;
     // End of variables declaration//GEN-END:variables
 }

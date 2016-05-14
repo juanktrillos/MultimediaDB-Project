@@ -108,4 +108,15 @@ public class Comentario {
                 + "values(" + "\"" + textComentario + "\"" + ","  + idSitioComent  + ")";
         return insert;
     }
+    
+     /**
+     * cadena que recibe la base de datos, para eliminar ocurrencia
+     *
+     * @return String
+     */
+    public String delete() {
+        String delete = "Comentarios WHERE idSitioComent=" + "\"" + idSitioComent + "\"" + "";
+
+        return delete;
+    }
 }

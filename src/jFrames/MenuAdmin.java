@@ -47,28 +47,24 @@ public class MenuAdmin extends JPanel {
         Jinsert = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         JNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
         JCalificacion = new javax.swing.JComboBox<>();
         JReseña = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
         JAtras = new javax.swing.JButton();
+        JFondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(662, 374));
+        setPreferredSize(new java.awt.Dimension(720, 530));
+        setSize(new java.awt.Dimension(720, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
         Jlista.setSelectedIndex(1);
-        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 209, -1));
+        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 209, -1));
 
         Jinsert.setText("Insertar");
         Jinsert.setEnabled(false);
@@ -77,7 +73,7 @@ public class MenuAdmin extends JPanel {
                 JinsertActionPerformed(evt);
             }
         });
-        add(Jinsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
+        add(Jinsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, -1, -1));
 
         JDelete.setText("Borrar");
         JDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +81,7 @@ public class MenuAdmin extends JPanel {
                 JDeleteActionPerformed(evt);
             }
         });
-        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
 
         JMod.setText("Modificar");
         JMod.addActionListener(new java.awt.event.ActionListener() {
@@ -93,41 +89,23 @@ public class MenuAdmin extends JPanel {
                 JModActionPerformed(evt);
             }
         });
-        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
-
-        jLabel1.setText("Nombre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
-        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 223, -1));
-
-        jLabel2.setText("Direccion");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
-
-        jLabel3.setText("Calificacion");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-
-        jLabel4.setText("Reseña");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 196, -1, -1));
-
-        jLabel5.setText("Informacion adicional");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 266, -1, -1));
-        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 223, -1));
-        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 223, 66));
+        add(JMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
+        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 223, -1));
+        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 223, -1));
+        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 223, 66));
 
         JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
-        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         JReseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JReseñaActionPerformed(evt);
             }
         });
-        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 223, 66));
-
-        jLabel6.setText("Horario");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
-        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 137, 223, -1));
-        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 40, 220, 230));
+        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 223, 66));
+        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 223, -1));
+        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 240, 260));
 
         JAdd.setText("Agregar");
         JAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +113,7 @@ public class MenuAdmin extends JPanel {
                 JAddActionPerformed(evt);
             }
         });
-        add(JAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 281, -1, -1));
+        add(JAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, -1, -1));
 
         JAtras.setText("Atras");
         JAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +121,13 @@ public class MenuAdmin extends JPanel {
                 JAtrasActionPerformed(evt);
             }
         });
-        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
+
+        JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuAdmin-01-01.png"))); // NOI18N
+        JFondo.setMinimumSize(new java.awt.Dimension(720, 530));
+        JFondo.setPreferredSize(new java.awt.Dimension(720, 530));
+        JFondo.setSize(new java.awt.Dimension(720, 530));
+        add(JFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 530));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JinsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JinsertActionPerformed
@@ -201,7 +185,7 @@ public class MenuAdmin extends JPanel {
 
         Modificar mod = new Modificar(ven);
         ven.setContentPane(mod);
-        ven.setSize(850, 490);
+        ven.setSize(718, 575);
 
     }//GEN-LAST:event_JModActionPerformed
 
@@ -222,7 +206,7 @@ public class MenuAdmin extends JPanel {
         // TODO add your handling code here:
         Delete delete = new Delete(ven);
         ven.setContentPane(delete);
-        ven.setSize(850, 490);
+        ven.setSize(714, 570);
 
 
     }//GEN-LAST:event_JDeleteActionPerformed
@@ -262,6 +246,7 @@ public class MenuAdmin extends JPanel {
     private javax.swing.JComboBox<String> JCalificacion;
     private javax.swing.JButton JDelete;
     private javax.swing.JTextField JDireccion;
+    private javax.swing.JLabel JFondo;
     private javax.swing.JTextField JHorario;
     private javax.swing.JLabel JImagen;
     private javax.swing.JTextField JInfo;
@@ -270,12 +255,6 @@ public class MenuAdmin extends JPanel {
     private javax.swing.JTextField JReseña;
     private javax.swing.JButton Jinsert;
     private javax.swing.JComboBox<String> Jlista;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 
     /* private boolean searchCategory(BaseDatos base, String category) {

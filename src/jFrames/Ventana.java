@@ -166,7 +166,7 @@ public class Ventana extends JFrame {
 
         jPCuenta jPCuenta = new jPCuenta(this);
         this.setContentPane(jPCuenta);
-        this.setSize(400, 300);
+        this.setSize(400, 330);
 
     }//GEN-LAST:event_JInicioMouseClicked
 

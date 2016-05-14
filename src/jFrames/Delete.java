@@ -6,8 +6,10 @@
 package jFrames;
 
 import database.BaseDatos;
+import entidades.Comentario;
 import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
+import entidades.Registro_Visitas;
 import entidades.Sitios_Interes;
 import java.awt.event.ContainerListener;
 import java.util.LinkedList;
@@ -24,6 +26,8 @@ public class Delete extends JPanel {
     LinkedList<Sitios_Interes> sitios;
     LinkedList<Contenidos_Multimedia> contenido;
     LinkedList<Imagenes> imagen;
+    LinkedList<Comentario> comment;
+
     String category;
 
     ImageIcon img;
@@ -42,6 +46,7 @@ public class Delete extends JPanel {
         sitios = new LinkedList<>();
         imagen = new LinkedList<>();
         contenido = new LinkedList<>();
+        comment = new LinkedList<>();
         sitio = new Sitios_Interes();
     }
 
@@ -57,28 +62,21 @@ public class Delete extends JPanel {
         Jlista = new javax.swing.JComboBox<>();
         JAtras = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         JNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
         JCalificacion = new javax.swing.JComboBox<>();
         JReseña = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         jLugares = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         JID = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         JidImagen = new javax.swing.JLabel();
         JIdContenido = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        Jfondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(662, 374));
+        setPreferredSize(new java.awt.Dimension(710, 520));
+        setSize(new java.awt.Dimension(710, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
@@ -88,7 +86,7 @@ public class Delete extends JPanel {
                 JlistaActionPerformed(evt);
             }
         });
-        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 209, -1));
+        add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 209, -1));
 
         JAtras.setText("Atras");
         JAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +94,7 @@ public class Delete extends JPanel {
                 JAtrasActionPerformed(evt);
             }
         });
-        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 391, -1, -1));
+        add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
 
         JDelete.setText("Eliminar");
         JDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -104,54 +102,48 @@ public class Delete extends JPanel {
                 JDeleteActionPerformed(evt);
             }
         });
-        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
+        add(JDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, -1, -1));
+        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 223, -1));
 
-        jLabel1.setText("Nombre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-        add(JNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 223, -1));
-
-        jLabel2.setText("Direccion");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
-
-        jLabel3.setText("Calificacion");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
-
-        jLabel4.setText("Reseña");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
-
-        jLabel5.setText("Informacion adicional");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
-        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 223, -1));
-        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 223, 66));
+        JDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JDireccionActionPerformed(evt);
+            }
+        });
+        add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 223, -1));
+        add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 223, 66));
 
         JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
-        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
-        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 223, 66));
-
-        jLabel6.setText("Horario");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
-        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 223, -1));
-        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 220, 230));
+        add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+        add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 223, 66));
+        add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 223, -1));
+        add(JImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 240, 220));
 
         jLugares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLugaresActionPerformed(evt);
             }
         });
-        add(jLugares, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 80, 200, -1));
+        add(jLugares, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 200, -1));
 
-        jLabel7.setText("ID");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
-        add(JID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 80, 20));
+        JID.setFont(new java.awt.Font("Noteworthy", 0, 14)); // NOI18N
+        JID.setForeground(new java.awt.Color(255, 255, 255));
+        add(JID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 80, 30));
 
-        jLabel8.setText("ID Imagen");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
-        add(JidImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 80, 20));
-        add(JIdContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, 80, 20));
+        JidImagen.setFont(new java.awt.Font("Noteworthy", 0, 14)); // NOI18N
+        JidImagen.setForeground(new java.awt.Color(255, 255, 255));
+        add(JidImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 80, 30));
 
-        jLabel9.setText("ID Contenido");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, -1, -1));
+        JIdContenido.setFont(new java.awt.Font("Noteworthy", 0, 14)); // NOI18N
+        JIdContenido.setForeground(new java.awt.Color(255, 255, 255));
+        add(JIdContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 80, 30));
+
+        Jfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuMod.png"))); // NOI18N
+        Jfondo.setMinimumSize(new java.awt.Dimension(710, 520));
+        Jfondo.setPreferredSize(new java.awt.Dimension(710, 520));
+        Jfondo.setSize(new java.awt.Dimension(710, 520));
+        add(Jfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDeleteActionPerformed
@@ -160,6 +152,9 @@ public class Delete extends JPanel {
         BaseDatos base = new BaseDatos();
         Sitios_Interes lugar;
         Imagenes imagen;
+        Comentario comenta;
+        Registro_Visitas visitas;
+
         Contenidos_Multimedia contenido;
 
         if (base.crearConexion()) {
@@ -178,6 +173,20 @@ public class Delete extends JPanel {
 
             System.out.println("Elimine: CONTENIDO " + base.delete(contenido.delete()));
             System.out.println("Elimine: CONTENIDO " + contenido.toString());
+
+            //COMENTARIO
+            comenta = new Comentario(idContenido);
+            base.delete(comenta.delete());
+
+            System.out.println("Elimine: COMENTARIO " + base.delete(comenta.delete()));
+            System.out.println("Elimine: COMENTARIO " + comenta.toString());
+
+            //REGISTROVISITAS
+            visitas = new Registro_Visitas(new Integer(JID.getText()));
+            base.delete(visitas.delete());
+
+            System.out.println("Elimine: VISITA " + base.delete(visitas.delete()));
+            System.out.println("Elimine: VISITA " + visitas.toString());
 
             //SITIO
             String Nombre = JNombre.getText();
@@ -239,9 +248,13 @@ public class Delete extends JPanel {
 
         MenuAdmin menu = new MenuAdmin(ven);
         ven.setContentPane(menu);
-        ven.setSize(640, 480);
+        ven.setSize(718, 570);
 
     }//GEN-LAST:event_JAtrasActionPerformed
+
+    private void JDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JDireccionActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="ObtenerInfo(): Metodo que Busca los Sitios en la DB">
     private void ObtenerInfo() {
@@ -338,6 +351,32 @@ public class Delete extends JPanel {
     }
 //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="chargeDataComentarios(BaseDatos, int)">
+    public void chargeDataComentarios(BaseDatos db, int attri) {
+
+        String sql = "SELECT comentarios.* FROM categorias, sitios_interes, comentarios "
+                + "WHERE idCategoria=idCategoriaS and idSitio=idSitioComent and nombreCategoria='" + category + "'";
+        LinkedList<Object> list = db.select(sql);
+        LinkedList<Object> listValues;
+
+        int size = list.size();
+        int cant = size / attri;
+
+        for (int i = 0; i < cant; i++) {
+            listValues = new LinkedList<>();
+            for (int j = 0; j < attri; j++) {
+                if (!list.isEmpty()) {
+                    listValues.add(list.removeFirst());
+                }
+            }
+            Comentario com = new Comentario();
+            com.read(listValues);
+            comment.add(com);
+        }
+    }
+//</editor-fold>
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JAtras;
     private javax.swing.JComboBox<String> JCalificacion;
@@ -350,17 +389,9 @@ public class Delete extends JPanel {
     private javax.swing.JTextField JInfo;
     private javax.swing.JTextField JNombre;
     private javax.swing.JTextField JReseña;
+    private javax.swing.JLabel Jfondo;
     private javax.swing.JLabel JidImagen;
     private javax.swing.JComboBox<String> Jlista;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> jLugares;
     // End of variables declaration//GEN-END:variables
 
