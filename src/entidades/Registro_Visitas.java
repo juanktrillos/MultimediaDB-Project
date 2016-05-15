@@ -129,7 +129,7 @@ public class Registro_Visitas {
      * @return String
      */
     public String select() {
-        String select = "SELECT * FROM Registros_Visitas WHERE codigoVisita=" + codigoVisita + "";
+        String select = "SELECT * FROM Registros_Visitas WHERE idSitios=" + idSitios + "";
 
         return select;
     }

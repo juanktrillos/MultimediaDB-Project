@@ -56,6 +56,7 @@ public class MenuAdmin extends JPanel {
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
         JAtras = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         JFondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(720, 530));
@@ -123,10 +124,17 @@ public class MenuAdmin extends JPanel {
         });
         add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
+        jButton1.setText("Estadistica");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, -1, -1));
+
         JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuAdmin-01-01.png"))); // NOI18N
         JFondo.setMinimumSize(new java.awt.Dimension(720, 530));
         JFondo.setPreferredSize(new java.awt.Dimension(720, 530));
-        JFondo.setSize(new java.awt.Dimension(720, 530));
         add(JFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 530));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,6 +218,14 @@ public class MenuAdmin extends JPanel {
 
 
     }//GEN-LAST:event_JDeleteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        Grafica gp = new Grafica();
+        ven.setContentPane(gp);
+        ven.setSize(714, 570);
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void ObtenerInfo(String caso) {
 
         BaseDatos db = new BaseDatos();
@@ -255,6 +271,7 @@ public class MenuAdmin extends JPanel {
     private javax.swing.JTextField JReseña;
     private javax.swing.JButton Jinsert;
     private javax.swing.JComboBox<String> Jlista;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
     /* private boolean searchCategory(BaseDatos base, String category) {
