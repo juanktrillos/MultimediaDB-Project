@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class jPCuenta extends JPanel {
 
@@ -102,7 +104,7 @@ public class jPCuenta extends JPanel {
             } else {
                 PagInfo pag = new PagInfo(ven);
                 ven.setContentPane(pag);
-                ven.setSize(900, 380);
+                ven.setSize(920, 390);
             }
         }
 

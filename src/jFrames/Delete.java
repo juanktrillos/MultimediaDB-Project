@@ -13,14 +13,15 @@ import entidades.Registro_Visitas;
 import entidades.Sitios_Interes;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Image;
-import java.awt.event.ContainerListener;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Delete extends JPanel {
 
@@ -216,9 +217,7 @@ public class Delete extends JPanel {
         //Imagen
         img = imagen.get(lugar).getImagen();
         
-        ImageIcon icon = img;
-        Image ima = icon.getImage().getScaledInstance(240, 220, Image.SCALE_DEFAULT);
-        
+        Image ima = img.getImage().getScaledInstance(240, 220, Image.SCALE_DEFAULT);
         JImagen.setIcon(new ImageIcon(ima));
         JImagen.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         

@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class jPSitiosInteres extends javax.swing.JPanel {
 
@@ -180,11 +182,9 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         if (!imagen.isEmpty()) {
             
             ImageIcon icon = imagen.get(pos).getImagen();
-            Image imagen = icon.getImage().getScaledInstance(760, 365, Image.SCALE_DEFAULT);
-            JFondo.setIcon(new ImageIcon(imagen));
+            Image imagenTemp = icon.getImage().getScaledInstance(760, 365, Image.SCALE_DEFAULT);
+            JFondo.setIcon(new ImageIcon(imagenTemp));
             JFondo.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-            
-            
         }
         if (!comment.isEmpty()) {
             commentDisplay(posC, 1);

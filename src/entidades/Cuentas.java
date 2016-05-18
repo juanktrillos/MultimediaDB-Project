@@ -15,7 +15,9 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Cuentas {
 

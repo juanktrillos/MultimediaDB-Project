@@ -2,7 +2,10 @@ package database;
 
 /**
  *
- * @author Alejo
+ * @author Alejo  {Profesor}
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 import entidades.Imagenes;
 import java.awt.image.BufferedImage;
@@ -45,7 +48,7 @@ public class BaseDatos {
     public boolean crearConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");                         //database   //user  //pass
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "anis1002");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "clancy");
             st = conexion.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();

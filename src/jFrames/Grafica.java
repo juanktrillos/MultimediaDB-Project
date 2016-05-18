@@ -17,7 +17,9 @@ import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Grafica extends javax.swing.JPanel {
 

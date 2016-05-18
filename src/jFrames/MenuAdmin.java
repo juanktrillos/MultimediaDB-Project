@@ -17,7 +17,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class MenuAdmin extends JPanel {
 
@@ -185,9 +187,8 @@ public class MenuAdmin extends JPanel {
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
         imagen = Imagenes.cargarArchivos();
         
-        ImageIcon icon = imagen;
-        Image imagen = icon.getImage().getScaledInstance(240, 260, Image.SCALE_DEFAULT);
-        JImagen.setIcon(new ImageIcon(imagen));
+        Image img = imagen.getImage().getScaledInstance(240, 260, Image.SCALE_DEFAULT);
+        JImagen.setIcon(new ImageIcon(img));
         JImagen.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         
         Jinsert.setEnabled(true);

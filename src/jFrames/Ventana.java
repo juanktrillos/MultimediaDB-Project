@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Ventana extends JFrame {
 
@@ -208,7 +210,7 @@ public class Ventana extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Ventana v = new Ventana();
-                v.setSize(900, 635);
+                v.setSize(900, 650);
                 v.setPreferredSize(new Dimension(900, 635));
                 v.setVisible(true);
             }

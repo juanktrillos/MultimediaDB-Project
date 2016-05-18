@@ -11,14 +11,15 @@ import entidades.Imagenes;
 import entidades.Sitios_Interes;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Image;
-import java.awt.event.ContainerListener;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Modificar extends JPanel {
 
@@ -161,10 +162,9 @@ public class Modificar extends JPanel {
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
         img = Imagenes.cargarArchivos();
-
-        ImageIcon icon = img;
-        Image imagen = icon.getImage().getScaledInstance(240, 260, Image.SCALE_DEFAULT);
-        JImagen.setIcon(new ImageIcon(imagen));
+        
+        Image image = img.getImage().getScaledInstance(240, 260, Image.SCALE_DEFAULT);
+        JImagen.setIcon(new ImageIcon(image));
         JImagen.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 
         JMod.setEnabled(true);

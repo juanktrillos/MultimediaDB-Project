@@ -15,7 +15,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Ajustes extends JPanel {
 

@@ -9,7 +9,9 @@ import java.util.LinkedList;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Sitios_Interes {
 

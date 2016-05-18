@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class Registro extends JPanel {
 

@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author CATV
+ * @author Cristian Trujillo 
+ * @author Juan Camilo Trillos 
+ * @author Kevin Carrillo
  */
 public class PagInfo extends JPanel {
 
@@ -41,7 +43,6 @@ public class PagInfo extends JPanel {
         JFondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(900, 334));
-        setSize(new java.awt.Dimension(900, 334));
         setLayout(null);
 
         LCentroC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,9 +78,6 @@ public class PagInfo extends JPanel {
         LHotel.setBounds(0, 170, 500, 160);
 
         JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Collage.jpg"))); // NOI18N
-        JFondo.setMaximumSize(new java.awt.Dimension(900, 334));
-        JFondo.setMinimumSize(new java.awt.Dimension(900, 334));
-        JFondo.setPreferredSize(new java.awt.Dimension(900, 334));
         add(JFondo);
         JFondo.setBounds(0, 0, 900, 334);
     }// </editor-fold>//GEN-END:initComponents
