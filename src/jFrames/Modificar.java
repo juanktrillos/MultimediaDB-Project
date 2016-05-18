@@ -74,7 +74,7 @@ public class Modificar extends JPanel {
         setPreferredSize(new java.awt.Dimension(718, 529));
         setLayout(null);
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante", "Museo" }));
         Jlista.setSelectedIndex(-1);
         Jlista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +193,16 @@ public class Modificar extends JPanel {
         category = Jlista.getSelectedItem().toString();
         System.out.println(category);
         chargeSitios();
+        if (sitios.isEmpty()) {
+            JNombre.setText("");
+            JDireccion.setText("");
+            JHorario.setText("");
+            JReseña.setText("");
+            JInfo.setText("");
+            JID.setText("");
+            Jlista.setSelectedIndex(-1);
+            jLugares.setSelectedIndex(-1);
+        }
         for (Sitios_Interes sitio1 : sitios) {
             jLugares.addItem(sitio1.getNombre());
         }
@@ -244,6 +254,7 @@ public class Modificar extends JPanel {
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataSitios(BaseDatos, int)">
     public void chargeDataSitios(BaseDatos db, int attri) {
+        sitios = new LinkedList<>();
         String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
                 + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + category + "'";
         LinkedList<Object> list = db.select(sql);

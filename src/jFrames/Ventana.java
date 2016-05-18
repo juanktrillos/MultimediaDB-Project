@@ -128,7 +128,7 @@ public class Ventana extends JFrame {
             //cuando la cuesta activa 
             PagInfo pag = new PagInfo(this);
             this.setContentPane(pag);
-            this.setSize(640, 480);
+            this.setSize(900, 380);
         }
     }//GEN-LAST:event_MenuInicioActionPerformed
 

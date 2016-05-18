@@ -11,8 +11,6 @@ import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
 import entidades.Registro_Visitas;
 import entidades.Sitios_Interes;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
@@ -175,6 +173,7 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             JTReseña.setText(sitios.get(pos).getReseña());
             JCalificacion.setText(Integer.toString(sitios.get(pos).getCalificacion()));
             JHorario.setText(sitios.get(pos).getHorario());
+            registro();
         }
         if (!imagen.isEmpty()) {
             JFondo.setIcon(imagen.get(pos).getImagen());
@@ -182,13 +181,12 @@ public class jPSitiosInteres extends javax.swing.JPanel {
         if (!comment.isEmpty()) {
             commentDisplay(posC, 1);
         }
-        registro();
     }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="commentDisply(int, int)">
     public void commentDisplay(int posCTemp, int dir) {
-        
+
         int id = sitios.get(pos).getIdSitio();
         Comentario comTemp = comment.get(posCTemp);
         if (comTemp.getIdSitioComent() == id) {

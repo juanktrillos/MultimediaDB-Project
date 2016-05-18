@@ -5,7 +5,6 @@
  */
 package jFrames;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -87,29 +86,37 @@ public class PagInfo extends JPanel {
 
     private void LCentroCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LCentroCMouseClicked
         jPSitiosInteres sitio = new jPSitiosInteres("Centro Comercial", ven);
-        ven.setContentPane(sitio);
-        ven.setSize(900, 650);
+        if (!sitio.sitios.isEmpty()) {
+            ven.setContentPane(sitio);
+            ven.setSize(900, 650);
+        }
     }//GEN-LAST:event_LCentroCMouseClicked
 
     private void LHotelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LHotelMouseClicked
         // TODO add your handling code here:
         jPSitiosInteres sitio = new jPSitiosInteres("Hotel", ven);
-        ven.setContentPane(sitio);
-        ven.setSize(900, 650);
+        if (!sitio.sitios.isEmpty()) {
+            ven.setContentPane(sitio);
+            ven.setSize(900, 650);
+        }
     }//GEN-LAST:event_LHotelMouseClicked
 
     private void LRestauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LRestauranteMouseClicked
         // TODO add your handling code here:
         jPSitiosInteres sitio = new jPSitiosInteres("Restaurante", ven);
-        ven.setContentPane(sitio);
-        ven.setSize(900, 650);
+        if (!sitio.sitios.isEmpty()) {
+            ven.setContentPane(sitio);
+            ven.setSize(900, 650);
+        }
     }//GEN-LAST:event_LRestauranteMouseClicked
 
     private void LMuseoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LMuseoMouseClicked
         // TODO add your handling code here:
         jPSitiosInteres sitio = new jPSitiosInteres("Museo", ven);
-        ven.setContentPane(sitio);
-        ven.setSize(900, 650);
+        if (!sitio.sitios.isEmpty()) {
+            ven.setContentPane(sitio);
+            ven.setSize(900, 650);
+        }
     }//GEN-LAST:event_LMuseoMouseClicked
 
 

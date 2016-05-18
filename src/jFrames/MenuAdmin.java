@@ -62,8 +62,13 @@ public class MenuAdmin extends JPanel {
         setPreferredSize(new java.awt.Dimension(720, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante", "Museo" }));
         Jlista.setSelectedIndex(-1);
+        Jlista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JlistaActionPerformed(evt);
+            }
+        });
         add(Jlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 209, -1));
 
         Jinsert.setText("Insertar");
@@ -176,7 +181,6 @@ public class MenuAdmin extends JPanel {
     }//GEN-LAST:event_JinsertActionPerformed
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
-
         imagen = Imagenes.cargarArchivos();
         JImagen.setIcon(imagen);
         Jinsert.setEnabled(true);
@@ -213,6 +217,10 @@ public class MenuAdmin extends JPanel {
         ven.setContentPane(gp);
         ven.setSize(720, 580);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JlistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JlistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JlistaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JAdd;

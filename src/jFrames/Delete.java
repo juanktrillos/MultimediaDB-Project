@@ -78,7 +78,7 @@ public class Delete extends JPanel {
         setPreferredSize(new java.awt.Dimension(710, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante", "Museo" }));
         Jlista.setSelectedIndex(-1);
         Jlista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +184,16 @@ public class Delete extends JPanel {
         category = Jlista.getSelectedItem().toString();
         System.out.println(category);
         ObtenerInfo();
+        if (sitios.isEmpty()) {
+            JNombre.setText("");
+            JDireccion.setText("");
+            JHorario.setText("");
+            JReseña.setText("");
+            JInfo.setText("");
+            JID.setText("");
+            Jlista.setSelectedIndex(-1);
+            jLugares.setSelectedIndex(-1);
+        }
         for (Sitios_Interes sitio1 : sitios) {
             jLugares.addItem(sitio1.getNombre());
         }
@@ -193,14 +203,13 @@ public class Delete extends JPanel {
     private void jLugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLugaresActionPerformed
         // TODO add your handling code here:
         int lugar = (jLugares.getSelectedIndex());
-        System.out.println("Pulsee  " + lugar);
 
-        JNombre.setText(sitios.get(lugar).getNombre());
-        JDireccion.setText(sitios.get(lugar).getDireccion());
-        JHorario.setText(sitios.get(lugar).getHorario());
-        JReseña.setText(sitios.get(lugar).getReseña());
-        JInfo.setText(sitios.get(lugar).getInfoAdicional());
-        JID.setText("" + sitios.get(lugar).getIdSitio());
+            JNombre.setText(sitios.get(lugar).getNombre());
+            JDireccion.setText(sitios.get(lugar).getDireccion());
+            JHorario.setText(sitios.get(lugar).getHorario());
+            JReseña.setText(sitios.get(lugar).getReseña());
+            JInfo.setText(sitios.get(lugar).getInfoAdicional());
+            JID.setText("" + sitios.get(lugar).getIdSitio());
 
         //Imagen
         img = imagen.get(lugar).getImagen();
@@ -241,6 +250,7 @@ public class Delete extends JPanel {
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataSitios(BaseDatos, int)">
     public void chargeDataSitios(BaseDatos db, int attri) {
+        sitios = new LinkedList<>();
         String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
                 + "WHERE idCategoria=idCategoriaS and nombreCategoria='" + category + "'";
         LinkedList<Object> list = db.select(sql);
