@@ -9,6 +9,8 @@ import database.BaseDatos;
 import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
 import entidades.Sitios_Interes;
+import static java.awt.Component.CENTER_ALIGNMENT;
+import java.awt.Image;
 import java.awt.event.ContainerListener;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
@@ -159,7 +161,12 @@ public class Modificar extends JPanel {
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
         img = Imagenes.cargarArchivos();
-        JImagen.setIcon(img);
+
+        ImageIcon icon = img;
+        Image imagen = icon.getImage().getScaledInstance(240, 260, Image.SCALE_DEFAULT);
+        JImagen.setIcon(new ImageIcon(imagen));
+        JImagen.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+
         JMod.setEnabled(true);
     }//GEN-LAST:event_JAddActionPerformed
 

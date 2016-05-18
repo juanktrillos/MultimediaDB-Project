@@ -11,7 +11,9 @@ import entidades.Contenidos_Multimedia;
 import entidades.Imagenes;
 import entidades.Registro_Visitas;
 import entidades.Sitios_Interes;
+import java.awt.Image;
 import java.util.LinkedList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -176,7 +178,13 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             registro();
         }
         if (!imagen.isEmpty()) {
-            JFondo.setIcon(imagen.get(pos).getImagen());
+            
+            ImageIcon icon = imagen.get(pos).getImagen();
+            Image imagen = icon.getImage().getScaledInstance(760, 365, Image.SCALE_DEFAULT);
+            JFondo.setIcon(new ImageIcon(imagen));
+            JFondo.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+            
+            
         }
         if (!comment.isEmpty()) {
             commentDisplay(posC, 1);
