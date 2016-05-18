@@ -158,6 +158,12 @@ public class Cuentas {
         return select;
     }
 
+    /**
+     * metodo para encriptar Strings
+     * 
+     * @param texto
+     * @return 
+     */
     public static String Encriptar(String texto) {
 
         String secretKey = "qualityinfosolutions"; //llave para encriptar datos
@@ -183,6 +189,13 @@ public class Cuentas {
         return base64EncryptedString;
     }
 
+    /**
+     * metodo para desencriptar Strings
+     * 
+     * @param textoEncriptado
+     * @return
+     * @throws Exception 
+     */
     public static String Desencriptar(String textoEncriptado) throws Exception {
 
         String secretKey = "qualityinfosolutions"; //llave para encriptar datos

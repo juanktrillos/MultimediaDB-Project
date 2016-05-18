@@ -238,6 +238,10 @@ public class Delete extends JPanel {
     }//GEN-LAST:event_JDireccionActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="ObtenerInfo(): Metodo que Busca los Sitios en la DB">
+    /**
+     * Metodo para buscar los Sitios de interes en la base de datos
+     * 
+     */
     private void ObtenerInfo() {
 
         BaseDatos db = new BaseDatos();
@@ -256,6 +260,12 @@ public class Delete extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataSitios(BaseDatos, int)">
+    /**
+     * Trae la informacion de los sitios y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataSitios(BaseDatos db, int attri) {
         sitios = new LinkedList<>();
         String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
@@ -281,6 +291,12 @@ public class Delete extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataContenido(BaseDatos, int)">
+    /**
+     * Trae los contenidos de los sitios y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataContenido(BaseDatos db, int attri) {
         String sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
                 + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + category + "'";
@@ -305,6 +321,12 @@ public class Delete extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataImagenes(BaseDatos, int)">
+    /**
+     * trae las imagenes de los sitios, si existen, y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataImagenes(BaseDatos db, int attri) {
 
         LinkedList<Object> list;
@@ -332,6 +354,12 @@ public class Delete extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataComentarios(BaseDatos, int)">
+    /**
+     * Trae los diferentes comentarios de los sitios  y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataComentarios(BaseDatos db, int attri) {
 
         String sql = "SELECT comentarios.* FROM categorias, sitios_interes, comentarios "

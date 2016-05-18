@@ -5,7 +5,6 @@
  */
 package entidades;
 
-import java.awt.Image;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.LinkedList;

@@ -5,10 +5,12 @@
  */
 package entidades;
 
+import java.util.LinkedList;
+
 /**
  *
- * @author Cristian Trujillo 
- * @author Juan Camilo Trillos 
+ * @author Cristian Trujillo
+ * @author Juan Camilo Trillos
  * @author Kevin Carrillo
  */
 public class Categorias {
@@ -43,5 +45,64 @@ public class Categorias {
     @Override
     public String toString() {
         return "Categorias{" + "idCategoria=" + idCategoria + ", nombreCategoria=" + nombreCategoria + '}';
+    }
+
+    /**
+     * cadena que recibe la base de datos, para inserciones
+     *
+     * @return String
+     */
+    public String insert() {
+        String insert = "Categorias(idCategoria,nombreCategoria) "
+                + "values(" + idCategoria + ",'" + nombreCategoria + "')";
+        return insert;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para actualizaciones
+     *
+     * @return String
+     */
+    public String update() {
+        String update = "Categorias SET "
+                + "nombreCategoria='" + nombreCategoria + "' "
+                + "WHERE idCategoria=" + idCategoria + "";
+
+        return update;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para eliminar ocurrencia
+     *
+     * @return String
+     */
+    public String delete() {
+        String delete = "Categorias WHERE idCategoria=" + idCategoria + "";
+
+        return delete;
+    }
+
+    /**
+     * lista que se recibe de la base de datos, para obtener los datos de la
+     * ocurrencia
+     *
+     * @param list
+     */
+    public void read(LinkedList list) {
+        if (!list.isEmpty()) {
+            this.idCategoria = (int) list.get(0);
+            this.nombreCategoria = (String) list.get(1);
+        }
+    }
+
+    /**
+     * cadena que recibe la base de datos, para selecionar una ocurrencia
+     *
+     * @return String
+     */
+    public String select() {
+        String select = "SELECT * FROM Categorias WHERE idCategoria=" + idCategoria + "";
+
+        return select;
     }
 }

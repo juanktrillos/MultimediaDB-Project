@@ -7,11 +7,9 @@ package jFrames;
 
 import entidades.Cuentas;
 import database.BaseDatos;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -40,29 +38,11 @@ public class Ajustes extends JPanel {
         initComponents();
     }
 
-    public /*boolean*/ void info() {//recuperar -----> info
-        /*   boolean flag = false;
-         BaseDatos base = new BaseDatos();
-         String cifrado = Cuentas.Encriptar(PedirContra('v'));
-         Cuentas cuentaTemp = new Cuentas(correo);
-
-         if (base.crearConexion()) {
-         LinkedList<Object> list = base.read(cuentaTemp.select());
-
-         if (!list.isEmpty()) {
-         cuenta.read(list);
-         if (cifrado.equals(cuenta.getPassword())) {*/
-        jNombre.setText(ven.cuenta.getNombre());// cuenta  ----> ven.cuenta
-        jApellido.setText(ven.cuenta.getApellido());// cuenta  ----> ven.cuenta
-        jCelular.setText(ven.cuenta.getCelular());// cuenta  ----> ven.cuenta
-
-        /*    flag = true;
-         } else {
-         flag = false;
-         }
-         }
-         }
-         return flag;*/
+    public void info() {
+        
+        jNombre.setText(ven.cuenta.getNombre());
+        jApellido.setText(ven.cuenta.getApellido());
+        jCelular.setText(ven.cuenta.getCelular());
     }
 
     /**
@@ -237,6 +217,12 @@ public class Ajustes extends JPanel {
         }
     }//GEN-LAST:event_BtActualizarActionPerformed
 
+    /**
+     * Metodo para verificar los cambios
+     * 
+     * @param c
+     * @return 
+     */
     public String PedirContra(char c) {
         String password = null;
         JPasswordField pf;
@@ -247,7 +233,6 @@ public class Ajustes extends JPanel {
                 int pPass = JOptionPane.showConfirmDialog(null, pf, "Ingrese contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                 if (pPass == JOptionPane.OK_OPTION) {
                     password = new String(pf.getPassword());
-//                    System.err.println("You entered: " + password);
                 }
                 break;
 
@@ -256,7 +241,6 @@ public class Ajustes extends JPanel {
                 int pPass2 = JOptionPane.showConfirmDialog(null, pf, "Ingrese contraseña nueva", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                 if (pPass2 == JOptionPane.OK_OPTION) {
                     password = new String(pf.getPassword());
-//                    System.err.println("You entered: " + password);
                 }
                 break;
 

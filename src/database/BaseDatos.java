@@ -3,6 +3,7 @@ package database;
 /**
  *
  * @author Alejo  {Profesor}
+ * 
  * @author Cristian Trujillo 
  * @author Juan Camilo Trillos 
  * @author Kevin Carrillo
@@ -77,6 +78,12 @@ public class BaseDatos {
         return true;
     }
 
+    /**
+     * Metodo General de Inserciones en la base de datos
+     * 
+     * @param consulta
+     * @return 
+     */
     public boolean insert(String consulta) {
 
         String sql = "INSERT INTO " + consulta;
@@ -84,6 +91,11 @@ public class BaseDatos {
         return insert;
     }
 
+    /**
+     * Metodo General de Actualizaciones en la base de datos
+     * @param consulta
+     * @return 
+     */
     public boolean update(String consulta) {
 
         String sql = "UPDATE " + consulta;
@@ -91,6 +103,11 @@ public class BaseDatos {
         return update;
     }
 
+    /**
+     * Metodo General de Eliminacion de ocurrencias en la base de datos
+     * @param consulta
+     * @return 
+     */
     public boolean delete(String consulta) {
 
         String sql = "DELETE FROM " + consulta;
@@ -99,6 +116,13 @@ public class BaseDatos {
         return update;
     }
     
+    /**
+     * metodo general de seleccion de las tablas en la base de datos
+     * 
+     * @param sql
+     * @return devuelve los valores en una lista, no las ocurrencias 
+     *          ejm: 2 ocurrencias de 5 atributos, la lista tiene 10 valores
+     */
     public LinkedList<Object> select(String sql) {
 
         LinkedList<Object> obj = new LinkedList();
@@ -122,6 +146,12 @@ public class BaseDatos {
         return obj;
     }
 
+    /**
+     * Selector de imagenes, en especifico trae el BLOB de la tabla imagenes
+     * 
+     * @param sql
+     * @return 
+     */
     public ImageIcon selectImage(String sql) {
 
         ImageIcon imagen = new ImageIcon();
@@ -141,6 +171,12 @@ public class BaseDatos {
         return imagen;
     }
 
+    /**
+     * Metodo para insertar ocurrencias en la tabla imagenes
+     * 
+     * @param imagen
+     * @return 
+     */
     public boolean insertImage(Imagenes imagen) {
 
         BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
@@ -176,6 +212,12 @@ public class BaseDatos {
         return false;
     }
 
+    /**
+     * Metodo para actualizar las ocurrencias en la tabla imagenes
+     * 
+     * @param imagen
+     * @return 
+     */
     public boolean updateImage(Imagenes imagen) {
         BufferedImage buff = (BufferedImage) imagen.getImagen().getImage();
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
@@ -210,5 +252,4 @@ public class BaseDatos {
         }
         return false;
     }
-
 }

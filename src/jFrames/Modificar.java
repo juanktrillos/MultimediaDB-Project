@@ -243,7 +243,11 @@ public class Modificar extends JPanel {
         ven.setSize(720, 580);
     }//GEN-LAST:event_JAtrasActionPerformed
 
-    //<editor-fold defaultstate="collapsed" desc="ObtenerInfo(): Metodo que Busca los Sitios en la DB">
+    //<editor-fold defaultstate="collapsed" desc="chargeSitios(): Metodo que Busca los Sitios en la DB">
+    /**
+     * Metodo para buscar los Sitios de interes en la base de datos
+     * 
+     */
     private void chargeSitios() {
         BaseDatos db = new BaseDatos();
         if (db.crearConexion()) {
@@ -260,6 +264,12 @@ public class Modificar extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataSitios(BaseDatos, int)">
+    /**
+     * Trae la informacion de los sitios y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataSitios(BaseDatos db, int attri) {
         sitios = new LinkedList<>();
         String sql = "SELECT sitios_interes.* FROM categorias, sitios_interes "
@@ -285,6 +295,12 @@ public class Modificar extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataContenido(BaseDatos, int)">
+    /**
+     * Trae los contenidos de los sitios y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataContenido(BaseDatos db, int attri) {
         String sql = "SELECT contenidos_multimedia.* FROM categorias, sitios_interes, contenidos_multimedia "
                 + "WHERE idCategoria=idCategoriaS and idSitio=idSitiosc and nombreCategoria='" + category + "'";
@@ -309,6 +325,12 @@ public class Modificar extends JPanel {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="chargeDataImagenes(BaseDatos, int)">
+    /**
+     * trae las imagenes de los sitios, si existen, y los mete en una lista
+     * 
+     * @param db
+     * @param attri 
+     */
     public void chargeDataImagenes(BaseDatos db, int attri) {
 
         LinkedList<Object> list;

@@ -121,6 +121,11 @@ public class jPCuenta extends JPanel {
         
     }//GEN-LAST:event_JatrasActionPerformed
 
+    /**
+     * metodo para comprobar los datos ingresados y ver si existen en la base de datos
+     * 
+     * @return 
+     */
     public boolean ComprobarUser() {
 
         boolean flag = false;

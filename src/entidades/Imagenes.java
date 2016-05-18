@@ -22,8 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Cristian Trujillo 
- * @author Juan Camilo Trillos 
+ * @author Cristian Trujillo
+ * @author Juan Camilo Trillos
  * @author Kevin Carrillo
  */
 public class Imagenes {
@@ -40,8 +40,7 @@ public class Imagenes {
     }
 
     public Imagenes(String nombreImagen, String Descripcion,
-            /*Date Fecha,*/ ImageIcon Imagen, int idContenidoMultimediaI) {
-//        this.idImagen = idImagen;
+            ImageIcon Imagen, int idContenidoMultimediaI) {
         this.nombreImagen = nombreImagen;
         System.out.println("hola");
         this.descripcionImagen = Descripcion;
@@ -148,7 +147,7 @@ public class Imagenes {
      * @return String
      */
     public String deleteFK() {
-        String delete = "Imagenes WHERE idContenidoMultimediaI=" +idContenidoMultimediaI;
+        String delete = "Imagenes WHERE idContenidoMultimediaI=" + idContenidoMultimediaI;
 
         return delete;
     }
@@ -202,6 +201,11 @@ public class Imagenes {
         return select;
     }
 
+    /**
+     * Metodo Static que busca las imagenes en el PC con un JFileChooser
+     * 
+     * @return 
+     */
     static public ImageIcon cargarArchivos() {
         JFrame obj = new JFrame();
         BufferedImage buffered;
