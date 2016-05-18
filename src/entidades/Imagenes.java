@@ -6,23 +6,11 @@
 package entidades;
 
 import database.BaseDatos;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-//import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +37,7 @@ public class Imagenes {
 
     }
 
-    public Imagenes(/*int idImagen, */String nombreImagen, String Descripcion,
+    public Imagenes(String nombreImagen, String Descripcion,
             /*Date Fecha,*/ ImageIcon Imagen, int idContenidoMultimediaI) {
 //        this.idImagen = idImagen;
         this.nombreImagen = nombreImagen;
@@ -64,14 +52,10 @@ public class Imagenes {
         this.idImagen = idImagen;
         this.nombreImagen = nombreImagen;
         this.descripcionImagen = descripcionImagen;
-        this.fechaImagen = Date.valueOf(LocalDate.now());;
+        this.fechaImagen = Date.valueOf(LocalDate.now());
         this.imagen = imagen;
         this.idContenidoMultimediaI = idContenidoMultimediaI;
     }
-
-    
-    
-    
 
     public Imagenes(int idContenidoMultimediaI) {
         this.idContenidoMultimediaI = idContenidoMultimediaI;
@@ -132,7 +116,6 @@ public class Imagenes {
                 + "imagen=" + imagen + ", idContenidoMultimediaI=" + idContenidoMultimediaI + '}';
     }
 
-   
     /**
      * cadena que recibe la base de datos, para inserciones
      *
@@ -153,8 +136,7 @@ public class Imagenes {
     public String update() {
 
         String update = "UPDATE Imagenes SET nombreImagen=?,descripcionImagen=?, fechaImagen=?, "
-                + "imagen=?  WHERE idImagen=? AND idContenidoMultimediaI=?";
-
+                + "imagen=?  WHERE idImagen=?";
         return update;
     }
 
@@ -163,8 +145,19 @@ public class Imagenes {
      *
      * @return String
      */
-    public String delete() {
+    public String deleteFK() {
         String delete = "Imagenes WHERE idContenidoMultimediaI=" +idContenidoMultimediaI;
+
+        return delete;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para eliminar ocurrencia
+     *
+     * @return String
+     */
+    public String delete() {
+        String delete = "Imagenes WHERE idImagen=" + idImagen;
 
         return delete;
     }
@@ -234,5 +227,4 @@ public class Imagenes {
 
         return image;//.getAbsolutePath().toString();
     }
-
 }

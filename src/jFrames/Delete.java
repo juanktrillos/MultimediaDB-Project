@@ -59,28 +59,27 @@ public class Delete extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jlista = new javax.swing.JComboBox<>();
+        Jlista = new javax.swing.JComboBox<String>();
         JAtras = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
         JNombre = new javax.swing.JTextField();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
-        JCalificacion = new javax.swing.JComboBox<>();
+        JCalificacion = new javax.swing.JComboBox<String>();
         JReseña = new javax.swing.JTextField();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
-        jLugares = new javax.swing.JComboBox<>();
+        jLugares = new javax.swing.JComboBox<String>();
         JID = new javax.swing.JLabel();
         JidImagen = new javax.swing.JLabel();
         JIdContenido = new javax.swing.JLabel();
         Jfondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(710, 520));
-        setSize(new java.awt.Dimension(710, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
-        Jlista.setSelectedIndex(1);
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setSelectedIndex(-1);
         Jlista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JlistaActionPerformed(evt);
@@ -113,8 +112,8 @@ public class Delete extends JPanel {
         add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 223, -1));
         add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 223, 66));
 
-        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        JCalificacion.setSelectedIndex(1);
+        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        JCalificacion.setSelectedIndex(-1);
         add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
         add(JReseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 223, 66));
         add(JHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 223, -1));
@@ -142,84 +141,52 @@ public class Delete extends JPanel {
         Jfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuMod.png"))); // NOI18N
         Jfondo.setMinimumSize(new java.awt.Dimension(710, 520));
         Jfondo.setPreferredSize(new java.awt.Dimension(710, 520));
-        Jfondo.setSize(new java.awt.Dimension(710, 520));
         add(Jfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDeleteActionPerformed
         // TODO add your handling code here:
-
         BaseDatos base = new BaseDatos();
         Sitios_Interes lugar;
-        Imagenes imagen;
-        Comentario comenta;
+        Imagenes imagenTemp;
+        Comentario comentTemp;
         Registro_Visitas visitas;
-
-        Contenidos_Multimedia contenido;
+        Contenidos_Multimedia contTempo;
 
         if (base.crearConexion()) {
-
+            //SITIO
+            int idSitio = new Integer(JID.getText());
+            
             //IMAGEN
             int idContenido = new Integer(JIdContenido.getText());
-            imagen = new Imagenes(idContenido);
-            base.delete(imagen.delete());
-
-            System.out.println("Elimine: IMAGEN " + base.delete(imagen.delete()));
-            System.out.println("Elimine: IMAGEN " + imagen.toString());
+            imagenTemp = new Imagenes(idContenido);
+            base.delete(imagenTemp.deleteFK());
 
             //CONTENIDO
-            contenido = new Contenidos_Multimedia(idContenido);
-            base.delete(contenido.delete());
-
-            System.out.println("Elimine: CONTENIDO " + base.delete(contenido.delete()));
-            System.out.println("Elimine: CONTENIDO " + contenido.toString());
+            contTempo = new Contenidos_Multimedia(idContenido);
+            base.delete(contTempo.delete());
 
             //COMENTARIO
-            comenta = new Comentario(idContenido);
-            base.delete(comenta.delete());
-
-            System.out.println("Elimine: COMENTARIO " + base.delete(comenta.delete()));
-            System.out.println("Elimine: COMENTARIO " + comenta.toString());
+            comentTemp = new Comentario(idSitio);
+            base.delete(comentTemp.delete());
 
             //REGISTROVISITAS
-            visitas = new Registro_Visitas(new Integer(JID.getText()));
-            base.delete(visitas.delete());
+            visitas = new Registro_Visitas(idSitio);
+            base.delete(visitas.deleteFK());
 
-            System.out.println("Elimine: VISITA " + base.delete(visitas.delete()));
-            System.out.println("Elimine: VISITA " + visitas.toString());
-
-            //SITIO
-            String Nombre = JNombre.getText();
-            String Dir = JDireccion.getText();
-            String Horario = JHorario.getText();
-            String Reseña = JReseña.getText();
-            String Info = JInfo.getText();
-            int calificacion = (JCalificacion.getSelectedIndex() + 1);
-            int idSitio = new Integer(JID.getText());
-            int categoria = (Jlista.getSelectedIndex() + 1);
-
-            lugar = new Sitios_Interes(idSitio, Nombre, Dir, calificacion, Reseña, Horario, Info, categoria);
+            lugar = new Sitios_Interes(idSitio);
             base.delete(lugar.delete());
-
-            System.out.println("Elimine: SITIO " + base.delete(lugar.delete()));
-            System.out.println("Elimine: SITIO " + lugar.toString());
-
         }
-
-
     }//GEN-LAST:event_JDeleteActionPerformed
 
     private void JlistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JlistaActionPerformed
         // TODO add your handling code here:
-
         category = Jlista.getSelectedItem().toString();
         System.out.println(category);
         ObtenerInfo();
         for (Sitios_Interes sitio1 : sitios) {
             jLugares.addItem(sitio1.getNombre());
         }
-
-
     }//GEN-LAST:event_JlistaActionPerformed
 
 
@@ -236,11 +203,10 @@ public class Delete extends JPanel {
         JID.setText("" + sitios.get(lugar).getIdSitio());
 
         //Imagen
-        JImagen.setIcon(imagen.get(lugar).getImagen());
+        img = imagen.get(lugar).getImagen();
+        JImagen.setIcon(img);
         JIdContenido.setText("" + contenido.get(lugar).getIdContenido());
         JidImagen.setText("" + imagen.get(lugar).getIdImagen());
-
-
     }//GEN-LAST:event_jLugaresActionPerformed
 
     private void JAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAtrasActionPerformed
@@ -248,8 +214,7 @@ public class Delete extends JPanel {
 
         MenuAdmin menu = new MenuAdmin(ven);
         ven.setContentPane(menu);
-        ven.setSize(718, 570);
-
+        ven.setSize(720, 580);
     }//GEN-LAST:event_JAtrasActionPerformed
 
     private void JDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDireccionActionPerformed
@@ -264,14 +229,12 @@ public class Delete extends JPanel {
         if (db.crearConexion()) {
             //SE BUSCAN LOS SITIOS DE INTERES
             chargeDataSitios(db, 8);
-
             //SE BUSCAN LOS CONTENIDOS MULTIMEDIA DEL SITIO DE INTERES
             chargeDataContenido(db, 3);
             //SE BUSCAN LAS IMAGENES DE LOS CONTENIDOS MULTIMEDIA
             if (!contenido.isEmpty()) {
                 chargeDataImagenes(db, 6);
             }
-
         }
     }
 //</editor-fold>
@@ -394,12 +357,4 @@ public class Delete extends JPanel {
     private javax.swing.JComboBox<String> Jlista;
     private javax.swing.JComboBox<String> jLugares;
     // End of variables declaration//GEN-END:variables
-
-    /* private boolean searchCategory(BaseDatos base, String category) {
-    
-    String sql = "Select * from categorias where nombreCategoria=" + category + "";
-    LinkedList<Object> select = base.select(sql);
-    
-    return !select.isEmpty();
-    }*/
 }

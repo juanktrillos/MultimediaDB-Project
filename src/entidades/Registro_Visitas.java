@@ -7,6 +7,7 @@ package entidades;
 
 //import java.util.Date;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 /**
@@ -24,9 +25,9 @@ public class Registro_Visitas {
 
     }
 
-    public Registro_Visitas(/*int codigoVisita,*/Date fechaVisita, int idSitios, String correoCuentas) {
+    public Registro_Visitas(/*int codigoVisita,Date fechaVisita,*/ int idSitios, String correoCuentas) {
 //        this.codigoVisita = codigoVisita;
-        this.fechaVisita = fechaVisita;
+        this.fechaVisita = Date.valueOf(LocalDate.now());
         this.idSitios = idSitios;
         this.correoCuentas = correoCuentas;
     }
@@ -103,6 +104,17 @@ public class Registro_Visitas {
      * @return String
      */
     public String delete() {
+        String delete = "Registros_Visitas WHERE codigoVisita=" + codigoVisita;
+
+        return delete;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para eliminar ocurrencia
+     *
+     * @return String
+     */
+    public String deleteFK() {
         String delete = "Registros_Visitas WHERE idSitios=" + idSitios;
 
         return delete;
@@ -117,7 +129,7 @@ public class Registro_Visitas {
     public void read(LinkedList list) {
         if (!list.isEmpty()) {
             this.codigoVisita = (int) list.get(0);
-            this.fechaVisita = (Date) list.get(1);
+            this.fechaVisita = Date.valueOf((String) list.get(1));
             this.idSitios = (int) list.get(2);
             this.correoCuentas = (String) list.get(3);
         }
@@ -129,6 +141,17 @@ public class Registro_Visitas {
      * @return String
      */
     public String select() {
+        String select = "SELECT * FROM Registros_Visitas WHERE codigoVisita=" + codigoVisita + "";
+
+        return select;
+    }
+
+    /**
+     * cadena que recibe la base de datos, para selecionar una ocurrencia
+     *
+     * @return String
+     */
+    public String selectFK() {
         String select = "SELECT * FROM Registros_Visitas WHERE idSitios=" + idSitios + "";
 
         return select;

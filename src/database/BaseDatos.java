@@ -30,7 +30,6 @@ public class BaseDatos {
 
     public BaseDatos() {
         //conexion
-
     }
 
     public Connection getConexion() {
@@ -46,7 +45,7 @@ public class BaseDatos {
     public boolean crearConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");                         //database   //user  //pass
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "anis1002");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/projectturism2016", "root", "clancy");
             st = conexion.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -96,29 +95,7 @@ public class BaseDatos {
 
         return update;
     }
-
-    /*public LinkedList<Object> read(String sql) {
     
-     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-     LinkedList<Object> obj = new LinkedList();
-     int contador = 1;
-    
-     try {
-     ResultSet rs = st.executeQuery("SELECT * FROM " + sql);
-     ResultSetMetaData rsm = rs.getMetaData();
-     int numColumn = rsm.getColumnCount();
-    
-     while (rs.next()) {
-     while (contador <= numColumn) {
-     obj.add(rs.getObject(contador));
-     contador++;
-     }
-     }
-     } catch (SQLException ex) {
-     System.out.println("error en la base de datos");
-     }
-     return obj;
-     }*/
     public LinkedList<Object> select(String sql) {
 
         LinkedList<Object> obj = new LinkedList();
@@ -214,7 +191,6 @@ public class BaseDatos {
             ps.setDate(3, (Date) imagen.getFechaImagen());
             ps.setBinaryStream(4, inputStream, inputStream.available());
             ps.setInt(5, imagen.getIdImagen());
-            ps.setInt(6, imagen.getIdContenidoMultimediaI());
 
             ps.executeUpdate();
 

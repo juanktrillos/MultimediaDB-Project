@@ -96,19 +96,20 @@ public class Registro extends JPanel {
     private void BtCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCrearActionPerformed
 
         BaseDatos base = new BaseDatos();
+        String Nombre = jNombre.getText();
+        String Apellido = jApellido.getText();
+        String Celular = jCelular.getText();
+        String Correo = jCorreo.getText();
+        
         try {
             if (base.crearConexion()) {
                 if (new String(JPass.getPassword()).equals(new String(JPasscon.getPassword()))) {
-                    String Nombre = jNombre.getText();
-                    String Apellido = jApellido.getText();
-                    String Celular = jCelular.getText();
-                    String Correo = jCorreo.getText();
 
                     String Contraseña = new String(JPasscon.getPassword());
                     String cifrado = Cuentas.Encriptar(Contraseña);
 
-                    Cuentas cuenta = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
-                    boolean insertado = base.insert(cuenta.insert());
+                    Cuentas cuentaTemp = new Cuentas(Correo, cifrado, Nombre, Apellido, Celular);
+                    boolean insertado = base.insert(cuentaTemp.insert());
 
                     if (insertado) {
                         JOptionPane.showMessageDialog(null, "Registrado");

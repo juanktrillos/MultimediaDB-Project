@@ -23,7 +23,11 @@ public class Sitios_Interes {
     private int Categoria;
 
     public Sitios_Interes() {
+        
+    }
 
+    public Sitios_Interes(int idSitio) {
+        this.idSitio = idSitio;
     }
 
     public Sitios_Interes(int idSitio, String Nombre, String Direccion, int Calificacion, String Reseña, String Horario, String infoAdicional, int Categoria) {

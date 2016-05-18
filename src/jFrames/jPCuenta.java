@@ -18,13 +18,12 @@ import javax.swing.JPanel;
 public class jPCuenta extends JPanel {
 
     Ventana ven;
-    //Cuentas cuenta;
-    boolean root = false;
+    boolean root;
 
     public jPCuenta(Ventana vena) {
         initComponents();
         this.ven = vena;
-//        cuenta = new Cuentas();
+        root = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -98,12 +97,12 @@ public class jPCuenta extends JPanel {
             if (root) {
                 MenuAdmin menu = new MenuAdmin(ven);
                 ven.setContentPane(menu);
-                ven.setSize(718, 570);
+                ven.setSize(720, 580);
 
             } else {
                 PagInfo pag = new PagInfo(ven);
                 ven.setContentPane(pag);
-                ven.setSize(900, 378);
+                ven.setSize(900, 380);
             }
         }
 
@@ -127,19 +126,19 @@ public class jPCuenta extends JPanel {
         String correo = jCorreo.getText();
         String password = new String(JPass.getPassword());
         String cifrado = Cuentas.Encriptar(password);
-        Cuentas cuenta = new Cuentas(correo, cifrado);
+        Cuentas cuentaTemp = new Cuentas(correo, cifrado);
 
         if (base.crearConexion()) {
-            LinkedList<Object> list = base.select(cuenta.select());
+            LinkedList<Object> list = base.select(cuentaTemp.select());
 
             if (!list.isEmpty()) {
-                cuenta.read(list);
+                cuentaTemp.read(list);
 
-                if (jCorreo.getText().equals(cuenta.getCorreo()) && cifrado.equals(cuenta.getPassword())) {
+                if (jCorreo.getText().equals(cuentaTemp.getCorreo()) && cifrado.equals(cuentaTemp.getPassword())) {
                     if (jCorreo.getText().equals("root")) {
                         root = true;
                     }
-                    ven.cuenta = cuenta;
+                    ven.cuenta = cuentaTemp;
                     flag = true;
                 } else {
                     JOptionPane.showMessageDialog(null, " Error de contraseña\nintente de nuevo");

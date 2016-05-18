@@ -154,7 +154,6 @@ public class Cuentas {
         String select = "SELECT * FROM Cuentas WHERE correoCuenta=" + "\"" + correoCuenta + "\"";
 
         return select;
-
     }
 
     public static String Encriptar(String texto) {

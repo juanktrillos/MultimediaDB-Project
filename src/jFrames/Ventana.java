@@ -2,9 +2,7 @@ package jFrames;
 
 import entidades.Cuentas;
 import java.awt.Dimension;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
 
 /**
  *
@@ -166,7 +164,7 @@ public class Ventana extends JFrame {
 
         jPCuenta jPCuenta = new jPCuenta(this);
         this.setContentPane(jPCuenta);
-        this.setSize(400, 330);
+        this.setSize(410, 350);
 
     }//GEN-LAST:event_JInicioMouseClicked
 
@@ -175,7 +173,7 @@ public class Ventana extends JFrame {
 
         Registro reg = new Registro(this);
         this.setContentPane(reg);
-        this.setSize(400, 490);
+        this.setSize(400, 500);
     }//GEN-LAST:event_JRegistroMouseClicked
 
     /**

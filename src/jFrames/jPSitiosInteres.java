@@ -186,8 +186,9 @@ public class jPSitiosInteres extends javax.swing.JPanel {
     }
 //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="commentDisply(int, int)">
     public void commentDisplay(int posCTemp, int dir) {
-
+        
         int id = sitios.get(pos).getIdSitio();
         Comentario comTemp = comment.get(posCTemp);
         if (comTemp.getIdSitioComent() == id) {
@@ -204,14 +205,14 @@ public class jPSitiosInteres extends javax.swing.JPanel {
             commentDisplay(posCTemp, dir);
         }
     }
+//</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="registro()">
     public void registro() {
 
-        Date date = Date.valueOf(LocalDate.now());
         int idS = sitios.get(pos).getIdSitio();
         String correo = ven.cuenta.getCorreo();
-        Registro_Visitas rv = new Registro_Visitas(date, idS, correo);
+        Registro_Visitas rv = new Registro_Visitas(idS, correo);
         BaseDatos db = new BaseDatos();
         if (db.crearConexion()) {
             db.insert(rv.insert());

@@ -54,36 +54,35 @@ public class Modificar extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jlista = new javax.swing.JComboBox<>();
+        Jlista = new javax.swing.JComboBox<String>();
         JAtras = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
         JNombre = new javax.swing.JTextField();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
-        JCalificacion = new javax.swing.JComboBox<>();
+        JCalificacion = new javax.swing.JComboBox<String>();
         JReseña = new javax.swing.JTextField();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
-        jLugares = new javax.swing.JComboBox<>();
+        jLugares = new javax.swing.JComboBox<String>();
         JID = new javax.swing.JLabel();
         JidImagen = new javax.swing.JLabel();
         JIdContenido = new javax.swing.JLabel();
         Jfondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(718, 529));
-        setSize(new java.awt.Dimension(718, 529));
         setLayout(null);
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
-        Jlista.setSelectedIndex(1);
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante" }));
+        Jlista.setSelectedIndex(-1);
         Jlista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JlistaActionPerformed(evt);
             }
         });
         add(Jlista);
-        Jlista.setBounds(70, 70, 209, 27);
+        Jlista.setBounds(70, 70, 209, 20);
 
         JAtras.setText("Atras");
         JAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -92,31 +91,32 @@ public class Modificar extends JPanel {
             }
         });
         add(JAtras);
-        JAtras.setBounds(30, 490, 77, 29);
+        JAtras.setBounds(30, 490, 59, 23);
 
         JMod.setText("Modificar");
+        JMod.setEnabled(false);
         JMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JModActionPerformed(evt);
             }
         });
         add(JMod);
-        JMod.setBounds(210, 490, 103, 29);
+        JMod.setBounds(210, 490, 75, 23);
         add(JNombre);
-        JNombre.setBounds(150, 210, 223, 26);
+        JNombre.setBounds(150, 200, 223, 20);
         add(JDireccion);
-        JDireccion.setBounds(150, 240, 223, 26);
+        JDireccion.setBounds(150, 230, 223, 20);
         add(JInfo);
         JInfo.setBounds(150, 410, 223, 66);
 
-        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
         add(JCalificacion);
-        JCalificacion.setBounds(160, 280, 64, 27);
+        JCalificacion.setBounds(150, 270, 31, 20);
         add(JReseña);
         JReseña.setBounds(150, 340, 223, 66);
         add(JHorario);
-        JHorario.setBounds(150, 310, 223, 26);
+        JHorario.setBounds(150, 310, 223, 20);
         add(JImagen);
         JImagen.setBounds(420, 70, 260, 210);
 
@@ -127,7 +127,7 @@ public class Modificar extends JPanel {
             }
         });
         add(JAdd);
-        JAdd.setBounds(490, 370, 93, 29);
+        JAdd.setBounds(520, 370, 71, 23);
 
         jLugares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +135,7 @@ public class Modificar extends JPanel {
             }
         });
         add(jLugares);
-        jLugares.setBounds(70, 130, 200, 27);
+        jLugares.setBounds(70, 130, 200, 20);
 
         JID.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         JID.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,67 +154,48 @@ public class Modificar extends JPanel {
 
         Jfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuMod.png"))); // NOI18N
         add(Jfondo);
-        Jfondo.setBounds(0, 0, 718, 530);
+        Jfondo.setBounds(0, 0, 720, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddActionPerformed
-
         img = Imagenes.cargarArchivos();
         JImagen.setIcon(img);
-
+        JMod.setEnabled(true);
     }//GEN-LAST:event_JAddActionPerformed
 
     private void JModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JModActionPerformed
         // TODO add your handling code here:
-
         BaseDatos base = new BaseDatos();
         Sitios_Interes lugar;
-        Imagenes imagen;
+        Imagenes imagenTemp;
+        String Nombre = JNombre.getText();
+        String Dir = JDireccion.getText();
+        String Horario = JHorario.getText();
+        String Reseña = JReseña.getText();
+        String Info = JInfo.getText();
+        int calificacion = (JCalificacion.getSelectedIndex() + 1);
+        int idSitio = new Integer(JID.getText());
+        int categoria = (Jlista.getSelectedIndex() + 1);
 
         if (base.crearConexion()) {
-
-            String Nombre = JNombre.getText();
-            String Dir = JDireccion.getText();
-            String Horario = JHorario.getText();
-            String Reseña = JReseña.getText();
-            String Info = JInfo.getText();
-            int calificacion = (JCalificacion.getSelectedIndex() + 1);
-            int idSitio = new Integer(JID.getText());
-            int categoria = (Jlista.getSelectedIndex() + 1);
-
             lugar = new Sitios_Interes(idSitio, Nombre, Dir, calificacion, Reseña, Horario, Info, categoria);
             base.update(lugar.update());
-
-            System.out.println("Actualizareeeee a Sitio: " + lugar.toString());
-            System.out.println(base.update(lugar.update()));
-
             //IMAGEN
             int idContenido = new Integer(JIdContenido.getText());
             int idImagen = new Integer(JidImagen.getText());
-
-            imagen = new Imagenes(idImagen, Nombre, Reseña, img, idContenido);
-
-            base.updateImage(imagen);
-
-            System.out.println("Actualizareeeee a Imagen: " + imagen.toString());
-            System.out.println("Actualizacion: Imagen" + base.updateImage(imagen));
-
+            imagenTemp = new Imagenes(idImagen, Nombre, Reseña, img, idContenido);
+            base.updateImage(imagenTemp);
         }
-
-
     }//GEN-LAST:event_JModActionPerformed
 
     private void JlistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JlistaActionPerformed
         // TODO add your handling code here:
-
         category = Jlista.getSelectedItem().toString();
         System.out.println(category);
-        ObtenerInfo();
+        chargeSitios();
         for (Sitios_Interes sitio1 : sitios) {
             jLugares.addItem(sitio1.getNombre());
         }
-
-
     }//GEN-LAST:event_JlistaActionPerformed
 
 
@@ -231,38 +212,32 @@ public class Modificar extends JPanel {
         JID.setText("" + sitios.get(lugar).getIdSitio());
 
         //Imagen
-        JImagen.setIcon(imagen.get(lugar).getImagen());
+        img = imagen.get(lugar).getImagen();
+        JImagen.setIcon(img);
         JIdContenido.setText("" + contenido.get(lugar).getIdContenido());
         JidImagen.setText("" + imagen.get(lugar).getIdImagen());
-
-
+        JMod.setEnabled(true);
     }//GEN-LAST:event_jLugaresActionPerformed
 
     private void JAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAtrasActionPerformed
         // TODO add your handling code here:
-
         MenuAdmin menu = new MenuAdmin(ven);
         ven.setContentPane(menu);
-        ven.setSize(718, 570);
-
+        ven.setSize(720, 580);
     }//GEN-LAST:event_JAtrasActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="ObtenerInfo(): Metodo que Busca los Sitios en la DB">
-    private void ObtenerInfo() {
-
+    private void chargeSitios() {
         BaseDatos db = new BaseDatos();
-
         if (db.crearConexion()) {
             //SE BUSCAN LOS SITIOS DE INTERES
             chargeDataSitios(db, 8);
-
             //SE BUSCAN LOS CONTENIDOS MULTIMEDIA DEL SITIO DE INTERES
             chargeDataContenido(db, 3);
             //SE BUSCAN LAS IMAGENES DE LOS CONTENIDOS MULTIMEDIA
             if (!contenido.isEmpty()) {
                 chargeDataImagenes(db, 6);
             }
-
         }
     }
 //</editor-fold>
@@ -322,8 +297,8 @@ public class Modificar extends JPanel {
         LinkedList<Object> listValues;
         for (Contenidos_Multimedia cont : contenido) {
 
-            Imagenes img = new Imagenes(cont.getIdContenido());
-            list = db.select(img.selectFK());
+            Imagenes imgTemp = new Imagenes(cont.getIdContenido());
+            list = db.select(imgTemp.selectFK());
 
             int size = list.size();
             int cant = size / attri;
@@ -335,8 +310,8 @@ public class Modificar extends JPanel {
                         listValues.add(list.removeFirst());
                     }
                 }
-                img.read(listValues);
-                imagen.add(img);
+                imgTemp.read(listValues);
+                imagen.add(imgTemp);
             }
         }
     }
@@ -360,12 +335,4 @@ public class Modificar extends JPanel {
     private javax.swing.JComboBox<String> Jlista;
     private javax.swing.JComboBox<String> jLugares;
     // End of variables declaration//GEN-END:variables
-
-    /* private boolean searchCategory(BaseDatos base, String category) {
-    
-    String sql = "Select * from categorias where nombreCategoria=" + category + "";
-    LinkedList<Object> select = base.select(sql);
-    
-    return !select.isEmpty();
-    }*/
 }
