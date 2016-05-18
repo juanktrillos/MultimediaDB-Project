@@ -47,26 +47,25 @@ public class MenuAdmin extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jlista = new javax.swing.JComboBox<String>();
+        Jlista = new javax.swing.JComboBox<>();
         Jinsert = new javax.swing.JButton();
         JDelete = new javax.swing.JButton();
         JMod = new javax.swing.JButton();
         JNombre = new javax.swing.JTextField();
         JDireccion = new javax.swing.JTextField();
         JInfo = new javax.swing.JTextField();
-        JCalificacion = new javax.swing.JComboBox<String>();
+        JCalificacion = new javax.swing.JComboBox<>();
         JReseña = new javax.swing.JTextField();
         JHorario = new javax.swing.JTextField();
         JImagen = new javax.swing.JLabel();
         JAdd = new javax.swing.JButton();
         JAtras = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         JFondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(720, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jlista.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Centro Comercial", "Hotel", "Restaurante", "Museo" }));
+        Jlista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centro Comercial", "Hotel", "Restaurante", "Museo" }));
         Jlista.setSelectedIndex(-1);
         Jlista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +102,7 @@ public class MenuAdmin extends JPanel {
         add(JDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 223, -1));
         add(JInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 223, 66));
 
-        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        JCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         JCalificacion.setSelectedIndex(1);
         add(JCalificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
@@ -131,14 +130,6 @@ public class MenuAdmin extends JPanel {
             }
         });
         add(JAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
-
-        jButton1.setText("Estadistica");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, -1, -1));
 
         JFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/MenuAdmin-01-01.png"))); // NOI18N
         JFondo.setMinimumSize(new java.awt.Dimension(720, 530));
@@ -219,13 +210,6 @@ public class MenuAdmin extends JPanel {
         ven.setSize(720, 580);
     }//GEN-LAST:event_JDeleteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Grafica gp = new Grafica();
-        ven.setContentPane(gp);
-        ven.setSize(720, 580);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void JlistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JlistaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JlistaActionPerformed
@@ -245,6 +229,5 @@ public class MenuAdmin extends JPanel {
     private javax.swing.JTextField JReseña;
     private javax.swing.JButton Jinsert;
     private javax.swing.JComboBox<String> Jlista;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
